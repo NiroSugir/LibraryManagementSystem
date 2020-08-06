@@ -1,6 +1,5 @@
 #include "application.h"
 #include "ui_application.h"
-#include "widgets/book/bookview.h"
 
 Application::Application(QWidget *parent)
     : QWidget(parent)

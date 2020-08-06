@@ -2,6 +2,7 @@
 #define APPLICATION_H
 
 #include <QWidget>
+#include "widgets/book/bookview.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Application; }
