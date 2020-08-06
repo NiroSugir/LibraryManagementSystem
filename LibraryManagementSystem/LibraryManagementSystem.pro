@@ -18,15 +18,18 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     main.cpp \
     application.cpp \
-    widgets/book/bookview.cpp
+    widgets/book/bookview.cpp \
+    widgets/login/loginview.cpp
 
 HEADERS += \
     application.h \
-    widgets/book/bookview.h
+    widgets/book/bookview.h \
+    widgets/login/loginview.h
 
 FORMS += \
     application.ui \
-    widgets/book/bookview.ui
+    widgets/book/bookview.ui \
+    widgets/login/loginview.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
