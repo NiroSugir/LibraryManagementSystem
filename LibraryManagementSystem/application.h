@@ -1,13 +1,13 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
-#include <QDialog>
+#include <QWidget>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Application; }
 QT_END_NAMESPACE
 
-class Application : public QDialog
+class Application : public QWidget
 {
     Q_OBJECT
 
