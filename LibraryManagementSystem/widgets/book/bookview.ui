@@ -304,6 +304,16 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>lineEdit</tabstop>
+  <tabstop>lineEditAuthor</tabstop>
+  <tabstop>lineEditPublisher</tabstop>
+  <tabstop>lineEditYear</tabstop>
+  <tabstop>lineEditIsbn</tabstop>
+  <tabstop>listWidget</tabstop>
+  <tabstop>buttonSubmit</tabstop>
+  <tabstop>buttonClear</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
