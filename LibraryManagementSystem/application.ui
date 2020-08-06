@@ -49,7 +49,7 @@
       <string notr="true"/>
      </property>
      <property name="text">
-      <string>Copyright (C) 2020 by Niroshan Sugirtharatnam. All Rights Reserved.</string>
+      <string>Copyright © 2020 by Niroshan Sugirtharatnam. All Rights Reserved.</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
