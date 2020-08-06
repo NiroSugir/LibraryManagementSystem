@@ -1,5 +1,6 @@
 #include "application.h"
 #include "ui_application.h"
+#include "widgets/book/bookview.h"
 
 Application::Application(QWidget *parent)
     : QWidget(parent)
@@ -9,6 +10,8 @@ Application::Application(QWidget *parent)
 
     // TODO: Retrieve the app name from constants and append the current "route" to the title name"
     this->setWindowTitle("Library Management System");
+
+    ui->stackedWidgetContent->insertWidget(0, new BookView);
 }
 
 Application::~Application()

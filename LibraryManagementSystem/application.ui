@@ -32,14 +32,14 @@
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 1px solid black;</string>
+      <string notr="true"/>
      </property>
     </widget>
    </item>
    <item>
     <widget class="QStackedWidget" name="stackedWidgetContent">
      <property name="styleSheet">
-      <string notr="true">border: 1px solid black;</string>
+      <string notr="true"/>
      </property>
     </widget>
    </item>
