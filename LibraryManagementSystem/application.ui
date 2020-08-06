@@ -44,21 +44,15 @@
     </widget>
    </item>
    <item>
-    <widget class="QStackedWidget" name="stackedWidgetFooter">
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>50</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>50</height>
-      </size>
-     </property>
+    <widget class="QLabel" name="label">
      <property name="styleSheet">
-      <string notr="true">border: 1px solid black;</string>
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string>Copyright (C) 2020 by Niroshan Sugirtharatnam. All Rights Reserved.</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
    </item>
