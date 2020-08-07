@@ -18,18 +18,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     main.cpp \
     application.cpp \
+    widgets/author/authorview.cpp \
     widgets/book/bookview.cpp \
     widgets/login/loginview.cpp \
     widgets/signup/signupview.cpp
 
 HEADERS += \
     application.h \
+    widgets/author/authorview.h \
     widgets/book/bookview.h \
     widgets/login/loginview.h \
     widgets/signup/signupview.h
 
 FORMS += \
     application.ui \
+    widgets/author/authorview.ui \
     widgets/book/bookview.ui \
     widgets/login/loginview.ui \
     widgets/signup/signupview.ui

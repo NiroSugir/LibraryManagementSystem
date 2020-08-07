@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "widgets/login/loginview.h"
 #include "widgets/signup/signupview.h"
+#include "widgets/author/authorview.h"
 #include "widgets/book/bookview.h"
 
 QT_BEGIN_NAMESPACE
