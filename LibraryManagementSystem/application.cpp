@@ -10,7 +10,7 @@ Application::Application(QWidget *parent)
     // TODO: Retrieve the app name from constants and append the current "route" to the title name"
     this->setWindowTitle("Library Management System");
 
-    ui->stackedWidgetContent->insertWidget(0, new LoginView);
+    ui->stackedWidgetContent->insertWidget(0, new SignupView);
 }
 
 Application::~Application()

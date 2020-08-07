@@ -19,17 +19,20 @@ SOURCES += \
     main.cpp \
     application.cpp \
     widgets/book/bookview.cpp \
-    widgets/login/loginview.cpp
+    widgets/login/loginview.cpp \
+    widgets/signup/signupview.cpp
 
 HEADERS += \
     application.h \
     widgets/book/bookview.h \
-    widgets/login/loginview.h
+    widgets/login/loginview.h \
+    widgets/signup/signupview.h
 
 FORMS += \
     application.ui \
     widgets/book/bookview.ui \
-    widgets/login/loginview.ui
+    widgets/login/loginview.ui \
+    widgets/signup/signupview.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
