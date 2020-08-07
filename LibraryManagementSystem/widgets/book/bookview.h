@@ -2,6 +2,9 @@
 #define BOOKVIEW_H
 
 #include <QWidget>
+#include <QStringList>
+#include <QStringListModel>
+#include <QModelIndex>
 
 namespace Ui {
 class BookView;
@@ -17,6 +20,12 @@ public:
 
 private:
     Ui::BookView *ui;
+
+    QStringList list;
+    // TODO: create a model class and use the MVC pattern
+    QStringListModel model;
+
+    void initialize();
 };
 
 #endif // BOOKVIEW_H
