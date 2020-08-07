@@ -27,7 +27,7 @@
      </property>
      <property name="sizeHint" stdset="0">
       <size>
-       <width>582</width>
+       <width>524</width>
        <height>20</height>
       </size>
      </property>
@@ -72,80 +72,10 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="1" colspan="2">
-        <widget class="QLineEdit" name="lineEditUsername_9"/>
-       </item>
        <item row="2" column="0">
         <widget class="QLabel" name="label_8">
          <property name="text">
           <string>Username</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="1">
-        <widget class="QPushButton" name="buttonLogin_3">
-         <property name="font">
-          <font>
-           <family>Verdana</family>
-           <pointsize>12</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>Sign Up</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="1" colspan="2">
-        <widget class="QLineEdit" name="lineEditUsername_7">
-         <property name="inputMask">
-          <string/>
-         </property>
-         <property name="echoMode">
-          <enum>QLineEdit::Password</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1" colspan="2">
-        <widget class="QLineEdit" name="lineEditUsername_5"/>
-       </item>
-       <item row="5" column="2">
-        <widget class="QPushButton" name="buttonReset_3">
-         <property name="font">
-          <font>
-           <family>Verdana</family>
-           <pointsize>12</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>Clear</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="0">
-        <widget class="QLabel" name="label_10">
-         <property name="text">
-          <string>Verify Password</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1" colspan="2">
-        <widget class="QLineEdit" name="lineEditUsername_6">
-         <property name="inputMask">
-          <string/>
-         </property>
-         <property name="echoMode">
-          <enum>QLineEdit::Password</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QLabel" name="label_9">
-         <property name="text">
-          <string>Password</string>
          </property>
         </widget>
        </item>
@@ -156,8 +86,101 @@
          </property>
         </widget>
        </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_10">
+         <property name="text">
+          <string>Verify Password</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QPushButton" name="pushButtonSignup">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Sign Up</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1" colspan="2">
+        <widget class="QLineEdit" name="lineEditPassword">
+         <property name="minimumSize">
+          <size>
+           <width>300</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="echoMode">
+          <enum>QLineEdit::Password</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1" colspan="2">
+        <widget class="QLineEdit" name="lineEditVerifyPassword">
+         <property name="minimumSize">
+          <size>
+           <width>300</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="echoMode">
+          <enum>QLineEdit::Password</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1" colspan="2">
+        <widget class="QLineEdit" name="lineEditLastName">
+         <property name="minimumSize">
+          <size>
+           <width>300</width>
+           <height>0</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_9">
+         <property name="text">
+          <string>Password</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1" colspan="2">
+        <widget class="QLineEdit" name="lineEditLoginName">
+         <property name="minimumSize">
+          <size>
+           <width>300</width>
+           <height>0</height>
+          </size>
+         </property>
+        </widget>
+       </item>
        <item row="0" column="1" colspan="2">
-        <widget class="QLineEdit" name="lineEditUsername_8"/>
+        <widget class="QLineEdit" name="lineEditFirstName">
+         <property name="minimumSize">
+          <size>
+           <width>300</width>
+           <height>0</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="2">
+        <widget class="QPushButton" name="pushButtonClear">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Clear</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -183,7 +206,7 @@
      </property>
      <property name="sizeHint" stdset="0">
       <size>
-       <width>581</width>
+       <width>523</width>
        <height>20</height>
       </size>
      </property>
@@ -192,15 +215,15 @@
   </layout>
  </widget>
  <tabstops>
-  <tabstop>lineEditUsername_8</tabstop>
-  <tabstop>lineEditUsername_9</tabstop>
-  <tabstop>lineEditUsername_5</tabstop>
-  <tabstop>lineEditUsername_6</tabstop>
-  <tabstop>lineEditUsername_7</tabstop>
-  <tabstop>buttonLogin_3</tabstop>
-  <tabstop>buttonReset_3</tabstop>
-  <tabstop>buttonReset_2</tabstop>
+  <tabstop>lineEditFirstName</tabstop>
+  <tabstop>lineEditLastName</tabstop>
+  <tabstop>lineEditLoginName</tabstop>
+  <tabstop>lineEditPassword</tabstop>
+  <tabstop>lineEditVerifyPassword</tabstop>
+  <tabstop>pushButtonSignup</tabstop>
+  <tabstop>pushButtonClear</tabstop>
   <tabstop>buttonLogin_2</tabstop>
+  <tabstop>buttonReset_2</tabstop>
   <tabstop>lineEditUsername_2</tabstop>
   <tabstop>buttonReset</tabstop>
   <tabstop>lineEditUsername_4</tabstop>
