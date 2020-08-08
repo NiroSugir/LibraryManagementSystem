@@ -12,8 +12,5 @@ int main(int argc, char *argv[])
     ApplicationWindow w;
     w.show();
 
-    // TODO: remove. created to test as proof of concept. should be done by router
-    w.setMainView(new BookView);
-
     return a.exec();
 }
