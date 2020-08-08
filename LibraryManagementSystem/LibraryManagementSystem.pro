@@ -16,25 +16,28 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    applicationwindow.cpp \
     main.cpp \
-    application.cpp \
     widgets/author/authorview.cpp \
     widgets/book/bookview.cpp \
     widgets/login/loginview.cpp \
+    widgets/main/mainview.cpp \
     widgets/signup/signupview.cpp
 
 HEADERS += \
-    application.h \
+    applicationwindow.h \
     widgets/author/authorview.h \
     widgets/book/bookview.h \
     widgets/login/loginview.h \
+    widgets/main/mainview.h \
     widgets/signup/signupview.h
 
 FORMS += \
-    application.ui \
+    applicationwindow.ui \
     widgets/author/authorview.ui \
     widgets/book/bookview.ui \
     widgets/login/loginview.ui \
+    widgets/main/mainview.ui \
     widgets/signup/signupview.ui
 
 # Default rules for deployment.
