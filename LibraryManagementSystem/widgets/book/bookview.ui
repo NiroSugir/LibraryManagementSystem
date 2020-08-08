@@ -36,14 +36,41 @@
       </spacer>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEdit_2">
+      <widget class="QLineEdit" name="lineEditSearch">
+       <property name="minimumSize">
+        <size>
+         <width>360</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
        <property name="placeholderText">
-        <string>[Keyword, Author, ISBN...]</string>
+        <string>[Title, Author, ISBN...]</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="pushButtonSearch">
+       <property name="minimumSize">
+        <size>
+         <width>120</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
        <property name="text">
         <string>Search</string>
        </property>
@@ -65,6 +92,13 @@
     </layout>
    </item>
    <item>
+    <widget class="Line" name="line">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
     <layout class="QHBoxLayout" name="horizontalLayout_4">
      <item>
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -72,6 +106,13 @@
         <widget class="QTableView" name="tableView"/>
        </item>
       </layout>
+     </item>
+     <item>
+      <widget class="Line" name="line_2">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+      </widget>
      </item>
      <item>
       <layout class="QGridLayout" name="gridLayout">
@@ -134,6 +175,9 @@
            <weight>75</weight>
            <bold>true</bold>
           </font>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
          <property name="readOnly">
           <bool>false</bool>
@@ -240,7 +284,7 @@
            <property name="font">
             <font>
              <family>Verdana</family>
-             <pointsize>15</pointsize>
+             <pointsize>13</pointsize>
              <weight>75</weight>
              <bold>true</bold>
             </font>
@@ -255,7 +299,7 @@
            <property name="font">
             <font>
              <family>Verdana</family>
-             <pointsize>15</pointsize>
+             <pointsize>13</pointsize>
              <weight>75</weight>
              <bold>true</bold>
             </font>
