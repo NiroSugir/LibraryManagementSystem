@@ -6,8 +6,6 @@ BookView::BookView(QWidget *parent) :
     ui(new Ui::BookView)
 {
     ui->setupUi(this);
-
-    initialize();
 }
 
 BookView::~BookView()
@@ -15,14 +13,19 @@ BookView::~BookView()
     delete ui;
 }
 
-void BookView::initialize()
+void BookView::initialize(vector<string> _categories)
 {
-    // todo: get data from database
-    list.append("Biography");
-    list.append("Science-Fiction");
-    list.append("Mystery");
-    list.append("Fantasy");
+    for (const string &category: _categories){
+        ui->listViewCategories->addItem(QString::fromStdString(category));
+    }
 
-    model.setStringList(list);
-    ui->listViewCategories->setModel(&model);
+    // todo: get data from database
+    // list.append("Biography");
+    // list.append("Science-Fiction");
+    // list.append("Mystery");
+    // list.append("Fantasy");
+
+//    model.setStringList(list);
+//    ui->listViewCategories->setModel(&model);
 }
+

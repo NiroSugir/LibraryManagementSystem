@@ -5,10 +5,14 @@
 #include <QStringList>
 #include <QStringListModel>
 #include <QModelIndex>
+#include <vector>
 
 namespace Ui {
 class BookView;
 }
+
+using std::string;
+using std::vector;
 
 class BookView : public QWidget
 {
@@ -18,6 +22,9 @@ public:
     explicit BookView(QWidget *parent = nullptr);
     ~BookView();
 
+    void initialize(vector<string> _categories);
+    void clearSearchResults();
+
 private:
     Ui::BookView *ui;
 
@@ -25,7 +32,6 @@ private:
     // TODO: create a model class and use the MVC pattern
     QStringListModel model;
 
-    void initialize();
 };
 
 #endif // BOOKVIEW_H

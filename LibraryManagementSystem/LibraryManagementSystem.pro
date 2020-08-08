@@ -18,8 +18,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     applicationwindow.cpp \
     main.cpp \
+    models/book.cpp \
     router.cpp \
     widgets/author/authorview.cpp \
+    widgets/book/bookcontroller.cpp \
+    widgets/book/bookmodel.cpp \
     widgets/book/bookview.cpp \
     widgets/login/loginview.cpp \
     widgets/main/mainview.cpp \
@@ -27,8 +30,11 @@ SOURCES += \
 
 HEADERS += \
     applicationwindow.h \
+    models/book.h \
     router.h \
     widgets/author/authorview.h \
+    widgets/book/bookcontroller.h \
+    widgets/book/bookmodel.h \
     widgets/book/bookview.h \
     widgets/login/loginview.h \
     widgets/main/mainview.h \

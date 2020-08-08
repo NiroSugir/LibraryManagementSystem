@@ -2,6 +2,7 @@
 #define ROUTER_H
 
 #include "applicationwindow.h"
+#include "widgets/book/bookcontroller.h"
 
 class Router {
 private:
@@ -23,6 +24,8 @@ public:
 
     // unassignable
     void operator=(const Router&) = delete;
+
+    void switchToBookView();
 };
 
 #endif // ROUTER_H
