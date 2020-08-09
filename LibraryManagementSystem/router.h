@@ -3,6 +3,7 @@
 
 #include "applicationwindow.h"
 #include "widgets/book/bookcontroller.h"
+#include "widgets/signup/signupcontroller.h"
 
 class Router {
 private:
@@ -26,6 +27,8 @@ public:
     void operator=(const Router&) = delete;
 
     void switchToBookView();
+
+    void switchToSignUpView();
 };
 
 #endif // ROUTER_H

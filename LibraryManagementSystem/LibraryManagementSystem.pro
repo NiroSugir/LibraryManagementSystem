@@ -26,6 +26,8 @@ SOURCES += \
     widgets/book/bookview.cpp \
     widgets/login/loginview.cpp \
     widgets/main/mainview.cpp \
+    widgets/signup/signupcontroller.cpp \
+    widgets/signup/signupmodel.cpp \
     widgets/signup/signupview.cpp
 
 HEADERS += \
@@ -38,6 +40,8 @@ HEADERS += \
     widgets/book/bookview.h \
     widgets/login/loginview.h \
     widgets/main/mainview.h \
+    widgets/signup/signupcontroller.h \
+    widgets/signup/signupmodel.h \
     widgets/signup/signupview.h
 
 FORMS += \

@@ -6,7 +6,8 @@ Router::Router()
 {
     // Go to default route then show application. This prevents screen flashing on
     // slower computers.
-    switchToBookView();
+//    switchToBookView();
+    switchToSignUpView();
     applicationWindow.show();
 }
 
@@ -23,4 +24,9 @@ void Router::switchToBookView()
 {
     // TODO: push to history vector
     BookController *bookController = new BookController{&applicationWindow};
+}
+
+void Router::switchToSignUpView()
+{
+    SignupController *signUpController = new SignupController{&applicationWindow};
 }
