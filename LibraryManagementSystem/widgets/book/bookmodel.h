@@ -18,6 +18,8 @@ public:
 private:
     // the books being displayed on the model right now
     vector<Book> visibleBooks{};
+
+    //currently selected book (pointer to a book on the list of visible books)
     Book *selectedBook{nullptr};
 };
 
