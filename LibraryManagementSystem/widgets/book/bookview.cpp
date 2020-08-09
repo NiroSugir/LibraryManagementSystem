@@ -51,6 +51,8 @@ void BookView::setupSearchResultsTable()
     ui->tableWidgetSearchResults->horizontalHeader()
             ->setSectionResizeMode(QHeaderView::Stretch);
 
+    ui->tableWidgetSearchResults->setSelectionBehavior(QAbstractItemView::SelectRows);
+
     ui->tableWidgetSearchResults->setColumnCount(2);
     ui->tableWidgetSearchResults->setRowCount(0);
     ui->tableWidgetSearchResults->setHorizontalHeaderLabels(QStringList{
