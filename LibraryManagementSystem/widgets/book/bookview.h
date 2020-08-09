@@ -17,10 +17,6 @@ using std::to_string;
 using std::vector;
 using std::function;
 
-struct BookInfo{
-
-};
-
 class BookView : public QWidget
 {
     Q_OBJECT

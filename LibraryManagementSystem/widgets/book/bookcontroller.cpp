@@ -22,8 +22,6 @@ void BookController::bindEventHandlersToView()
 
     function<void (int)> handleChangeSelectedBook = [this](int selectedIndex) {
         Book book{this->model->getBook(selectedIndex)};
-
-        // TODO: check if return is not a null pointer
         this->view->viewSelectedBook(book);
     };
 

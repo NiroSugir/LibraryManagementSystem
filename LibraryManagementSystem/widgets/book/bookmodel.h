@@ -11,8 +11,8 @@ class BookModel
 
 public:
     vector<Book> keywordSearch(string searchString);
-    Book getBook(string isbn);
-    Book getBook(int selectedBookIndex);
+//    const Book& getBook(const string &isbn);
+    const Book& getBook(const int &selectedBookIndex);
 
 private:
     // the books being displayed on the model right now

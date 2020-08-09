@@ -1,5 +1,11 @@
 #include "bookmodel.h"
 
+BookModel::~BookModel()
+{
+    delete selectedBook;
+    selectedBook = nullptr;
+}
+
 vector<Book> BookModel::keywordSearch(string searchString)
 {
     vector<Book> books;
@@ -17,22 +23,14 @@ vector<Book> BookModel::keywordSearch(string searchString)
     return books;
 }
 
-Book BookModel::getBook(string _isbn)
-{
-    return Book{"Fellowship of the Ring", "J.R.R. Tolkien", 1948, "some-isbn", "Some Publisher", "Fantasy"};
-}
+//const Book& BookModel::getBook(const string &_isbn)
+//{
+//    return Book{"Fellowship of the Ring", "J.R.R. Tolkien", 1948, "some-isbn", "Some Publisher", "Fantasy"};
+//}
 
-// return a copy of the book. changes made to this book may not be applied
-// to the model. data for book may only come directly from the db after
-// authenticating user
-Book BookModel::getBook(int selectedBookIndex)
-{
-    // return pointer instead
-    if (visibleBooks.size()) {
-        selectedBook = &visibleBooks[selectedBookIndex];
-        return *selectedBook;
-    }
 
-    // TODO: return pointer and this should return null pointer
-    return Book("", "",0, "", "", "");
+const Book& BookModel::getBook(const int &selectedBookIndex)
+{
+    selectedBook = &visibleBooks[selectedBookIndex];
+    return *selectedBook;
 }
