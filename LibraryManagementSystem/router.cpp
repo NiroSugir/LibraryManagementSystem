@@ -28,5 +28,6 @@ void Router::switchToBookView()
 
 void Router::switchToSignUpView()
 {
+    // TODO: push to history vector
     SignupController *signUpController = new SignupController{&applicationWindow};
 }

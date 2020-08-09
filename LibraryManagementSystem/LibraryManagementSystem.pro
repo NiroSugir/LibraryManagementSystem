@@ -19,6 +19,7 @@ SOURCES += \
     applicationwindow.cpp \
     main.cpp \
     models/book.cpp \
+    models/user.cpp \
     router.cpp \
     widgets/author/authorview.cpp \
     widgets/book/bookcontroller.cpp \
@@ -33,6 +34,7 @@ SOURCES += \
 HEADERS += \
     applicationwindow.h \
     models/book.h \
+    models/user.h \
     router.h \
     widgets/author/authorview.h \
     widgets/book/bookcontroller.h \
