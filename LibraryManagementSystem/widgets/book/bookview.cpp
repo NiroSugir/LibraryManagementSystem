@@ -7,7 +7,6 @@ BookView::BookView(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    setupSearchResultsTable();
 }
 
 BookView::~BookView()
@@ -17,6 +16,8 @@ BookView::~BookView()
 
 void BookView::initialize(vector<string> *_categories)
 {
+    setupSearchResultsTable();
+
     for (const string &category: *_categories) {
         ui->listViewCategories->addItem(QString::fromStdString(category));
     }
@@ -24,14 +25,14 @@ void BookView::initialize(vector<string> *_categories)
 
 void BookView::setupSearchResultsTable()
 {
-    QHeaderView* header = ui->tableWidgetSearchResults->horizontalHeader();
-    header->setSectionResizeMode(QHeaderView::Stretch);
+    // force the columns to occupy the whole table width
+    ui->tableWidgetSearchResults->horizontalHeader()
+            ->setSectionResizeMode(QHeaderView::Stretch);
+
     ui->tableWidgetSearchResults->setColumnCount(2);
     ui->tableWidgetSearchResults->setRowCount(0);
     ui->tableWidgetSearchResults->setHorizontalHeaderLabels(QStringList{
         QString{"Title"},
         QString{"Author"}
-//        QString{"Year"}
     });
 }
-
