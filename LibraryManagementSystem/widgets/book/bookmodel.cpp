@@ -1,10 +1,5 @@
 #include "bookmodel.h"
 
-BookModel::BookModel()
-{
-
-}
-
 vector<Book> BookModel::keywordSearch(string searchString)
 {
     vector<Book> books;

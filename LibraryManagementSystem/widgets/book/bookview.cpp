@@ -23,6 +23,28 @@ void BookView::initialize(vector<string> *_categories)
     }
 }
 
+void BookView::setEventHandlers(function<void (std::string)> _handleSearch)
+{
+    handleSearch = _handleSearch;
+}
+
+void BookView::updateSearchResults(vector<Book> &books)
+{
+    ui->tableWidgetSearchResults->clearContents();
+    ui->tableWidgetSearchResults->setRowCount(books.size());
+
+    int row = 0;
+    for (auto const &book: books) {
+        QString title{QString::fromStdString(book.getName())};
+        QString author{QString::fromStdString(book.getAuthor())};
+
+        ui->tableWidgetSearchResults->setItem(row, 0, new QTableWidgetItem{title});
+        ui->tableWidgetSearchResults->setItem(row, 1, new QTableWidgetItem{author});
+
+        row++;
+    }
+}
+
 void BookView::setupSearchResultsTable()
 {
     // force the columns to occupy the whole table width
@@ -35,4 +57,9 @@ void BookView::setupSearchResultsTable()
         QString{"Title"},
         QString{"Author"}
     });
+}
+
+void BookView::on_pushButtonSearch_clicked()
+{
+    handleSearch(ui->lineEditSearch->text().toStdString());
 }

@@ -1,4 +1,5 @@
 #include "bookcontroller.h"
+#include "models/book.h"
 
 BookController::BookController(ApplicationWindow *_mainWindow):
     applicationWindow{_mainWindow}, view{new BookView}, model{new BookModel}
@@ -7,4 +8,17 @@ BookController::BookController(ApplicationWindow *_mainWindow):
     view->initialize(categories);
 
     applicationWindow->setMainView(view);
+
+    // setup callbacks for the view to communicate with the model
+    bindEventHandlersToView();
+}
+
+void BookController::bindEventHandlersToView()
+{
+    std::function<void (std::string)> handleSearch = [this](std::string searchString) {
+        vector<Book> books{this->model->keywordSearch(searchString)};
+        this->view->updateSearchResults(books);
+    };
+
+    this->view->setEventHandlers(handleSearch);
 }

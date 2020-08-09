@@ -10,8 +10,6 @@ class BookModel
 {
 
 public:
-    BookModel();
-
     vector<Book> keywordSearch(string searchString);
     Book getBook(string isbn);
 };

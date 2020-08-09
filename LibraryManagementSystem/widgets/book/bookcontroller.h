@@ -13,6 +13,8 @@ private:
     BookView *view;
     BookModel *model;
 
+    void bindEventHandlersToView();
+
 public:
     BookController(ApplicationWindow *_mainWindow);
 };
