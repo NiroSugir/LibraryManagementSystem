@@ -42,6 +42,7 @@ private:
     Ui::BookView *ui;
 
     void setupSearchResultsTable();
+    vector<string> categories;
 
     function<void (string)> handleSearch;
     function<void (int)> handleChangeSelectedBook;

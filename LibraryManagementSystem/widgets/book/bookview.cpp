@@ -1,5 +1,6 @@
 #include "bookview.h"
 #include "ui_bookview.h"
+#include <QDebug>
 
 BookView::BookView(QWidget *parent) :
     QWidget(parent),
@@ -17,8 +18,9 @@ BookView::~BookView()
 void BookView::initialize(vector<string> &_categories)
 {
     setupSearchResultsTable();
+    categories = _categories;
 
-    for (const string &category: _categories) {
+    for (const string &category: categories) {
         ui->listViewCategories->addItem(QString::fromStdString(category));
     }
 }
@@ -56,7 +58,19 @@ void BookView::viewSelectedBook(const Book &book)
     ui->lineEditIsbn->setText(QString::fromStdString(book.getIsbn()));
     ui->lineEditPublisher->setText(QString::fromStdString(book.getPublisher()));
 
-    // TODO: select the correct category
+    const string thisCategory = book.getCategory();
+
+    int row = 0;
+    for(const string &category : categories) {
+        if (category == thisCategory) {
+            ui->listViewCategories->item(row)->setSelected(true);
+        } else {
+            ui->listViewCategories->item(row)->setSelected(false);
+        }
+
+        row++;
+    }
+
 }
 
 void BookView::setupSearchResultsTable()
