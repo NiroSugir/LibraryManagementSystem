@@ -11,6 +11,9 @@ vector<Book> BookModel::keywordSearch(string searchString)
     books.push_back(Book{"The Two Towers", "J.R.R. Tolkien", 1950, "some-isbn", "Some Publisher", "Fantasy"});
     books.push_back(Book{"1984", "George Orwell", 1945, "some-other-isbn", "Some Other Publisher", "Science-Fiction"});
 
+    // save the search results in the model and pass the results to the caller
+    visibleBooks = books;
+
     return books;
 }
 
