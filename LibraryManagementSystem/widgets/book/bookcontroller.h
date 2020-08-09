@@ -6,6 +6,9 @@
 #include "applicationwindow.h"
 #include <QObject>
 
+using std::function;
+using std::string;
+
 class BookController
 {
 private:

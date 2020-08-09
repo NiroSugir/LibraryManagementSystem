@@ -15,10 +15,17 @@ BookController::BookController(ApplicationWindow *_mainWindow):
 
 void BookController::bindEventHandlersToView()
 {
-    std::function<void (std::string)> handleSearch = [this](std::string searchString) {
+    function<void (string)> handleSearch = [this](string searchString) {
         vector<Book> books{this->model->keywordSearch(searchString)};
         this->view->updateSearchResults(books);
     };
 
-    this->view->setEventHandlers(handleSearch);
+    function<void (int)> handleChangeSelectedBook = [this](int selectedIndex) {
+        Book book{this->model->getBook(selectedIndex)};
+
+        // TODO: check if return is not a null pointer
+        this->view->viewSelectedBook(book);
+    };
+
+    this->view->setEventHandlers(handleSearch, handleChangeSelectedBook);
 }

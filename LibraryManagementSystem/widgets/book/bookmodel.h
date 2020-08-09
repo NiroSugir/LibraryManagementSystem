@@ -12,10 +12,12 @@ class BookModel
 public:
     vector<Book> keywordSearch(string searchString);
     Book getBook(string isbn);
+    Book getBook(int selectedBookIndex);
 
 private:
     // the books being displayed on the model right now
     vector<Book> visibleBooks{};
+    Book *selectedBook{nullptr};
 };
 
 #endif // BOOKMODEL_H

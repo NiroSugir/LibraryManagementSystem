@@ -23,9 +23,12 @@ void BookView::initialize(vector<string> *_categories)
     }
 }
 
-void BookView::setEventHandlers(function<void (std::string)> _handleSearch)
-{
+void BookView::setEventHandlers(
+        function<void (string)> _handleSearch,
+        function<void (int)> _handleChangeSelectedBook
+) {
     handleSearch = _handleSearch;
+    handleChangeSelectedBook = _handleChangeSelectedBook;
 }
 
 void BookView::updateSearchResults(const vector<Book> &books)
@@ -43,6 +46,17 @@ void BookView::updateSearchResults(const vector<Book> &books)
 
         row++;
     }
+}
+
+void BookView::viewSelectedBook(const Book &book)
+{
+    ui->lineEditTitle->setText(QString::fromStdString(book.getName()));
+    ui->lineEditAuthor->setText(QString::fromStdString(book.getAuthor()));
+    ui->lineEditYear->setText(QString::fromStdString(to_string(book.getYear())));
+    ui->lineEditIsbn->setText(QString::fromStdString(book.getIsbn()));
+    ui->lineEditPublisher->setText(QString::fromStdString(book.getPublisher()));
+
+    // TODO: select the correct category
 }
 
 void BookView::setupSearchResultsTable()
@@ -64,4 +78,13 @@ void BookView::setupSearchResultsTable()
 void BookView::on_pushButtonSearch_clicked()
 {
     handleSearch(ui->lineEditSearch->text().toStdString());
+}
+
+void BookView::on_tableWidgetSearchResults_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn)
+{
+    // book changes only if the row changes
+    if (currentRow != previousRow) {
+        // handle change book view
+        handleChangeSelectedBook(currentRow);
+    }
 }
