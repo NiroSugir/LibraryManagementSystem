@@ -9,9 +9,9 @@
 class BookController
 {
 private:
+    ApplicationWindow *applicationWindow;
     BookView *view;
     BookModel *model;
-    ApplicationWindow *applicationWindow;
 
 public:
     BookController(ApplicationWindow *_mainWindow);

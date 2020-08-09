@@ -22,16 +22,13 @@ public:
     explicit BookView(QWidget *parent = nullptr);
     ~BookView();
 
-    void initialize(vector<string> _categories);
+    void initialize(vector<string> *_categories);
     void clearSearchResults();
 
 private:
     Ui::BookView *ui;
 
-    QStringList list;
-    // TODO: create a model class and use the MVC pattern
-    QStringListModel model;
-
+    void setupSearchResultsTable();
 };
 
 #endif // BOOKVIEW_H
