@@ -14,11 +14,11 @@ BookView::~BookView()
     delete ui;
 }
 
-void BookView::initialize(vector<string> *_categories)
+void BookView::initialize(vector<string> &_categories)
 {
     setupSearchResultsTable();
 
-    for (const string &category: *_categories) {
+    for (const string &category: _categories) {
         ui->listViewCategories->addItem(QString::fromStdString(category));
     }
 }

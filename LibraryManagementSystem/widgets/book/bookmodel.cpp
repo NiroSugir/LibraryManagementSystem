@@ -8,19 +8,18 @@ BookModel::~BookModel()
 
 vector<Book> BookModel::keywordSearch(string searchString)
 {
-    vector<Book> books;
+    visibleBooks.clear();
 
     // TODO: search the db
 
     // TODO: remove PLACEHOLDER
-    books.push_back(Book{"Fellowship of the Ring", "J.R.R. Tolkien", 1948, "some-isbn", "Some Publisher", "Fantasy"});
-    books.push_back(Book{"The Two Towers", "J.R.R. Tolkien", 1950, "some-isbn", "Some Publisher", "Fantasy"});
-    books.push_back(Book{"1984", "George Orwell", 1945, "some-other-isbn", "Some Other Publisher", "Science-Fiction"});
+    visibleBooks.push_back(Book{"Fellowship of the Ring", "J.R.R. Tolkien", 1948, "some-isbn", "Some Publisher", "Fantasy"});
+    visibleBooks.push_back(Book{"The Two Towers", "J.R.R. Tolkien", 1950, "some-isbn", "Some Publisher", "Fantasy"});
+    visibleBooks.push_back(Book{"1984", "George Orwell", 1945, "some-other-isbn", "Some Other Publisher", "Science-Fiction"});
 
     // save the search results in the model and pass the results to the caller
-    visibleBooks = books;
 
-    return books;
+    return visibleBooks;
 }
 
 //const Book& BookModel::getBook(const string &_isbn)
@@ -29,7 +28,7 @@ vector<Book> BookModel::keywordSearch(string searchString)
 //}
 
 
-const Book& BookModel::getBook(const int &selectedBookIndex)
+Book BookModel::getBook(const int &selectedBookIndex)
 {
     selectedBook = &visibleBooks[selectedBookIndex];
     return *selectedBook;

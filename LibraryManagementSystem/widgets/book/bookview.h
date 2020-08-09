@@ -25,7 +25,7 @@ public:
     explicit BookView(QWidget *parent = nullptr);
     ~BookView();
 
-    void initialize(vector<string> *_categories);
+    void initialize(vector<string> &_categories);
     void setEventHandlers(
         function<void (string)> _handleSearch,
         function<void (int)> _handleChangeSelectedBook

@@ -10,9 +10,10 @@ class BookModel
 {
 
 public:
+    ~BookModel();
     vector<Book> keywordSearch(string searchString);
-//    const Book& getBook(const string &isbn);
-    const Book& getBook(const int &selectedBookIndex);
+//    Book getBook(const string &isbn);
+    Book getBook(const int &selectedBookIndex);
 
 private:
     // the books being displayed on the model right now
