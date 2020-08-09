@@ -31,7 +31,7 @@ public:
     void initialize(vector<string> *_categories);
     void setEventHandlers(function<void (std::string)> _handleSearch);
     void clearSearchResults();
-    void updateSearchResults(vector<Book> &books);
+    void updateSearchResults(const vector<Book> &books);
 
 private slots:
     void on_pushButtonSearch_clicked();

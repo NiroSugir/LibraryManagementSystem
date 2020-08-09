@@ -17,7 +17,7 @@ void BookController::bindEventHandlersToView()
 {
     std::function<void (std::string)> handleSearch = [this](std::string searchString) {
         vector<Book> books{this->model->keywordSearch(searchString)};
-        this->view->updateSearchResults(books);
+        this->view->updateSearchResults(const &books);
     };
 
     this->view->setEventHandlers(handleSearch);

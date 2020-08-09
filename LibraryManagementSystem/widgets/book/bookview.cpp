@@ -28,7 +28,7 @@ void BookView::setEventHandlers(function<void (std::string)> _handleSearch)
     handleSearch = _handleSearch;
 }
 
-void BookView::updateSearchResults(vector<Book> &books)
+void BookView::updateSearchResults(const vector<Book> &books)
 {
     ui->tableWidgetSearchResults->clearContents();
     ui->tableWidgetSearchResults->setRowCount(books.size());
