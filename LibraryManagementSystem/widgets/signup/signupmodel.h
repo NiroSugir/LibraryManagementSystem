@@ -9,8 +9,6 @@ using std::string;
 class SignupModel
 {
 public:
-    SignupModel();
-
     void signup(
         const string &firstName,
         const string &lastName,
@@ -19,7 +17,6 @@ public:
         const string &verifyPassword,
         const Role &role
      );
-
 };
 
 #endif // SIGNUPMODEL_H
