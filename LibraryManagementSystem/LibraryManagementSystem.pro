@@ -26,6 +26,8 @@ SOURCES += \
     widgets/book/bookcontroller.cpp \
     widgets/book/bookmodel.cpp \
     widgets/book/bookview.cpp \
+    widgets/login/logincontroller.cpp \
+    widgets/login/loginmodel.cpp \
     widgets/login/loginview.cpp \
     widgets/main/mainview.cpp \
     widgets/signup/signupcontroller.cpp \
@@ -44,6 +46,8 @@ HEADERS += \
     widgets/book/bookcontroller.h \
     widgets/book/bookmodel.h \
     widgets/book/bookview.h \
+    widgets/login/logincontroller.h \
+    widgets/login/loginmodel.h \
     widgets/login/loginview.h \
     widgets/main/mainview.h \
     widgets/signup/signupcontroller.h \

@@ -4,6 +4,7 @@
 #include "applicationwindow.h"
 #include "widgets/book/bookcontroller.h"
 #include "widgets/signup/signupcontroller.h"
+#include "widgets/login/logincontroller.h"
 
 class Router {
 private:
@@ -28,7 +29,9 @@ public:
 
     void switchToBookView();
 
-    void switchToSignUpView();
+    void switchToSignupView();
+
+    void switchToLoginView();
 };
 
 #endif // ROUTER_H

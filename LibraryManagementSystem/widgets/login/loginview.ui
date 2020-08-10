@@ -100,7 +100,7 @@
           </font>
          </property>
          <property name="text">
-          <string>Clear</string>
+          <string>&amp;Clear</string>
          </property>
         </widget>
        </item>
@@ -113,7 +113,7 @@
           </font>
          </property>
          <property name="text">
-          <string>Login</string>
+          <string>&amp;Login</string>
          </property>
         </widget>
        </item>
