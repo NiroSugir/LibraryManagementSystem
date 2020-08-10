@@ -5,18 +5,20 @@
 #include "signupmodel.h"
 #include "applicationwindow.h"
 #include <QObject>
-#include "models/Role.h"
+#include "models/role.h"
+#include "widgets/_helper/controller.h"
 
 using std::function;
 using std::string;
 
-class SignupController
+class SignupController: public Controller
 {
 private:
     ApplicationWindow *applicationWindow;
     SignupView *view;
     SignupModel *model;
 
+protected:
     void bindEventHandlersToView();
 
 public:

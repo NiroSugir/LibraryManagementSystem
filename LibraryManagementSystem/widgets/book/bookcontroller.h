@@ -5,17 +5,19 @@
 #include "bookmodel.h"
 #include "applicationwindow.h"
 #include <QObject>
+#include "widgets/_helper/controller.h"
 
 using std::function;
 using std::string;
 
-class BookController
+class BookController: public Controller
 {
 private:
     ApplicationWindow *applicationWindow;
     BookView *view;
     BookModel *model;
 
+protected:
     void bindEventHandlersToView();
 
 public:

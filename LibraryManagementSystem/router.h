@@ -2,9 +2,13 @@
 #define ROUTER_H
 
 #include "applicationwindow.h"
+#include "widgets/_helper/controller.h"
 #include "widgets/book/bookcontroller.h"
 #include "widgets/signup/signupcontroller.h"
 #include "widgets/login/logincontroller.h"
+#include <vector>
+
+using std::vector;
 
 class Router {
 private:
@@ -23,6 +27,7 @@ private:
 
     ApplicationWindow applicationWindow;
     Session *currentSession{nullptr};
+    vector<Controller *> history{};
 
     // Private constructor so that no objects can be created.
     Router();

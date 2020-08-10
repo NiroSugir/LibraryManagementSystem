@@ -20,7 +20,12 @@ void Router::loginUser(User _user)
 
     currentSession = new Router::Session{_user};
 
-    // TODO: delete all history (eg: clear list of controller references)
+    // delete all history (eg: clear list of controller references)
+    for(const auto &controller : history) {
+        // TODO: figure out virtual destructors and interfaces
+        delete controller;
+    }
+    history.clear();
 
     // create routes for this role
 
@@ -41,17 +46,20 @@ void Router::switchToBookView()
 {
     // TODO: push to history vector
     BookController *bookController = new BookController{&applicationWindow};
+    history.push_back(bookController);
 }
 
 void Router::switchToSignupView()
 {
     // TODO: push to history vector
     SignupController *signupController = new SignupController{&applicationWindow};
+    history.push_back(signupController);
 }
 
 void Router::switchToLoginView()
 {
     LoginController *loginController = new LoginController{&applicationWindow};
+    history.push_back(loginController);
 }
 
 Router::Session::Session(User _user)

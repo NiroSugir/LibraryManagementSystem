@@ -22,6 +22,7 @@ SOURCES += \
     models/book.cpp \
     models/user.cpp \
     router.cpp \
+    widgets/_helper/controller.cpp \
     widgets/author/authorview.cpp \
     widgets/book/bookcontroller.cpp \
     widgets/book/bookmodel.cpp \
@@ -42,6 +43,7 @@ HEADERS += \
     models/role.h \
     models/user.h \
     router.h \
+    widgets/_helper/controller.h \
     widgets/author/authorview.h \
     widgets/book/bookcontroller.h \
     widgets/book/bookmodel.h \
