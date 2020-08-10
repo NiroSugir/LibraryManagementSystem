@@ -30,9 +30,7 @@ User LoginModel::login(const string &username, const string &password)
                         query.value(5).toBool()
                     };
 
-                    query.clear();
                     db.close();
-
                     return user;
                 } else {
                     query.clear();
@@ -42,7 +40,6 @@ User LoginModel::login(const string &username, const string &password)
                     throw "Credentials not found! Please retype your username & password or signup!";
                 }
             } else {
-                query.clear();
                 db.close();
 
                 // TODO: log: "failed to query database using username[] & password []"
@@ -50,14 +47,12 @@ User LoginModel::login(const string &username, const string &password)
             }
 
         } else {
-            query.clear();
             db.close();
 
             // TODO: log: "failed to prepare statement"
             throw "Intenal DB Error! Please change what you entered and try again.";
         }
 
-        query.clear();
         db.close();
     } else {
         // TODO: log: "failed to open db"
