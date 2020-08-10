@@ -290,6 +290,9 @@
   <tabstop>lineEditUsername</tabstop>
   <tabstop>lineEditPassword</tabstop>
   <tabstop>lineEditVerifyPassword</tabstop>
+  <tabstop>radioButtonMember</tabstop>
+  <tabstop>radioButtonStaff</tabstop>
+  <tabstop>radioButtonSupplier</tabstop>
   <tabstop>pushButtonSignup</tabstop>
   <tabstop>pushButtonClear</tabstop>
  </tabstops>
