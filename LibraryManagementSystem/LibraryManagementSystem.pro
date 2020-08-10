@@ -17,6 +17,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     applicationwindow.cpp \
+    dbconnection.cpp \
     main.cpp \
     models/book.cpp \
     models/user.cpp \
@@ -33,6 +34,7 @@ SOURCES += \
 
 HEADERS += \
     applicationwindow.h \
+    dbconnection.h \
     models/RoleString.h \
     models/book.h \
     models/role.h \

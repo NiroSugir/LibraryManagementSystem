@@ -3,11 +3,7 @@
 
 #include <iostream>
 #include "models/Role.h"
-#include <QSql>
-#include <QSqlError>
-#include <QSqlDatabase>
-#include <QSqlQuery>
-#include <QMessageBox>
+#include "dbconnection.h"
 
 using std::string;
 
@@ -22,7 +18,7 @@ private:
     Role role{Role::Member};
     bool validated{false};
 
-    QSqlDatabase db;
+    DbConnection connection;
 
 public:
     User(

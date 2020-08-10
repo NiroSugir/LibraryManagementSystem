@@ -1,6 +1,5 @@
 #include "user.h"
 
-#include <QVariant>
 #include <QDebug>
 
 User::User(string _firstName, string _lastName, string _username, string _password, Role _role, bool _validated) :
@@ -34,13 +33,13 @@ bool User::getValidated() const
 
 void User::save()
 {
-    db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("super_secret_database_dont_open.sqlite3");
+    QSqlDatabase db = connection.getDb();
 
     db.open();
     if (db.isOpen()) {
         QSqlQuery query;
 
+        // use prepared statements to prevent sql injection attacks
         const bool successfullyPrepared = query.prepare("INSERT INTO Users (username,first_name,last_name,password,role,validated) VALUES (:username,:first_name,:last_name,:password,:role,:validated)");
 
         if (successfullyPrepared) {
