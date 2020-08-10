@@ -17,6 +17,24 @@ int User::passwordHash(const string &_password)
     return hash;
 }
 
+bool User::isValidUsername(const string &_username)
+{
+    if (_username.size() < 4) return false;
+
+    // TODO: alphanumeric
+    // TODO: starts with letters
+    // TODO: less than 20 letters
+
+    return true;
+}
+
+bool User::isValidPassword(const string &_password)
+{
+    if (_password.size() < 8) return false;
+
+    return true;
+}
+
 User::User(string _firstName, string _lastName, string _username, string _password, Role _role, bool _validated) :
     firstName{_firstName}, lastName{_lastName}, username{_username}, password{_password}, role{_role}, validated{_validated}
 { }

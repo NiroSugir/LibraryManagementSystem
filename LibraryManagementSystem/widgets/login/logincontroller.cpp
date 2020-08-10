@@ -11,8 +11,15 @@ LoginController::LoginController(ApplicationWindow *_mainWindow):
 
 void LoginController::bindEventHandlersToView()
 {
-//    function<void (string)> handleSearch = [this](string searchString) {
-//        vector<Book> books{this->model->keywordSearch(searchString)};
-//        this->view->updateSearchResults(books);
-//    };
+    function<void (string, string)> handleLogin = [this](string username, string password) {
+        User user{model->login(username, password)};
+
+        // TODO: set logged in session to true and assign user to it
+        // session needs to clear previous browse history
+        // session needs to set available routes for this user
+        // session will determine what the home route is for users of this role and redirect them
+        //  to that route
+    };
+
+    view->setEventHandlers(handleLogin);
 }

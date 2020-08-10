@@ -82,7 +82,7 @@
         </widget>
        </item>
        <item row="1" column="1" colspan="2">
-        <widget class="QLineEdit" name="lineEditUsername_2">
+        <widget class="QLineEdit" name="lineEditPassword">
          <property name="inputMask">
           <string/>
          </property>
@@ -151,7 +151,7 @@
  </widget>
  <tabstops>
   <tabstop>lineEditUsername</tabstop>
-  <tabstop>lineEditUsername_2</tabstop>
+  <tabstop>lineEditPassword</tabstop>
   <tabstop>buttonLogin</tabstop>
   <tabstop>buttonReset</tabstop>
  </tabstops>

@@ -22,6 +22,8 @@ private:
 
 public:
     static int passwordHash(const string &_password);
+    static bool isValidUsername(const string &_username);
+    static bool isValidPassword(const string &_password);
 
     User(
         string _firstName,
