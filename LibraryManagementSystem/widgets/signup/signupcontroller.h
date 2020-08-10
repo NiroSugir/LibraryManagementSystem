@@ -5,6 +5,7 @@
 #include "signupmodel.h"
 #include "applicationwindow.h"
 #include <QObject>
+#include "models/Role.h"
 
 using std::function;
 using std::string;

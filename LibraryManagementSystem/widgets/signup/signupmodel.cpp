@@ -10,7 +10,8 @@ void SignupModel::signup(
     const string &lastName,
     const string &username,
     const string &password,
-    const string &verifyPassword
+    const string &verifyPassword,
+    const Role &role
 ) {
     // TODO: validate if alphabetic
 
@@ -32,7 +33,7 @@ void SignupModel::signup(
     if (password != verifyPassword)
         throw "Passwords do not match";
 
-    const User user{ firstName, lastName, username, password, Role::Guest, false };
+    const User user{ firstName, lastName, username, password, role, false };
 
     // TODO: save to database
     try {

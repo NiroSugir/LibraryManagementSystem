@@ -20,7 +20,7 @@ void SignupView::redirectToLoginScreen()
     Router::getInstance()->switchToBookView();
 }
 
-void SignupView::setEventHandlers(function<void (string, string, string, string, string)> _handleSignup)
+void SignupView::setEventHandlers(function<void (string, string, string, string, string, Role)> _handleSignup)
 {
     handleSignup = _handleSignup;
 }
@@ -32,6 +32,7 @@ void SignupView::on_pushButtonClear_clicked()
     ui->lineEditUsername->setText("");
     ui->lineEditPassword->setText("");
     ui->lineEditVerifyPassword->setText("");
+    ui->radioButtonMember->setChecked(true);
 
     ui->lineEditFirstName->setFocus();
 }
@@ -46,11 +47,12 @@ void SignupView::on_pushButtonSignup_clicked()
             ui->lineEditLastName->text().toStdString(),
             ui->lineEditUsername->text().toStdString(),
             ui->lineEditPassword->text().toStdString(),
-            ui->lineEditVerifyPassword->text().toStdString()
+            ui->lineEditVerifyPassword->text().toStdString(),
+            ui->radioButtonMember->isChecked() ? Role::Member :
+                ui->radioButtonStaff->isChecked() ? Role::Staff : Role::Supplier
         );
     } catch (const char* msg) {
         // show an alert box with the error message
-
         QMessageBox alert;
         alert.setWindowTitle("Registration Error!");
         alert.setText(msg);

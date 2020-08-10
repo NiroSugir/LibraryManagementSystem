@@ -16,7 +16,10 @@ public:
         const string &lastName,
         const string &username,
         const string &password,
-        const string &verifyPassword);
-    };
+        const string &verifyPassword,
+        const Role &role
+     );
+
+};
 
 #endif // SIGNUPMODEL_H

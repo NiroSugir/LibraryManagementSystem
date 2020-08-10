@@ -34,6 +34,7 @@ SOURCES += \
 HEADERS += \
     applicationwindow.h \
     models/book.h \
+    models/role.h \
     models/user.h \
     router.h \
     widgets/author/authorview.h \

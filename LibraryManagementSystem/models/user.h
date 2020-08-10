@@ -2,10 +2,11 @@
 #define USER_H
 
 #include <iostream>
+#include "models/Role.h"
 
 using std::string;
 
-enum Role { Staff, Supplier, Member, Guest};
+
 
 class User
 {
@@ -14,7 +15,7 @@ private:
     string lastName{nullptr};
     string username{nullptr};
     string password{nullptr};
-    Role role{Role::Guest};
+    Role role{Role::Member};
     bool validated{false};
 
 public:

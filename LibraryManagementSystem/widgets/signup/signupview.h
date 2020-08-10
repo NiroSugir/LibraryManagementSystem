@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QMessageBox>
+#include "models/Role.h"
 
 using std::string;
 using std::function;
@@ -21,7 +22,7 @@ public:
 
     void redirectToLoginScreen();
     void setEventHandlers(
-        function<void (string, string, string, string, string)> _handleSignup
+        function<void (string, string, string, string, string, Role)> _handleSignup
     );
 
 private slots:
@@ -31,7 +32,7 @@ private slots:
 private:
     Ui::SignupView *ui;
 
-    function<void (string, string, string, string, string)> handleSignup;
+    function<void (string, string, string, string, string, Role)> handleSignup;
 };
 
 #endif // SIGNUPVIEW_H

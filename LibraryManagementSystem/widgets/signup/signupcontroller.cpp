@@ -11,15 +11,16 @@ SignupController::SignupController(ApplicationWindow *_mainWindow):
 
 void SignupController::bindEventHandlersToView()
 {
-    function<void (string, string, string, string, string)> handleSignup = [this](
+    function<void (string, string, string, string, string, Role)> handleSignup = [this](
         string firstName,
         string lastName,
         string username,
         string password,
-        string verifyPassword
+        string verifyPassword,
+        Role role
     ) {
         try {
-            this->model->signup(firstName, lastName, username, password, verifyPassword);
+            this->model->signup(firstName, lastName, username, password, verifyPassword, role);
         } catch (const char* msg) {
             throw msg;
         }
