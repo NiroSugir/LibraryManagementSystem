@@ -21,6 +21,8 @@ private:
     DbConnection connection;
 
 public:
+    static int passwordHash(const string &_password);
+
     User(
         string _firstName,
         string _lastName,

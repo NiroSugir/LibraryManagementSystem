@@ -2,6 +2,21 @@
 
 #include <QDebug>
 
+// terrible hashing alogorithm from:
+// https://codereview.stackexchange.com/questions/178911/c-hashing-passwords-simple-algorithm-using-rand
+int User::passwordHash(const string &_password)
+{
+    unsigned int hash = 0;
+
+    const unsigned int size = _password.length();
+    for (signed char letter : _password) {
+       srand(size * letter);
+       hash += 33 + rand() % 92;
+    }
+
+    return hash;
+}
+
 User::User(string _firstName, string _lastName, string _username, string _password, Role _role, bool _validated) :
     firstName{_firstName}, lastName{_lastName}, username{_username}, password{_password}, role{_role}, validated{_validated}
 { }
@@ -47,7 +62,7 @@ void User::save()
             query.bindValue(":first_name", firstName.c_str());
             query.bindValue(":last_name", lastName.c_str());
             // TODO: sha() hash password before storing.
-            query.bindValue(":password", password.c_str());
+            query.bindValue(":password", passwordHash(password));
             query.bindValue(":role", role);
             query.bindValue(":validated", validated ? 1 : 0);
             query.exec();
