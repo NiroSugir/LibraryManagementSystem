@@ -9,21 +9,16 @@ void SignupModel::signup(
     const Role &role
 ) {
     // TODO: validate if alphabetic
-
     if (firstName.size() < 2)
         throw "First Name's too short";
 
+    // TODO: validate if alphabetic
     if (lastName.size() < 2)
         throw "Last Name's too short";
 
-    if (username.size() < 4)
-        throw "Username must be at least 4 characters long.";
+    User::usernameIsValid(username);
 
-    if (username.size() > 20)
-        throw "Username is too long (max 20 characters).";
-
-    if (password.length() < 8)
-        throw "Password is too short. It must be at least 8 characters long";
+    User::passwordIsValid(password);
 
     if (password != verifyPassword)
         throw "Passwords do not match";

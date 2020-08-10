@@ -64,16 +64,16 @@ void LoginView::enableLoginButtonIfPossiblyValidCredentials()
 {
     // enable login button only if username & password meat the validation criteria.
     // This is to prevent querying a possibly busy database in production
-    if (!User::isValidUsername(ui->lineEditUsername->text().toStdString())) {
-        ui->buttonLogin->setDisabled(true);
-        return;
+
+    bool valid{true};
+
+    try {
+        User::usernameIsValid(ui->lineEditUsername->text().toStdString());
+        User::passwordIsValid(ui->lineEditPassword->text().toStdString());
+    } catch (const char* msg) {
+        valid = false;
     }
 
-    if (!User::isValidPassword(ui->lineEditPassword->text().toStdString())) {
-        ui->buttonLogin->setDisabled(true);
-        return;
-    }
-
-    ui->buttonLogin->setDisabled(false);
+    ui->buttonLogin->setDisabled(!(valid));
 }
 

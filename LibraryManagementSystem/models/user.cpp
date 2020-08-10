@@ -2,7 +2,7 @@
 
 #include <QDebug>
 
-// terrible hashing alogorithm from:
+// simple/weak hashing alogorithm from:
 // https://codereview.stackexchange.com/questions/178911/c-hashing-passwords-simple-algorithm-using-rand
 int User::passwordHash(const string &_password)
 {
@@ -17,22 +17,18 @@ int User::passwordHash(const string &_password)
     return hash;
 }
 
-bool User::isValidUsername(const string &_username)
+void User::usernameIsValid(const string &_username)
 {
-    if (_username.size() < 4) return false;
+    if (_username.size() < 4) throw "Username must be at least 4 characters long.";
+    if (_username.size() > 20) throw "Username is too long (max 20 characters).";
 
     // TODO: alphanumeric
     // TODO: starts with letters
-    // TODO: less than 20 letters
-
-    return true;
 }
 
-bool User::isValidPassword(const string &_password)
+void User::passwordIsValid(const string &_password)
 {
-    if (_password.size() < 8) return false;
-
-    return true;
+    if (_password.size() < 8) throw "Password is too short. It must be at least 8 characters long";
 }
 
 User::User(string _firstName, string _lastName, string _username, string _password, Role _role, bool _validated) :

@@ -18,7 +18,7 @@ void LoginController::bindEventHandlersToView()
         // session needs to clear previous browse history
         // session needs to set available routes for this user
         // session will determine what the home route is for users of this role and redirect them
-        //  to that route
+        //      to that route
     };
 
     view->setEventHandlers(handleLogin);
