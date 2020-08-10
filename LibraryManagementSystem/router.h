@@ -8,17 +8,32 @@
 
 class Router {
 private:
+    class Session {
+        private:
+            User* loggedInUser{nullptr};
+
+        public:
+            Session(User _user);
+    };
+
     // Note: no point deleting a pointer for a singleton variable. it's
     // practically a global and exists for the duration of the app.
     // It gets deleted from the heap when app closes.
     static Router *instance;
 
     ApplicationWindow applicationWindow;
+    Session *currentSession{nullptr};
 
     // Private constructor so that no objects can be created.
     Router();
 
+    // MAY ONLY BE INVOKED BY LOGINCONTROLLER AFTER AUTHENTICATING USER
+    void loginUser(User _user);
+
 public:
+    // only login controller may use private loginUser method
+    friend class LoginController;
+
     static Router *getInstance();
 
     // uncloneable

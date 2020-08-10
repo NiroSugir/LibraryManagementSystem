@@ -11,6 +11,23 @@ Router::Router()
     applicationWindow.show();
 }
 
+void Router::loginUser(User _user)
+{
+    // remove the contents on the hep if there was a session already
+    if (currentSession) {
+        delete currentSession;
+    }
+
+    currentSession = new Router::Session{_user};
+
+    // TODO: delete all history (eg: clear list of controller references)
+
+    // create routes for this role
+
+    // go to home route for this role
+    switchToBookView();
+}
+
 Router *Router::getInstance()
 {
     if (!instance) {
@@ -35,4 +52,9 @@ void Router::switchToSignupView()
 void Router::switchToLoginView()
 {
     LoginController *loginController = new LoginController{&applicationWindow};
+}
+
+Router::Session::Session(User _user)
+{
+    loggedInUser = &_user;
 }
