@@ -8,5 +8,5 @@ QSqlDatabase DbConnection::getDb() const
 DbConnection::DbConnection()
 {
     db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("super_secret_database_dont_open.sqlite3");
+    db.setDatabaseName("super_secret_database_please_dont_open.sqlite3");
 }
