@@ -1,7 +1,5 @@
 #include "signupmodel.h"
 
-#include <QDebug>
-
 void SignupModel::signup(
     const string &firstName,
     const string &lastName,
@@ -11,7 +9,6 @@ void SignupModel::signup(
     const Role &role
 ) {
     // TODO: validate if alphabetic
-    qDebug() << "role: " << role;
 
     if (firstName.size() < 2)
         throw "First Name's too short";
@@ -31,13 +28,11 @@ void SignupModel::signup(
     if (password != verifyPassword)
         throw "Passwords do not match";
 
-    const User user{ firstName, lastName, username, password, role, false };
+    User user{ firstName, lastName, username, password, role, false };
 
-
-    // TODO: save to database
     try {
-
+        user.save();
     } catch (const char* msg) {
-        throw "There's a problem with your Database!";
+        throw msg;
     }
 }

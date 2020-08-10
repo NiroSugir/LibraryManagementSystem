@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -33,6 +33,7 @@ SOURCES += \
 
 HEADERS += \
     applicationwindow.h \
+    models/RoleString.h \
     models/book.h \
     models/role.h \
     models/user.h \

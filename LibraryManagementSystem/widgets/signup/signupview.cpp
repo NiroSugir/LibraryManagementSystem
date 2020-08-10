@@ -8,6 +8,16 @@ SignupView::SignupView(QWidget *parent) :
     ui(new Ui::SignupView)
 {
     ui->setupUi(this);
+
+
+    // temp
+    ui->lineEditFirstName->setText("Niro");
+    ui->lineEditLastName->setText("Sugir");
+    ui->lineEditUsername->setText("niro");
+    ui->lineEditPassword->setText("123456789");
+    ui->lineEditVerifyPassword->setText("123456789");
+    ui->radioButtonMember->setChecked(true);
+
 }
 
 SignupView::~SignupView()

@@ -3,10 +3,13 @@
 
 #include <iostream>
 #include "models/Role.h"
+#include <QSql>
+#include <QSqlError>
+#include <QSqlDatabase>
+#include <QSqlQuery>
+#include <QMessageBox>
 
 using std::string;
-
-
 
 class User
 {
@@ -15,8 +18,11 @@ private:
     string lastName{nullptr};
     string username{nullptr};
     string password{nullptr};
+
     Role role{Role::Member};
     bool validated{false};
+
+    QSqlDatabase db;
 
 public:
     User(
@@ -35,6 +41,8 @@ public:
     string getPassword() const;
     Role getRole() const;
     bool getValidated() const;
+
+    void save();
 };
 
 #endif // USER_H
