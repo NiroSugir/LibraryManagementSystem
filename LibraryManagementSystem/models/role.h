@@ -7,6 +7,4 @@ using std::string;
 
 enum Role { Staff, Supplier, Member };
 
-string RoleString[]{"Staff","Supplier","Member"};
-
 #endif // ROLE_H
