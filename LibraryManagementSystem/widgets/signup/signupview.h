@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include <QMessageBox>
-#include "models/Role.h"
+#include "models/role.h"
 
 using std::string;
 using std::function;

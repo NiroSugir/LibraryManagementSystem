@@ -2,7 +2,7 @@
 #define USER_H
 
 #include <iostream>
-#include "models/Role.h"
+#include "models/role.h"
 #include "dbconnection.h"
 
 using std::string;
