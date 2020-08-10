@@ -69,14 +69,23 @@ void User::save()
 
             if (query.lastError().isValid()) {
                 if (query.lastError().text().contains("UNIQUE constraint failed")) {
+                    query.clear();
+                    db.close();
+
                     throw "That username is already taken. Please try another.";
                 } else {
+                    query.clear();
+                    db.close();
+
                     throw "Sign up failed! Please contact support.";
                 }
 
                 qDebug() << query.lastError();
             }
         } else {
+            query.clear();
+            db.close();
+
             // TODO: log: "failed to prepare statement"
             throw "Intenal DB Error! Please change what you entered and try again.";
         }
@@ -85,7 +94,7 @@ void User::save()
         db.close();
     } else {
         // TODO: log: "failed to open db"
-        throw "Internal DB Error! Couldnot access database. Please wait a while and try again. If problem persists, reinstall the app or call at 1-800-SHOULD-HAVE-PAID-FOR-SUPPORT ext. HAHA";
+        throw "Internal DB Error! Could not access database. Please wait a while and try again. If problem persists, reinstall the app or call at 1-800-SHOULD-HAVE-PAID-FOR-SUPPORT ext. HAHA";
     }
 }
 
