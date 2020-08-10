@@ -74,7 +74,7 @@
           </font>
          </property>
          <property name="text">
-          <string>Clear</string>
+          <string>&amp;Clear</string>
          </property>
         </widget>
        </item>
@@ -111,7 +111,7 @@
           </font>
          </property>
          <property name="text">
-          <string>Sign Up</string>
+          <string>&amp;Sign Up</string>
          </property>
         </widget>
        </item>
@@ -206,7 +206,7 @@
              </font>
             </property>
             <property name="text">
-             <string>Library Member</string>
+             <string>&amp;Library Member</string>
             </property>
             <property name="checked">
              <bool>true</bool>
@@ -227,7 +227,7 @@
              <string notr="true">color: #cc0000;</string>
             </property>
             <property name="text">
-             <string>Staff</string>
+             <string>S&amp;taff</string>
             </property>
            </widget>
           </item>
@@ -245,7 +245,7 @@
              <string notr="true">color: #cc0000;</string>
             </property>
             <property name="text">
-             <string>Supplier</string>
+             <string>S&amp;upplier</string>
             </property>
            </widget>
           </item>
