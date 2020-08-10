@@ -24,9 +24,12 @@ void Router::loginUser(User _user)
     for(const auto &controller : history) {
         delete controller;
     }
+
     history.clear();
 
     // create routes for this role
+
+
 
     // go to home route for this role
     switchToBookView();
@@ -43,14 +46,12 @@ Router *Router::getInstance()
 
 void Router::switchToBookView()
 {
-    // TODO: push to history vector
     BookController *bookController = new BookController{&applicationWindow};
     history.push_back(bookController);
 }
 
 void Router::switchToSignupView()
 {
-    // TODO: push to history vector
     SignupController *signupController = new SignupController{&applicationWindow};
     history.push_back(signupController);
 }
