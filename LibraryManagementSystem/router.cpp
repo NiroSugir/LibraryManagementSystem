@@ -22,7 +22,6 @@ void Router::loginUser(User _user)
 
     // delete all history (eg: clear list of controller references)
     for(const auto &controller : history) {
-        // TODO: figure out virtual destructors and interfaces
         delete controller;
     }
     history.clear();
