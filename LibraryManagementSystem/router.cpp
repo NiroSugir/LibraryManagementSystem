@@ -21,11 +21,15 @@ void Router::clearSession()
     // remove the contents on the hep if there was a session already
     if (currentSession) {
         delete currentSession;
+        currentSession = nullptr;
     }
 
     // delete all history (eg: clear list of controller references)
-    for(const auto &controller : history) {
-        delete controller;
+    for(auto &controller : history) {
+        if (controller) {
+            delete controller;
+            controller = nullptr;
+        };
     }
 
     // reset history. index will be incremented to the 0th index
@@ -35,8 +39,6 @@ void Router::clearSession()
 
     setRoutesAuthenticated(false);
 }
-
-
 
 void Router::loginUser(User _user)
 {
@@ -71,6 +73,7 @@ void Router::updateViewAfterChangingRoutes(Controller *_controller)
     if (historyIndex < ((signed int) history.size() - 1)) {
         for (int i = historyIndex+1; i < (signed int) history.size(); i++) {
             delete history[i];
+            history[i] = nullptr;
         }
 
         history.resize(historyIndex + 1);

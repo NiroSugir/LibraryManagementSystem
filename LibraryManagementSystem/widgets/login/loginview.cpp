@@ -15,7 +15,7 @@ LoginView::LoginView(QWidget *parent) :
 
 LoginView::~LoginView()
 {
-    delete ui;
+    if (ui) delete ui;
 }
 
 void LoginView::setEventHandlers(function<void (string, string)> _handleLogin)
