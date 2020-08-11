@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>resources/icons/Book.png</file>
+        <file>resources/icons/Login.png</file>
+        <file>resources/icons/Logout.png</file>
+        <file>resources/icons/Signup.png</file>
+        <file>resources/icons/Find.png</file>
+        <file>resources/icons/Back.png</file>
+        <file>resources/icons/Forward.png</file>
+    </qresource>
+</RCC>
