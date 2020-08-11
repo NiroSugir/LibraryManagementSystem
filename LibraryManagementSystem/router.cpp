@@ -7,6 +7,9 @@ Router::Router()
     // Go to default route then show application. This prevents screen flashing on
     // slower computers.
     switchToBookView();
+
+    applicationWindow.setProfileNameOnLabel("You are browsing as a Guest. Sign up for free!");
+
     applicationWindow.show();
 }
 
@@ -28,6 +31,8 @@ void Router::loginUser(User _user)
     // when the first route is set to it
     history.clear();
     historyIndex = -1;
+
+    applicationWindow.setProfileNameOnLabel("Greetings " + _user.getFirstName() + "!");
 
     // TODO: create routes for this role
 
@@ -112,7 +117,25 @@ void Router::goForward()
     updateHistoryButtons();
 }
 
+void Router::handleProfileClick()
+{
+    if (currentSession ){
+         User u{currentSession->getUser()};
+
+         // TODO: route to user's profile
+    } else {
+        switchToSignupView();
+    }
+}
+
 Router::Session::Session(User _user)
 {
     loggedInUser = &_user;
+}
+
+const User &Router::Session::getUser()
+{
+    const User &userCopy = *loggedInUser;
+
+    return userCopy;
 }

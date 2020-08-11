@@ -20,6 +20,8 @@ private:
 
         public:
             Session(User _user);
+
+            const User &getUser();
     };
 
     // Note: no point deleting a pointer for a singleton variable. it's
@@ -66,6 +68,8 @@ public:
     void goBack();
 
     void goForward();
+
+    void handleProfileClick();
 
 };
 

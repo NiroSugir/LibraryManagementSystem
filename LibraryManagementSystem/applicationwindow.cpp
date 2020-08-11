@@ -39,6 +39,11 @@ void ApplicationWindow::setForwardButtonStatus(bool enabled)
     ui->actionForward->setEnabled(enabled);
 }
 
+void ApplicationWindow::setProfileNameOnLabel(string profileName)
+{
+    ui->actionLabelUsername->setText(profileName.c_str());
+}
+
 void ApplicationWindow::on_actionLogin_triggered()
 {
     Router::getInstance()->switchToLoginView();
@@ -67,4 +72,9 @@ void ApplicationWindow::on_actionBack_triggered()
 void ApplicationWindow::on_actionForward_triggered()
 {
     Router::getInstance()->goForward();
+}
+
+void ApplicationWindow::on_actionLabelUsername_triggered()
+{
+    Router::getInstance()->handleProfileClick();
 }

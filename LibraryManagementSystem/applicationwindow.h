@@ -5,6 +5,8 @@
 
 #include <QMainWindow>
 
+using std::string;
+
 namespace Ui {
 class ApplicationWindow;
 }
@@ -25,6 +27,7 @@ public:
 
     void setBackButtonStatus(bool enabled);
     void setForwardButtonStatus(bool enabled);
+    void setProfileNameOnLabel(string profileName);
 
 private slots:
     void on_actionLogin_triggered();
@@ -38,6 +41,8 @@ private slots:
     void on_actionForward_triggered();
 
     void on_actionLogout_triggered();
+
+    void on_actionLabelUsername_triggered();
 
 private:
     Ui::ApplicationWindow *ui;
