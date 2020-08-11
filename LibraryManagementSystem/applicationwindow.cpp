@@ -46,17 +46,17 @@ void ApplicationWindow::setProfileNameOnLabel(string profileName)
 
 void ApplicationWindow::setSignupButtonStatus(bool enabled)
 {
-    ui->actionSign_up->setVisible(enabled);
+    ui->actionSign_up->setEnabled(enabled);
 }
 
 void ApplicationWindow::setLoginButtonStatus(bool enabled)
 {
-    ui->actionLogin->setVisible(enabled);
+    ui->actionLogin->setEnabled(enabled);
 }
 
 void ApplicationWindow::setLogoutButtonStatus(bool enabled)
 {
-    ui->actionLogout->setVisible(enabled);
+    ui->actionLogout->setEnabled(enabled);
 }
 
 void ApplicationWindow::on_actionLogin_triggered()
