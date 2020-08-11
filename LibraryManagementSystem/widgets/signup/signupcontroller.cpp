@@ -34,3 +34,11 @@ void SignupController::bindEventHandlersToView()
 
     this->view->setEventHandlers(handleSignup);
 }
+
+SignupController::~SignupController()
+{
+    // NB: let the framework handle deleting the view. the parent (window will handle deleting the child UIs)
+    applicationWindow = nullptr;
+    if (model) delete model;
+    model = nullptr;
+}

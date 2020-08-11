@@ -1,4 +1,5 @@
 #include "router.h"
+#include <QDebug>
 
 Router *Router::instance = 0;
 

@@ -21,6 +21,7 @@ protected:
     void bindEventHandlersToView() override;
 
 public:
+    ~LoginController();
     void init(ApplicationWindow *_mainWindow) override;
 };
 

@@ -22,6 +22,7 @@ protected:
     void bindEventHandlersToView() override;
 
 public:
+    ~SignupController();
     void init(ApplicationWindow *_mainWindow) override;
 };
 

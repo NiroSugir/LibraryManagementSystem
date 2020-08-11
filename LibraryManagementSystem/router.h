@@ -8,6 +8,7 @@
 #include "widgets/login/logincontroller.h"
 #include <vector>
 #include <QObject>
+#include "models/user.h"
 
 using std::vector;
 

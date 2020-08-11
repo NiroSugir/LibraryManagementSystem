@@ -21,9 +21,8 @@ protected:
     void bindEventHandlersToView() override;
 
 public:
-    void init(ApplicationWindow *_mainWindow) override;
-
     ~BookController();
+    void init(ApplicationWindow *_mainWindow) override;
 };
 
 #endif // BOOKCONTROLLER_H

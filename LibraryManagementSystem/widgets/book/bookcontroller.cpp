@@ -19,10 +19,9 @@ void BookController::init(ApplicationWindow *_mainWindow)
 
 BookController::~BookController()
 {
+    // NB: let the framework handle deleting the view. the parent (window will handle deleting the child UIs)
     applicationWindow = nullptr;
-    delete view;
-    delete model;
-    view = nullptr;
+    if (model) delete model;
     model = nullptr;
 }
 

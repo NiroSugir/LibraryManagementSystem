@@ -20,8 +20,17 @@ void LoginController::bindEventHandlersToView()
         User user{model->login(username, password)};
 
         // sets the new session and routes the user to their home route
-        Router::getInstance()->loginUser(user);
+        Router * r = Router::getInstance();
+        r->loginUser(user);
     };
 
     view->setEventHandlers(handleLogin);
+}
+
+LoginController::~LoginController()
+{
+    // NB: let the framework handle deleting the view. the parent (window will handle deleting the child UIs)
+    applicationWindow = nullptr;
+    if (model) delete model;
+    model = nullptr;
 }
