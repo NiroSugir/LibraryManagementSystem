@@ -38,6 +38,8 @@ private:
     // Private constructor so that no objects can be created.
     Router();
 
+    void clearSession();
+
     // MAY ONLY BE INVOKED BY LOGINCONTROLLER AFTER AUTHENTICATING USER
     void loginUser(User _user);
 
@@ -55,6 +57,8 @@ public:
 
     // unassignable
     void operator=(const Router&) = delete;
+
+    void logout();
 
     void switchToBookView();
 

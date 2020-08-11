@@ -51,7 +51,7 @@ void ApplicationWindow::on_actionLogin_triggered()
 
 void ApplicationWindow::on_actionLogout_triggered()
 {
-
+    Router::getInstance()->logout();
 }
 
 void ApplicationWindow::on_actionFind_Books_triggered()

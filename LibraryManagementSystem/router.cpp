@@ -14,14 +14,12 @@ Router::Router()
     applicationWindow.show();
 }
 
-void Router::loginUser(User _user)
+void Router::clearSession()
 {
     // remove the contents on the hep if there was a session already
     if (currentSession) {
         delete currentSession;
     }
-
-    currentSession = new Router::Session{_user};
 
     // delete all history (eg: clear list of controller references)
     for(const auto &controller : history) {
@@ -32,12 +30,30 @@ void Router::loginUser(User _user)
     // when the first route is set to it
     history.clear();
     historyIndex = -1;
+}
+
+
+
+void Router::loginUser(User _user)
+{
+    clearSession();
+
+    currentSession = new Router::Session{_user};
 
     applicationWindow.setProfileNameOnLabel("Greetings " + _user.getFirstName() + "!");
 
     // TODO: create routes for this role
 
     // go to home route for this role
+    switchToBookView();
+}
+
+void Router::logout()
+{
+    clearSession();
+
+    applicationWindow.setProfileNameOnLabel("You are browsing as a Guest. Sign up for free!");
+
     switchToBookView();
 }
 
