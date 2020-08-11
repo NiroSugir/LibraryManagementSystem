@@ -7,7 +7,7 @@ void BookController::init(ApplicationWindow *_mainWindow)
     view = new BookView;
     model = new BookModel;
 
-    vector<string> categories = vector<string>{"Biography", "Science-Fiction", "Mystery", "Fantasy"};
+    vector<string> categories = vector<string>{"Biography", "Science Fiction", "Mystery", "Fantasy", "Horror", "History"};
     view->initialize(categories);
 
     applicationWindow->setMainView(view);
