@@ -28,6 +28,9 @@ public:
     void setBackButtonStatus(bool enabled);
     void setForwardButtonStatus(bool enabled);
     void setProfileNameOnLabel(string profileName);
+    void setSignupButtonStatus(bool enabled);
+    void setLoginButtonStatus(bool enabled);
+    void setLogoutButtonStatus(bool enabled);
 
 private slots:
     void on_actionLogin_triggered();

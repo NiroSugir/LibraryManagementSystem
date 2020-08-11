@@ -46,6 +46,8 @@ private:
     void updateViewAfterChangingRoutes(Controller *_controller);
     void updateHistoryButtons();
 
+    void setRoutesAuthenticated(bool isAuthenticated);
+
 public:
     // only login controller may use private loginUser method
     friend class LoginController;

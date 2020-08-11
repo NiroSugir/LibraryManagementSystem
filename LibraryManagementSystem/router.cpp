@@ -9,6 +9,8 @@ Router::Router()
     // slower computers.
     switchToBookView();
 
+    setRoutesAuthenticated(false);
+
     applicationWindow.setProfileNameOnLabel("You are browsing as a Guest. Sign up for free!");
 
     applicationWindow.show();
@@ -30,6 +32,8 @@ void Router::clearSession()
     // when the first route is set to it
     history.clear();
     historyIndex = -1;
+
+    setRoutesAuthenticated(false);
 }
 
 
@@ -43,6 +47,7 @@ void Router::loginUser(User _user)
     applicationWindow.setProfileNameOnLabel("Greetings " + _user.getFirstName() + "!");
 
     // TODO: create routes for this role
+    setRoutesAuthenticated(true);
 
     // go to home route for this role
     switchToBookView();
@@ -82,6 +87,14 @@ void Router::updateHistoryButtons()
     applicationWindow.setBackButtonStatus(canGoBack());
     applicationWindow.setForwardButtonStatus(canGoForward());
 }
+
+void Router::setRoutesAuthenticated(bool isAuthenticated)
+{
+    applicationWindow.setLoginButtonStatus(!isAuthenticated);
+    applicationWindow.setSignupButtonStatus(!isAuthenticated);
+    applicationWindow.setLogoutButtonStatus(isAuthenticated);
+}
+
 
 Router *Router::getInstance()
 {
