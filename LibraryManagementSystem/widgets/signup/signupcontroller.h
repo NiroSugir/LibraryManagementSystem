@@ -14,15 +14,15 @@ using std::string;
 class SignupController: public Controller
 {
 private:
-    ApplicationWindow *applicationWindow;
-    SignupView *view;
-    SignupModel *model;
+    ApplicationWindow *applicationWindow{nullptr};
+    SignupView *view{nullptr};
+    SignupModel *model{nullptr};
 
 protected:
-    void bindEventHandlersToView();
+    void bindEventHandlersToView() override;
 
 public:
-    SignupController(ApplicationWindow *_mainWindow);
+    void init(ApplicationWindow *_mainWindow) override;
 };
 
 #endif // SIGNUPCONTROLLER_H

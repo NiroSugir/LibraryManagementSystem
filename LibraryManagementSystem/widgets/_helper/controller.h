@@ -1,6 +1,8 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
+#include "applicationwindow.h"
+
 // Controller Interface
 class Controller
 {
@@ -9,6 +11,7 @@ protected:
 
 public:
     virtual ~Controller();
+    virtual void init(ApplicationWindow *_mainWindow) = 0;
 };
 
 #endif // CONTROLLER_H

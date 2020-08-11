@@ -13,15 +13,17 @@ using std::string;
 class BookController: public Controller
 {
 private:
-    ApplicationWindow *applicationWindow;
-    BookView *view;
-    BookModel *model;
+    ApplicationWindow *applicationWindow{nullptr};
+    BookView *view{nullptr};
+    BookModel *model{nullptr};
 
 protected:
-    void bindEventHandlersToView();
+    void bindEventHandlersToView() override;
 
 public:
-    BookController(ApplicationWindow *_mainWindow);
+    void init(ApplicationWindow *_mainWindow) override;
+
+    ~BookController();
 };
 
 #endif // BOOKCONTROLLER_H

@@ -4,7 +4,6 @@ Router *Router::instance = 0;
 
 Router::Router()
 {
-
     // Go to default route then show application. This prevents screen flashing on
     // slower computers.
     switchToBookView();
@@ -25,7 +24,10 @@ void Router::loginUser(User _user)
         delete controller;
     }
 
+    // reset history. index will be incremented to the 0th index
+    // when the first route is set to it
     history.clear();
+    historyIndex = -1;
 
     // TODO: create routes for this role
 
@@ -35,9 +37,25 @@ void Router::loginUser(User _user)
 
 void Router::updateViewAfterChangingRoutes(Controller *_controller)
 {
+    _controller->init(&applicationWindow);
+
+    // add to the end of history, if the user's hasn't pressed back. if
+    // they passed back, remove all screens forward from this and push at the end of htat
+    if (historyIndex < ((signed int) history.size() - 1)) {
+        for (int i = historyIndex+1; i < (signed int) history.size(); i++) {
+            delete history[i];
+        }
+
+        history.resize(historyIndex + 1);
+    }
     history.push_back(_controller);
     historyIndex++;
 
+    updateHistoryButtons();
+}
+
+void Router::updateHistoryButtons()
+{
     // update toolbar back/forward button accessibility
     applicationWindow.setBackButtonStatus(canGoBack());
     applicationWindow.setForwardButtonStatus(canGoForward());
@@ -54,19 +72,19 @@ Router *Router::getInstance()
 
 void Router::switchToBookView()
 {
-    BookController *bookController = new BookController{&applicationWindow};
+    BookController *bookController = new BookController;
     updateViewAfterChangingRoutes(bookController);
 }
 
 void Router::switchToSignupView()
 {
-    SignupController *signupController = new SignupController{&applicationWindow};
+    SignupController *signupController = new SignupController;
     updateViewAfterChangingRoutes(signupController);
 }
 
 void Router::switchToLoginView()
 {
-    LoginController *loginController = new LoginController{&applicationWindow};
+    LoginController *loginController = new LoginController;
     updateViewAfterChangingRoutes(loginController);
 }
 
@@ -77,7 +95,21 @@ bool Router::canGoBack()
 
 bool Router::canGoForward()
 {
-    return historyIndex > history.size();
+    return historyIndex < ((signed int) history.size() - 1);
+}
+
+void Router::goBack()
+{
+    history[--historyIndex]->init(&applicationWindow);
+    updateHistoryButtons();
+
+}
+
+void Router::goForward()
+{
+    history[++historyIndex]->init(&applicationWindow);
+
+    updateHistoryButtons();
 }
 
 Router::Session::Session(User _user)

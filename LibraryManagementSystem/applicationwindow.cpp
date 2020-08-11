@@ -61,10 +61,10 @@ void ApplicationWindow::on_actionSign_up_triggered()
 
 void ApplicationWindow::on_actionBack_triggered()
 {
-
+    Router::getInstance()->goBack();
 }
 
 void ApplicationWindow::on_actionForward_triggered()
 {
-
+    Router::getInstance()->goForward();
 }

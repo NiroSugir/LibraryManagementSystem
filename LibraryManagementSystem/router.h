@@ -30,7 +30,7 @@ private:
     ApplicationWindow applicationWindow;
     Session *currentSession{nullptr};
     vector<Controller *> history{};
-    unsigned int historyIndex{0};
+    signed int historyIndex{-1};
 
     // Private constructor so that no objects can be created.
     Router();
@@ -39,6 +39,7 @@ private:
     void loginUser(User _user);
 
     void updateViewAfterChangingRoutes(Controller *_controller);
+    void updateHistoryButtons();
 
 public:
     // only login controller may use private loginUser method

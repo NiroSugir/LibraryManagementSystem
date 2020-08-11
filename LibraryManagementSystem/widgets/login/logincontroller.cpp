@@ -1,9 +1,12 @@
 #include "logincontroller.h"
 #include "router.h"
 
-LoginController::LoginController(ApplicationWindow *_mainWindow):
-    applicationWindow{_mainWindow}, view{new LoginView}, model{new LoginModel}
+void LoginController::init(ApplicationWindow *_mainWindow)
 {
+    applicationWindow = _mainWindow;
+    view = new LoginView;
+    model = new LoginModel;
+
     applicationWindow->setMainView(view);
     applicationWindow->setTitle("Login");
 

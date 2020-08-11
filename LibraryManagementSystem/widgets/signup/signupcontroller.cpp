@@ -1,8 +1,11 @@
 #include "signupcontroller.h"
 
-SignupController::SignupController(ApplicationWindow *_mainWindow):
-    applicationWindow{_mainWindow}, view{new SignupView}, model{new SignupModel}
+void SignupController::init(ApplicationWindow *_mainWindow)
 {
+    applicationWindow = _mainWindow;
+    view = new SignupView;
+    model = new SignupModel;
+
     applicationWindow->setMainView(view);
     applicationWindow->setTitle("Sign up");
 

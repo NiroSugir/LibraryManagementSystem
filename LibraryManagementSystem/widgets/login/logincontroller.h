@@ -13,15 +13,15 @@ using std::string;
 class LoginController: public Controller
 {
 private:
-    ApplicationWindow *applicationWindow;
-    LoginView *view;
-    LoginModel *model;
+    ApplicationWindow *applicationWindow{nullptr};
+    LoginView *view{nullptr};
+    LoginModel *model{nullptr};
 
 protected:
-    void bindEventHandlersToView();
+    void bindEventHandlersToView() override;
 
 public:
-    LoginController(ApplicationWindow *_mainWindow);
+    void init(ApplicationWindow *_mainWindow) override;
 };
 
 #endif // LOGINCONTROLLER_H
