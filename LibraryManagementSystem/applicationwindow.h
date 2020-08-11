@@ -23,6 +23,13 @@ public:
     void setWindowTitle(std::string _title);
     void setStatusbarMessage(std::string _statusbarMessage);
 
+private slots:
+    void on_actionLogin_triggered();
+
+    void on_actionFind_Books_triggered();
+
+    void on_actionSign_up_triggered();
+
 private:
     Ui::ApplicationWindow *ui;
 //    Ui::MainView *mainView;
