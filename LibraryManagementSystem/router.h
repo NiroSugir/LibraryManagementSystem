@@ -7,10 +7,12 @@
 #include "widgets/signup/signupcontroller.h"
 #include "widgets/login/logincontroller.h"
 #include <vector>
+#include <QObject>
 
 using std::vector;
 
-class Router {
+class Router: public QObject {
+
 private:
     class Session {
         private:
@@ -28,12 +30,15 @@ private:
     ApplicationWindow applicationWindow;
     Session *currentSession{nullptr};
     vector<Controller *> history{};
+    unsigned int historyIndex{0};
 
     // Private constructor so that no objects can be created.
     Router();
 
     // MAY ONLY BE INVOKED BY LOGINCONTROLLER AFTER AUTHENTICATING USER
     void loginUser(User _user);
+
+    void updateViewAfterChangingRoutes(Controller *_controller);
 
 public:
     // only login controller may use private loginUser method
@@ -52,6 +57,15 @@ public:
     void switchToSignupView();
 
     void switchToLoginView();
+
+    bool canGoBack();
+
+    bool canGoForward();
+
+    void goBack();
+
+    void goForward();
+
 };
 
 #endif // ROUTER_H

@@ -8,6 +8,7 @@ BookController::BookController(ApplicationWindow *_mainWindow):
     view->initialize(categories);
 
     applicationWindow->setMainView(view);
+    applicationWindow->setTitle("Books");
 
     // setup callbacks for the view to communicate with the model
     bindEventHandlersToView();

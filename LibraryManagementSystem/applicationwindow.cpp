@@ -1,6 +1,7 @@
 #include "applicationwindow.h"
 #include "ui_applicationwindow.h"
 #include "router.h"
+#include <QDebug>
 
 ApplicationWindow::ApplicationWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -23,9 +24,29 @@ void ApplicationWindow::setMainView(QWidget *widget)
     mainView->setContent(widget);
 }
 
+void ApplicationWindow::setTitle(std::string _title)
+{
+    setWindowTitle(_title.c_str());
+}
+
+void ApplicationWindow::setBackButtonStatus(bool enabled)
+{
+    ui->actionBack->setEnabled(enabled);
+}
+
+void ApplicationWindow::setForwardButtonStatus(bool enabled)
+{
+    ui->actionForward->setEnabled(enabled);
+}
+
 void ApplicationWindow::on_actionLogin_triggered()
 {
     Router::getInstance()->switchToLoginView();
+}
+
+void ApplicationWindow::on_actionLogout_triggered()
+{
+
 }
 
 void ApplicationWindow::on_actionFind_Books_triggered()
@@ -36,4 +57,14 @@ void ApplicationWindow::on_actionFind_Books_triggered()
 void ApplicationWindow::on_actionSign_up_triggered()
 {
     Router::getInstance()->switchToSignupView();
+}
+
+void ApplicationWindow::on_actionBack_triggered()
+{
+
+}
+
+void ApplicationWindow::on_actionForward_triggered()
+{
+
 }

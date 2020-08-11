@@ -5,6 +5,7 @@ LoginController::LoginController(ApplicationWindow *_mainWindow):
     applicationWindow{_mainWindow}, view{new LoginView}, model{new LoginModel}
 {
     applicationWindow->setMainView(view);
+    applicationWindow->setTitle("Login");
 
     // setup callbacks for the view to communicate with the model
     bindEventHandlersToView();

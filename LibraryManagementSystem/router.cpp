@@ -4,10 +4,10 @@ Router *Router::instance = 0;
 
 Router::Router()
 {
+
     // Go to default route then show application. This prevents screen flashing on
     // slower computers.
-//    switchToBookView();
-    switchToLoginView();
+    switchToBookView();
     applicationWindow.show();
 }
 
@@ -27,12 +27,20 @@ void Router::loginUser(User _user)
 
     history.clear();
 
-    // create routes for this role
-
-
+    // TODO: create routes for this role
 
     // go to home route for this role
     switchToBookView();
+}
+
+void Router::updateViewAfterChangingRoutes(Controller *_controller)
+{
+    history.push_back(_controller);
+    historyIndex++;
+
+    // update toolbar back/forward button accessibility
+    applicationWindow.setBackButtonStatus(canGoBack());
+    applicationWindow.setForwardButtonStatus(canGoForward());
 }
 
 Router *Router::getInstance()
@@ -47,19 +55,29 @@ Router *Router::getInstance()
 void Router::switchToBookView()
 {
     BookController *bookController = new BookController{&applicationWindow};
-    history.push_back(bookController);
+    updateViewAfterChangingRoutes(bookController);
 }
 
 void Router::switchToSignupView()
 {
     SignupController *signupController = new SignupController{&applicationWindow};
-    history.push_back(signupController);
+    updateViewAfterChangingRoutes(signupController);
 }
 
 void Router::switchToLoginView()
 {
     LoginController *loginController = new LoginController{&applicationWindow};
-    history.push_back(loginController);
+    updateViewAfterChangingRoutes(loginController);
+}
+
+bool Router::canGoBack()
+{
+    return historyIndex > 0;
+}
+
+bool Router::canGoForward()
+{
+    return historyIndex > history.size();
 }
 
 Router::Session::Session(User _user)
