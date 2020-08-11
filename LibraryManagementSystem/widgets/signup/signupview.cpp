@@ -27,7 +27,7 @@ SignupView::~SignupView()
 
 void SignupView::redirectToLoginScreen()
 {
-    Router::getInstance()->switchToBookView();
+    Router::getInstance()->switchToLoginView();
 }
 
 void SignupView::setEventHandlers(function<void (string, string, string, string, string, Role)> _handleSignup)
