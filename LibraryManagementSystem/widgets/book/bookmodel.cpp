@@ -1,5 +1,7 @@
 #include "bookmodel.h"
 
+#include <QDebug>
+
 BookModel::~BookModel()
 {
     delete selectedBook;
@@ -8,25 +10,56 @@ BookModel::~BookModel()
 
 vector<Book> BookModel::keywordSearch(string searchString)
 {
+    selectedBook = nullptr;
     visibleBooks.clear();
 
-    // TODO: search the db
+    // search the db
+    QSqlDatabase db = connection.getDb();
 
-    // TODO: remove PLACEHOLDER
-    visibleBooks.push_back(Book{"Fellowship of the Ring", "J.R.R. Tolkien", 1948, "some-isbn", "Some Publisher", "Fantasy"});
-    visibleBooks.push_back(Book{"The Two Towers", "J.R.R. Tolkien", 1950, "some-isbn", "Some Publisher", "Fantasy"});
-    visibleBooks.push_back(Book{"1984", "George Orwell", 1945, "some-other-isbn", "Some Other Publisher", "Science-Fiction"});
+    db.open();
+    if (db.isOpen()) {
+       QSqlQuery query;
 
-    // save the search results in the model and pass the results to the caller
+       // use prepared statements to prevent sql injection attacks
+       const bool successfullyPrepared = query.prepare("select isbn, title, author, publisher, genre, copies, year from books where ( title LIKE :keyword OR author LIKE :keyword OR isbn LIKE :keyword )");
+
+       if (successfullyPrepared) {
+            qDebug() << "successfully prepared statement";
+            query.bindValue(":keyword", ("%" + searchString + "%").c_str());
+
+            query.exec();
+
+            if (query.lastError().isValid()) {
+                qDebug() << query.lastError();
+                return visibleBooks;
+            } else {
+                while(query.next()) {
+                    visibleBooks.push_back(Book{
+                        // title
+                        query.value(1).toString().toStdString(),
+                        // author
+                        query.value(2).toString().toStdString(),
+                        // year
+                        query.value(6).toInt(),
+                        // isbn
+                        query.value(0).toString().toStdString(),
+                        // publisher
+                        query.value(3).toString().toStdString(),
+                        // genre
+                        query.value(4).toString().toStdString(),
+                        // copies
+                        query.value(5).toInt()
+                    });
+                }
+            }
+       } else {
+           qDebug() << "fail preparing statement";
+           qDebug() << query.lastError();
+       }
+    }
 
     return visibleBooks;
 }
-
-//const Book& BookModel::getBook(const string &_isbn)
-//{
-//    return Book{"Fellowship of the Ring", "J.R.R. Tolkien", 1948, "some-isbn", "Some Publisher", "Fantasy"};
-//}
-
 
 Book BookModel::getBook(const int &selectedBookIndex)
 {

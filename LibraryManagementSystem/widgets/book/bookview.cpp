@@ -33,10 +33,16 @@ void BookView::setEventHandlers(
     handleChangeSelectedBook = _handleChangeSelectedBook;
 }
 
+void BookView::clearSearchResults()
+{
+
+}
+
 void BookView::updateSearchResults(const vector<Book> &books)
 {
     ui->tableWidgetSearchResults->clearContents();
     ui->tableWidgetSearchResults->setRowCount(books.size());
+    qDebug() << "num books: " << books.size();
 
     int row = 0;
     for (auto const &book: books) {
@@ -73,6 +79,19 @@ void BookView::viewSelectedBook(const Book &book)
 
 }
 
+void BookView::clearSelectedBook()
+{
+    ui->lineEditTitle->setText("");
+    ui->lineEditAuthor->setText("");
+    ui->lineEditYear->setText("");
+    ui->lineEditIsbn->setText("");
+    ui->lineEditPublisher->setText("");
+
+    for(unsigned int row = 0; row < categories.size(); row++) {
+        ui->listViewCategories->item(row)->setSelected(false);
+    }
+}
+
 void BookView::setupSearchResultsTable()
 {
     // force the columns to occupy the whole table width
@@ -91,13 +110,27 @@ void BookView::setupSearchResultsTable()
 
 void BookView::on_pushButtonSearch_clicked()
 {
-    handleSearch(ui->lineEditSearch->text().toStdString());
+    clearSelectedBook();
+
+    try {
+        handleSearch(ui->lineEditSearch->text().toStdString());
+    } catch (const char* errorMsg) {
+        // show an alert box with the error message
+        QMessageBox alert;
+        alert.setWindowTitle("Search Error!");
+        alert.setText(errorMsg);
+        alert.setIcon(QMessageBox::Critical);
+        alert.setStandardButtons(QMessageBox::Ok);
+        alert.setDefaultButton(QMessageBox::Ok);
+
+        alert.exec();
+    }
 }
 
 void BookView::on_tableWidgetSearchResults_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn)
 {
     // book changes only if the row changes
-    if (currentRow != previousRow) {
+    if (currentRow != previousRow && currentRow > 0) {
         // handle change book view
         handleChangeSelectedBook(currentRow);
     }

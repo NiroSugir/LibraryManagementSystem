@@ -29,8 +29,13 @@ BookController::~BookController()
 void BookController::bindEventHandlersToView()
 {
     function<void (string)> handleSearch = [this](string searchString) {
-        vector<Book> books{this->model->keywordSearch(searchString)};
-        this->view->updateSearchResults(books);
+        try {
+            vector<Book> books{this->model->keywordSearch(searchString)};
+
+            this->view->updateSearchResults(books);
+        } catch (const char* errorMsg) {
+            throw errorMsg;
+        }
     };
 
     function<void (int)> handleChangeSelectedBook = [this](int selectedIndex) {

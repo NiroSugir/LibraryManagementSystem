@@ -7,6 +7,7 @@
 #include <QModelIndex>
 #include <vector>
 #include "models/book.h"
+#include <QMessageBox>
 
 namespace Ui {
 class BookView;
@@ -33,6 +34,7 @@ public:
     void clearSearchResults();
     void updateSearchResults(const vector<Book> &books);
     void viewSelectedBook(const Book &book);
+    void clearSelectedBook();
 
 private slots:
     void on_pushButtonSearch_clicked();
