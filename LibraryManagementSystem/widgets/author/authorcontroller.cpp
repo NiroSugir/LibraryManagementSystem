@@ -18,7 +18,12 @@ void AuthorController::init(ApplicationWindow *_mainWindow)
 
 void AuthorController::bindEventHandlersToView()
 {
-//    this->view->setEventHandlers(handleSearch, handleChangeSelectedBook);
+    function<void (int)> handleSelectAuthorForEdit = [this](int selectedIndex) {
+        Author author{this->model->selectAuthorAtIndex(selectedIndex)};
+        this->view->selectAuthorForEdit(author);
+    };
+
+    this->view->setEventHandlers(handleSelectAuthorForEdit);
 }
 
 AuthorController::~AuthorController()

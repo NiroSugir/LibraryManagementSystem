@@ -56,3 +56,10 @@ vector<Author> AuthorModel::getAllDistinctAuthorsFromDb()
         throw "Internal DB Error! Could not access database. Please wait a while and try again. If problem persists, reinstall the app or call at 1-800-SHOULD-HAVE-PAID-FOR-SUPPORT ext. HAHA";
     }
 }
+
+Author AuthorModel::selectAuthorAtIndex(int index)
+{
+    selectedAuthor = &authors[index];
+
+    return *selectedAuthor;
+}

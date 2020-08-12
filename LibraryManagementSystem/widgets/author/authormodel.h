@@ -21,6 +21,8 @@ public:
     AuthorModel();
 
     vector<Author> getAllDistinctAuthorsFromDb();
+
+    Author selectAuthorAtIndex(int index);
 };
 
 #endif // AUTHORMODEL_H

@@ -17,6 +17,11 @@ AuthorView::~AuthorView()
     if (ui) delete ui;
 }
 
+void AuthorView::setEventHandlers(function<void (int)> _handleSelectAuthorForEdit)
+{
+    handleSelectAuthorForEdit = _handleSelectAuthorForEdit;
+}
+
 void AuthorView::updateAuthorsList(vector<Author> authors)
 {
     ui->tableWidgetAuthors->clearContents();
@@ -35,6 +40,13 @@ void AuthorView::updateAuthorsList(vector<Author> authors)
     }
 }
 
+void AuthorView::selectAuthorForEdit(Author author)
+{
+    ui->lineEditFirstName->setText(author.getFirstName().c_str());
+    ui->lineEditLastName->setText(author.getLastName().c_str());
+    ui->buttonSubmit->setText("&Edit");
+}
+
 void AuthorView::setupAuthorsTable()
 {
     // force the columns to occupy the whole table width
@@ -49,4 +61,22 @@ void AuthorView::setupAuthorsTable()
         QString{"First Name"},
         QString{"Last Name"}
     });
+}
+
+void AuthorView::on_buttonSubmit_clicked()
+{
+
+}
+
+void AuthorView::on_buttonReset_clicked()
+{
+
+}
+
+void AuthorView::on_tableWidgetAuthors_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn)
+{
+    if (currentRow != previousRow && currentRow > -1) {
+        // handle change book view
+        handleSelectAuthorForEdit(currentRow);
+    }
 }
