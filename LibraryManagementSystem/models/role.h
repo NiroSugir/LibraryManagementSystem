@@ -5,6 +5,6 @@
 
 using std::string;
 
-enum Role { Staff, Supplier, Member };
+enum Role { Staff, Supplier, Member, Guest };
 
 #endif // ROLE_H

@@ -48,6 +48,7 @@ private:
     void updateHistoryButtons();
 
     void setRoutesAuthenticated(bool isAuthenticated);
+    void enableDisableAccessibleRoutes(Role role);
 
 public:
     // only login controller may use private loginUser method

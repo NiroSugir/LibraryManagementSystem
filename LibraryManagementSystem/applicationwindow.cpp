@@ -59,6 +59,11 @@ void ApplicationWindow::setLogoutButtonStatus(bool enabled)
     ui->actionLogout->setEnabled(enabled);
 }
 
+void ApplicationWindow::setAuthorRouteButtonVisibility(bool visible)
+{
+    ui->actionAuthor->setVisible(visible);
+}
+
 void ApplicationWindow::on_actionLogin_triggered()
 {
     Router::getInstance()->switchToLoginView();
@@ -92,4 +97,9 @@ void ApplicationWindow::on_actionForward_triggered()
 void ApplicationWindow::on_actionLabelUsername_triggered()
 {
     Router::getInstance()->handleProfileClick();
+}
+
+void ApplicationWindow::on_actionAuthor_triggered()
+{
+    Router::getInstance()->switchToAuthorView();
 }

@@ -3,6 +3,6 @@
 
 #include <iostream>
 
-std::string RoleString[]{"Staff","Supplier","Member"};
+std::string RoleString[]{"Staff","Supplier","Member", "Guest"};
 
 #endif // ROLESTRING_H

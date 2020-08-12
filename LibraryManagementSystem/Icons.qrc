@@ -7,5 +7,6 @@
         <file>resources/icons/Find.png</file>
         <file>resources/icons/Back.png</file>
         <file>resources/icons/Forward.png</file>
+        <file>resources/icons/Author.png</file>
     </qresource>
 </RCC>

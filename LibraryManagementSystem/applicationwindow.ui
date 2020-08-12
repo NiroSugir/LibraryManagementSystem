@@ -77,6 +77,7 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionFind_Books"/>
+   <addaction name="actionAuthor"/>
   </widget>
   <widget class="QToolBar" name="toolBar">
    <property name="windowTitle">
@@ -177,6 +178,15 @@
      <weight>75</weight>
      <bold>true</bold>
     </font>
+   </property>
+  </action>
+  <action name="actionAuthor">
+   <property name="icon">
+    <iconset resource="Icons.qrc">
+     <normaloff>:/icons/resources/icons/Author.png</normaloff>:/icons/resources/icons/Author.png</iconset>
+   </property>
+   <property name="text">
+    <string>Author</string>
    </property>
   </action>
  </widget>
