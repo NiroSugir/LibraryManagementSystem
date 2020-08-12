@@ -105,10 +105,10 @@ void BookView::setupSearchResultsTable()
     ui->tableWidgetSearchResults->setHorizontalHeaderLabels(QStringList{
         QString{"Title"},
         QString{"Author"}
-    });
+                                                            });
 }
 
-void BookView::on_pushButtonSearch_clicked()
+void BookView::search()
 {
     clearSelectedBook();
 
@@ -127,6 +127,11 @@ void BookView::on_pushButtonSearch_clicked()
     }
 }
 
+void BookView::on_pushButtonSearch_clicked()
+{
+    search();
+}
+
 void BookView::on_tableWidgetSearchResults_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn)
 {
     // book changes only if the row changes
@@ -134,4 +139,9 @@ void BookView::on_tableWidgetSearchResults_currentCellChanged(int currentRow, in
         // handle change book view
         handleChangeSelectedBook(currentRow);
     }
+}
+
+void BookView::on_lineEditSearch_returnPressed()
+{
+    search();
 }

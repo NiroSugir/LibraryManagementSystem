@@ -40,11 +40,14 @@ private slots:
     void on_pushButtonSearch_clicked();
     void on_tableWidgetSearchResults_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn);
 
+    void on_lineEditSearch_returnPressed();
+
 private:
     Ui::BookView *ui;
 
-    void setupSearchResultsTable();
     vector<string> categories;
+    void setupSearchResultsTable();
+    void search();
 
     function<void (string)> handleSearch;
     function<void (int)> handleChangeSelectedBook;
