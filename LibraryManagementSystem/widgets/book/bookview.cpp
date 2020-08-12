@@ -130,7 +130,7 @@ void BookView::on_pushButtonSearch_clicked()
 void BookView::on_tableWidgetSearchResults_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn)
 {
     // book changes only if the row changes
-    if (currentRow != previousRow && currentRow > 0) {
+    if (currentRow != previousRow && currentRow > -1) {
         // handle change book view
         handleChangeSelectedBook(currentRow);
     }
