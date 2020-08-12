@@ -100,9 +100,9 @@
      </property>
      <layout class="QGridLayout" name="gridLayout">
       <item row="3" column="2">
-       <widget class="QPushButton" name="pushButtonValidate">
+       <widget class="QPushButton" name="pushButtonApprove">
         <property name="text">
-         <string>Vali&amp;date</string>
+         <string>A&amp;pprove</string>
         </property>
        </widget>
       </item>
@@ -188,7 +188,7 @@
          </font>
         </property>
         <property name="text">
-         <string>Validated:</string>
+         <string>Approved</string>
         </property>
        </widget>
       </item>

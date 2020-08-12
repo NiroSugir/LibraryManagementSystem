@@ -55,7 +55,7 @@ void UserManagementView::viewSelectedUser(User user)
     ui->labelUsername->setText(user.getUsername().c_str());
     ui->labelValidated->setText(user.getValidated() ? "Yes" : "No");
     ui->labelRole->setText(RoleString[user.getRole()].c_str());
-    ui->pushButtonValidate->setEnabled(!user.getValidated());
+    ui->pushButtonApprove->setEnabled(!user.getValidated());
 
 }
 
