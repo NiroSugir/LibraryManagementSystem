@@ -23,7 +23,26 @@ void AuthorController::bindEventHandlersToView()
         this->view->selectAuthorForEdit(author);
     };
 
-    this->view->setEventHandlers(handleSelectAuthorForEdit);
+    function<int (void)> handleCreateNewAuthor = [this]() {
+        Author author{this->model->createNewAuthor()};
+        auto authors{this->model->getAllLocalAuthors()};
+        this->view->updateAuthorsList(authors);
+        this->view->selectAuthorForEdit(author);
+
+        return authors.size() - 1;
+    };
+
+    function<void (string, string)> handleSaveChanges = [this](string firstName, string lastName) {
+        this->model->saveChanges(firstName, lastName);
+        auto authors{this->model->getAllDistinctAuthorsFromDb()};
+        this->view->updateAuthorsList(authors);
+    };
+
+    this->view->setEventHandlers(
+        handleSelectAuthorForEdit,
+        handleCreateNewAuthor,
+        handleSaveChanges
+    );
 }
 
 AuthorController::~AuthorController()

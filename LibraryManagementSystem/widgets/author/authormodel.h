@@ -21,8 +21,11 @@ public:
     AuthorModel();
 
     vector<Author> getAllDistinctAuthorsFromDb();
+    vector<Author> getAllLocalAuthors();
 
     Author selectAuthorAtIndex(int index);
+    Author createNewAuthor();
+    void saveChanges(string firstName, string lastName);
 };
 
 #endif // AUTHORMODEL_H

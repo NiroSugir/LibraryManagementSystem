@@ -57,9 +57,48 @@ vector<Author> AuthorModel::getAllDistinctAuthorsFromDb()
     }
 }
 
+vector<Author> AuthorModel::getAllLocalAuthors()
+{
+    return authors;
+}
+
 Author AuthorModel::selectAuthorAtIndex(int index)
 {
     selectedAuthor = &authors[index];
 
     return *selectedAuthor;
+}
+
+Author AuthorModel::createNewAuthor()
+{
+    authors.push_back(Author{"","",""});
+    selectedAuthor = &authors[authors.size() - 1];
+
+    return *selectedAuthor;
+}
+
+void AuthorModel::saveChanges(string firstName, string lastName)
+{
+    QSqlDatabase db = connection.getDb();
+
+    db.open();
+    if (db.isOpen()) {
+        QSqlQuery query;
+
+        if (selectedAuthor->getId() == "") {
+            // insert author to db
+            query.prepare("insert into Authors (first_name, last_name) values (:first_name, :last_name)");
+
+        } else {
+            // update author in db
+            query.prepare("update Authors set first_name = :first_name,  last_name = :last_name where author_id = :author_id");
+            query.bindValue(":author_id", selectedAuthor->getId().c_str());
+        }
+
+        query.bindValue(":first_name", firstName.c_str());
+        query.bindValue(":last_name", lastName.c_str());
+
+        query.exec();
+    }
+    db.close();
 }

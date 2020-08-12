@@ -21,17 +21,20 @@ public:
     ~AuthorView();
 
     void setEventHandlers(
-        function<void (int)> _handleSelectAuthorForEdit
+        function<void (int)> _handleSelectAuthorForEdit,
+        function<int (void)> _handleCreateNewAuthor,
+        function<void (string, string)> _handleSaveChanges
     );
 
     void updateAuthorsList(vector<Author> authors);
     void selectAuthorForEdit(Author author);
 
 private slots:
-    void on_buttonSubmit_clicked();
+    void on_buttonEditAuthor_clicked();
     void on_buttonReset_clicked();
-
     void on_tableWidgetAuthors_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn);
+    void on_pushButtonCreateAuthor_clicked();
+
 
 private:
     Ui::AuthorView *ui;
@@ -39,6 +42,8 @@ private:
     void setupAuthorsTable();
 
     function<void (int)> handleSelectAuthorForEdit;
+    function<int (void)> handleCreateNewAuthor;
+    function<void (string, string)> handleSaveChanges;
 };
 
 #endif // AUTHORVIEW_H

@@ -8,6 +8,7 @@
 #include "widgets/_helper/controller.h"
 
 using std::function;
+using std::string;
 
 class AuthorController: public Controller
 {
