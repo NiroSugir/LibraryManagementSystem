@@ -29,5 +29,10 @@ void UserManagementController::bindEventHandlersToView()
         this->view->showUsers(users);
     };
 
-    this->view->setEventHandlers(handleLoadUsers);
+    function<void (int)> handleChangeSelectedUser = [this](int selectedIndex) {
+        User user{this->model->changeSelectedUser(selectedIndex)};
+        this->view->viewSelectedUser(user);
+    };
+
+    this->view->setEventHandlers(handleLoadUsers, handleChangeSelectedUser);
 }

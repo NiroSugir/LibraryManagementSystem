@@ -21,7 +21,7 @@ vector<User> UserManagementModel::loadUsers(ValidationStatus _validationStatus)
 
     db.open();
     if (db.isOpen()) {
-        QSqlQuery query(QSqlDatabase::database("load-users"));
+        QSqlQuery query{QSqlDatabase::database("load-users")};
 
         string q = "select user_id, username, first_name, last_name, role as r, validated as v from Users";
 
@@ -62,4 +62,11 @@ vector<User> UserManagementModel::loadUsers(ValidationStatus _validationStatus)
         }
 
     }
+}
+
+User UserManagementModel::changeSelectedUser(int selectedIndex)
+{
+    selectedUser = &users[selectedIndex];
+
+    return *selectedUser;
 }

@@ -18,9 +18,10 @@ UserManagementView::~UserManagementView()
     delete ui;
 }
 
-void UserManagementView::setEventHandlers(function<void (ValidationStatus)> _handleLoadUsers)
+void UserManagementView::setEventHandlers(function<void (ValidationStatus)> _handleLoadUsers, function<void (int)> _handleChangeSelectedUser)
 {
     handleLoadUsers = _handleLoadUsers;
+    handleChangeSelectedUser = _handleChangeSelectedUser;
 
     handleLoadUsers(ValidationStatus::Any);
 }
@@ -29,10 +30,9 @@ void UserManagementView::showUsers(vector<User> users)
 {
     ui->tableWidgetRegisteredUsers->clearContents();
     ui->tableWidgetRegisteredUsers->setRowCount(users.size());
-    qDebug() << "num users: " << users.size();
 
     int row = 0;
-    for (auto const &user: users) {
+    for (User const &user: users) {
         QString username{QString::fromStdString(user.getUsername())};
         QString role{QString::fromStdString(RoleString[user.getRole()])};
         QString validated{user.getValidated() ? "Yes": "No"};
@@ -43,6 +43,20 @@ void UserManagementView::showUsers(vector<User> users)
 
         row++;
     }
+}
+
+void UserManagementView::viewSelectedUser(User user)
+{
+    if (!ui->groupBoxUserInfo->isEnabled()) {
+        ui->groupBoxUserInfo->setEnabled(true);
+    }
+    ui->labelFirstName->setText(user.getFirstName().c_str());
+    ui->labelLastName->setText(user.getLastName().c_str());
+    ui->labelUsername->setText(user.getUsername().c_str());
+    ui->labelValidated->setText(user.getValidated() ? "Yes" : "No");
+    ui->labelRole->setText(RoleString[user.getRole()].c_str());
+    ui->pushButtonValidate->setEnabled(!user.getValidated());
+
 }
 
 void UserManagementView::setupSearchResultsTable()
@@ -60,4 +74,13 @@ void UserManagementView::setupSearchResultsTable()
         QString{"Role"},
         QString{"Status"}
     });
+}
+
+void UserManagementView::on_tableWidgetRegisteredUsers_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn)
+{
+    // user changes only if the row changes
+    if (currentRow != previousRow && currentRow > -1) {
+        // handle change user
+        handleChangeSelectedUser(currentRow);
+    }
 }

@@ -91,7 +91,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="groupBox">
+    <widget class="QGroupBox" name="groupBoxUserInfo">
      <property name="enabled">
       <bool>false</bool>
      </property>
