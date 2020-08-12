@@ -51,7 +51,11 @@
       </layout>
      </item>
      <item>
-      <widget class="QTableWidget" name="tableWidgetAuthors"/>
+      <widget class="QTableWidget" name="tableWidgetAuthors">
+       <property name="selectionBehavior">
+        <enum>QAbstractItemView::SelectRows</enum>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
