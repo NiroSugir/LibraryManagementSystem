@@ -7,7 +7,8 @@ Router::Router()
 {
     // Go to default route then show application. This prevents screen flashing on
     // slower computers.
-    switchToBookView();
+//    switchToBookView();
+    switchToAuthorView();
 
     setRoutesAuthenticated(false);
 
@@ -62,6 +63,12 @@ void Router::logout()
     applicationWindow.setProfileNameOnLabel("You are browsing as a Guest. Sign up for free!");
 
     switchToBookView();
+}
+
+void Router::switchToAuthorView()
+{
+    AuthorController *authorController = new AuthorController;
+    updateViewAfterChangingRoutes(authorController);
 }
 
 void Router::updateViewAfterChangingRoutes(Controller *_controller)

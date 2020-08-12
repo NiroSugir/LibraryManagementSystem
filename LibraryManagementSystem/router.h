@@ -6,6 +6,7 @@
 #include "widgets/book/bookcontroller.h"
 #include "widgets/signup/signupcontroller.h"
 #include "widgets/login/logincontroller.h"
+#include "widgets/author/authorcontroller.h"
 #include <vector>
 #include <QObject>
 #include "models/user.h"
@@ -61,6 +62,8 @@ public:
     void operator=(const Router&) = delete;
 
     void logout();
+
+    void switchToAuthorView();
 
     void switchToBookView();
 

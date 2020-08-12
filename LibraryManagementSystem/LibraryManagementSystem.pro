@@ -19,10 +19,13 @@ SOURCES += \
     applicationwindow.cpp \
     dbconnection.cpp \
     main.cpp \
+    models/author.cpp \
     models/book.cpp \
     models/user.cpp \
     router.cpp \
     widgets/_helper/controller.cpp \
+    widgets/author/authorcontroller.cpp \
+    widgets/author/authormodel.cpp \
     widgets/author/authorview.cpp \
     widgets/book/bookcontroller.cpp \
     widgets/book/bookmodel.cpp \
@@ -33,17 +36,21 @@ SOURCES += \
     widgets/main/mainview.cpp \
     widgets/signup/signupcontroller.cpp \
     widgets/signup/signupmodel.cpp \
-    widgets/signup/signupview.cpp
+    widgets/signup/signupview.cpp \
+    widgets/supplierHome/supplierhomeview.cpp
 
 HEADERS += \
     applicationwindow.h \
     dbconnection.h \
     models/RoleString.h \
+    models/author.h \
     models/book.h \
     models/role.h \
     models/user.h \
     router.h \
     widgets/_helper/controller.h \
+    widgets/author/authorcontroller.h \
+    widgets/author/authormodel.h \
     widgets/author/authorview.h \
     widgets/book/bookcontroller.h \
     widgets/book/bookmodel.h \
@@ -54,7 +61,8 @@ HEADERS += \
     widgets/main/mainview.h \
     widgets/signup/signupcontroller.h \
     widgets/signup/signupmodel.h \
-    widgets/signup/signupview.h
+    widgets/signup/signupview.h \
+    widgets/supplierHome/supplierhomeview.h
 
 FORMS += \
     applicationwindow.ui \
@@ -62,7 +70,8 @@ FORMS += \
     widgets/book/bookview.ui \
     widgets/login/loginview.ui \
     widgets/main/mainview.ui \
-    widgets/signup/signupview.ui
+    widgets/signup/signupview.ui \
+    widgets/supplierHome/supplierhomeview.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
