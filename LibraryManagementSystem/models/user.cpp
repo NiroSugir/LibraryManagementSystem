@@ -73,7 +73,7 @@ void User::save()
 
     db.open();
     if (db.isOpen()) {
-        QSqlQuery query;
+        QSqlQuery query(QSqlDatabase::database("load-user"));
 
         // use prepared statements to prevent sql injection attacks
         const bool successfullyPrepared = query.prepare("INSERT INTO Users (username,first_name,last_name,password,role,validated) VALUES (:username,:first_name,:last_name,:password,:role,:validated)");
