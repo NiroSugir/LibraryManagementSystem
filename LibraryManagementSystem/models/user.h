@@ -10,11 +10,11 @@ using std::string;
 class User
 {
 private:
-    string id{nullptr};
-    string firstName{nullptr};
-    string lastName{nullptr};
-    string username{nullptr};
-    string password{nullptr};
+    string id{""};
+    string firstName{""};
+    string lastName{""};
+    string username{""};
+    string password{""};
 
     Role role{Role::Member};
     bool validated{false};
