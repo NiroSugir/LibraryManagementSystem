@@ -37,7 +37,10 @@ SOURCES += \
     widgets/signup/signupcontroller.cpp \
     widgets/signup/signupmodel.cpp \
     widgets/signup/signupview.cpp \
-    widgets/supplierHome/supplierhomeview.cpp
+    widgets/supplierHome/supplierhomeview.cpp \
+    widgets/userManagement/usermanagementcontroller.cpp \
+    widgets/userManagement/usermanagementmodel.cpp \
+    widgets/userManagement/usermanagementview.cpp
 
 HEADERS += \
     applicationwindow.h \
@@ -62,7 +65,10 @@ HEADERS += \
     widgets/signup/signupcontroller.h \
     widgets/signup/signupmodel.h \
     widgets/signup/signupview.h \
-    widgets/supplierHome/supplierhomeview.h
+    widgets/supplierHome/supplierhomeview.h \
+    widgets/userManagement/usermanagementcontroller.h \
+    widgets/userManagement/usermanagementmodel.h \
+    widgets/userManagement/usermanagementview.h
 
 FORMS += \
     applicationwindow.ui \
@@ -71,7 +77,8 @@ FORMS += \
     widgets/login/loginview.ui \
     widgets/main/mainview.ui \
     widgets/signup/signupview.ui \
-    widgets/supplierHome/supplierhomeview.ui
+    widgets/supplierHome/supplierhomeview.ui \
+    widgets/userManagement/usermanagementview.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -105,7 +105,7 @@ void BookView::setupSearchResultsTable()
     ui->tableWidgetSearchResults->setHorizontalHeaderLabels(QStringList{
         QString{"Title"},
         QString{"Author"}
-                                                            });
+    });
 }
 
 void BookView::search()

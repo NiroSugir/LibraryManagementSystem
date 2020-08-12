@@ -7,6 +7,7 @@
 #include "widgets/signup/signupcontroller.h"
 #include "widgets/login/logincontroller.h"
 #include "widgets/author/authorcontroller.h"
+#include "widgets/userManagement/usermanagementcontroller.h"
 #include <vector>
 #include <QObject>
 #include "models/user.h"
@@ -71,6 +72,8 @@ public:
     void switchToSignupView();
 
     void switchToLoginView();
+
+    void switchToUserManagementView();
 
     bool canGoBack();
 

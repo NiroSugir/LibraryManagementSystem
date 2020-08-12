@@ -4,8 +4,10 @@
 
 BookModel::~BookModel()
 {
-    delete selectedBook;
-    selectedBook = nullptr;
+    if (selectedBook) {
+        delete selectedBook;
+        selectedBook = nullptr;
+    }
 }
 
 vector<Book> BookModel::keywordSearch(string searchString)

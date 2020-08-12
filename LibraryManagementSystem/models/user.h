@@ -10,6 +10,7 @@ using std::string;
 class User
 {
 private:
+    string id{nullptr};
     string firstName{nullptr};
     string lastName{nullptr};
     string username{nullptr};
@@ -17,8 +18,6 @@ private:
 
     Role role{Role::Member};
     bool validated{false};
-
-    DbConnection connection;
 
 public:
     static int passwordHash(const string &_password);
@@ -31,7 +30,16 @@ public:
         string _lastName,
         string _username,
         string _password,
+        Role _role,
+        bool _validated
+    );
 
+    User(
+        string _id,
+        string _username,
+        string _firstName,
+        string _lastName,
+        string _password,
         Role _role,
         bool _validated
     );

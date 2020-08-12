@@ -5,7 +5,6 @@
 #include <vector>
 #include "dbconnection.h"
 
-
 using std::vector;
 
 class BookModel

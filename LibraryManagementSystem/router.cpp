@@ -7,7 +7,8 @@ Router::Router()
 {
     // Go to default route then show application. This prevents screen flashing on
     // slower computers.
-    switchToBookView();
+//    switchToBookView();
+    switchToUserManagementView();
 
     setRoutesAuthenticated(false);
     enableDisableAccessibleRoutes(Role::Guest);
@@ -138,6 +139,12 @@ void Router::switchToLoginView()
 {
     LoginController *loginController = new LoginController;
     updateViewAfterChangingRoutes(loginController);
+}
+
+void Router::switchToUserManagementView()
+{
+    UserManagementController *userManagementController = new UserManagementController;
+    updateViewAfterChangingRoutes(userManagementController);
 }
 
 bool Router::canGoBack()
