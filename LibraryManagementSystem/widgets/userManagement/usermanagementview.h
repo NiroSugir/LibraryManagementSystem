@@ -30,11 +30,15 @@ public:
 
 private slots:
     void on_tableWidgetRegisteredUsers_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn);
+    void on_radioButtonValidationValidated_clicked();
+    void on_radioButtonValidationAny_clicked();
+    void on_radioButtonValidationUnvalidated_clicked();
 
 private:
     Ui::UserManagementView *ui;
 
     void setupSearchResultsTable();
+    void unselectCurrentUser();
 
     function<void (ValidationStatus)> handleLoadUsers;
     function<void (int)> handleChangeSelectedUser;

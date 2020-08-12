@@ -28,6 +28,8 @@ void UserManagementView::setEventHandlers(function<void (ValidationStatus)> _han
 
 void UserManagementView::showUsers(vector<User> users)
 {
+    unselectCurrentUser();
+
     ui->tableWidgetRegisteredUsers->clearContents();
     ui->tableWidgetRegisteredUsers->setRowCount(users.size());
 
@@ -73,7 +75,19 @@ void UserManagementView::setupSearchResultsTable()
         QString{"Username"},
         QString{"Role"},
         QString{"Status"}
-    });
+                                                              });
+}
+
+void UserManagementView::unselectCurrentUser()
+{
+    ui->groupBoxUserInfo->setEnabled(false);
+
+    ui->labelFirstName->clear();
+    ui->labelLastName->clear();
+    ui->labelUsername->clear();
+    ui->labelValidated->clear();
+    ui->labelRole->clear();
+    ui->pushButtonApprove->setEnabled(false);
 }
 
 void UserManagementView::on_tableWidgetRegisteredUsers_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn)
@@ -83,4 +97,19 @@ void UserManagementView::on_tableWidgetRegisteredUsers_currentCellChanged(int cu
         // handle change user
         handleChangeSelectedUser(currentRow);
     }
+}
+
+void UserManagementView::on_radioButtonValidationValidated_clicked()
+{
+    handleLoadUsers(ValidationStatus::Validated);
+}
+
+void UserManagementView::on_radioButtonValidationAny_clicked()
+{
+    handleLoadUsers(ValidationStatus::Any);
+}
+
+void UserManagementView::on_radioButtonValidationUnvalidated_clicked()
+{
+    handleLoadUsers(ValidationStatus::Unvalidated);
 }
