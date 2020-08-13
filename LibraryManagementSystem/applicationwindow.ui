@@ -76,9 +76,9 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionFind_Books"/>
-   <addaction name="actionAuthor"/>
    <addaction name="actionManage_Members"/>
+   <addaction name="actionAuthor"/>
+   <addaction name="actionFind_Books"/>
   </widget>
   <widget class="QToolBar" name="toolBar">
    <property name="windowTitle">
