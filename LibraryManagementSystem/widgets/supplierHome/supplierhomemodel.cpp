@@ -91,6 +91,54 @@ void SupplierHomeModel::sellBook(SellableBook book)
 
 }
 
+vector<SellableBook> SupplierHomeModel::getBooksListedForSaleByThisUser()
+{
+    DbConnection connection;
+
+    // search the db
+    QSqlDatabase db = connection.getDb();
+
+    booksForSale.clear();
+
+    db.open();
+    if (db.isOpen()) {
+        QSqlQuery query{QSqlDatabase::database("get-listed-books")};
+
+        query.exec(((string) "select Books.isbn, books.title, books.genre, Books.year, Books_For_Sale.price, Authors.author_id, Authors.first_name, Authors.last_name "
+                   "from Books_For_Sale left join Books on Books_For_Sale.isbn = books.isbn left join "
+                   "Authors on Books.author_id = Authors.author_id where Books_For_Sale.purchaser_id = 0 and Books_For_Sale.seller_id = " + currentUser->getId()).c_str());
+
+        while(query.next()) {
+            Author author {
+                query.value(5).toString().toStdString(),
+                query.value(6).toString().toStdString(),
+                query.value(7).toString().toStdString(),
+            };
+
+            booksForSale.push_back(SellableBook{
+                // isbn
+                query.value(0).toString().toStdString(),
+                // title
+                query.value(1).toString().toStdString(),
+                // author
+                author,
+                // year
+                query.value(3).toInt(),
+                // category
+                query.value(2).toString().toStdString(),
+                // seller
+                *currentUser,
+                // price
+                query.value(4).toDouble(),
+            });
+        }
+    } else {
+        // TODO: throw contact support error
+    }
+
+    return booksForSale;
+}
+
 void SupplierHomeModel::rollback(QSqlDatabase &db, QSqlQuery &query)
 {
     qDebug() << query.lastError().text();

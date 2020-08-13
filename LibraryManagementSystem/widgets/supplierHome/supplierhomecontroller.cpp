@@ -30,12 +30,14 @@ void SupplierHomeController::init(ApplicationWindow *_mainWindow)
     bindEventHandlersToView();
 
     view->initialize(currentUser, (AuthorModel{}).getAllDistinctAuthorsFromDb(), (BookModel{currentUser}).getCategories());
+    this->view->populateBooksOnSaleBySupplier(this->model->getBooksListedForSaleByThisUser());
 }
 
 void SupplierHomeController::bindEventHandlersToView()
 {
     function<void (SellableBook)> handleListBookForSale = [this](SellableBook book) {
         this->model->sellBook(book);
+        this->view->populateBooksOnSaleBySupplier(this->model->getBooksListedForSaleByThisUser());
     };
 
     this->view->setEventHandlers(handleListBookForSale);

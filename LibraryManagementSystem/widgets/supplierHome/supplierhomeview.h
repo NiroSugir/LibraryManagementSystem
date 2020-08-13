@@ -21,6 +21,7 @@ public:
     ~SupplierHomeView();
 
     void initialize(const User *_currentUser, vector<Author> _authors, vector<string> _categories);
+    void populateBooksOnSaleBySupplier(vector<SellableBook> _booksForSale);
 
     void setEventHandlers(
         function<void (SellableBook)> _handleListBookForSale
@@ -36,6 +37,7 @@ private:
     vector<Author> authors{};
     vector<string> categories{};
 
+    void setupBooksForSaleTable();
     void popualteAuthors(vector<Author> _authors);
     void populateCategories(vector<string> _categories);
 

@@ -35,7 +35,7 @@ void UserManagementView::showUsers(vector<User> users)
     ui->tableWidgetRegisteredUsers->setRowCount(users.size());
 
     int row = 0;
-    for (User const &user: users) {
+    for (const User &user: users) {
         QString username{QString::fromStdString(user.getUsername())};
         QString role{QString::fromStdString(RoleString[user.getRole()])};
         QString validated{user.isValidated() ? "Yes": "No"};
