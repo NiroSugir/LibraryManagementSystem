@@ -25,6 +25,8 @@ void BookView::initialize(const User *_currentUser)
 
     // setup what user can do with books (edit/borrow)
     setBookInfoEditable(_currentUser && _currentUser->getRole() == Role::Staff && _currentUser->isValidated());
+
+    setBookBorrowabilityAndAvailabilityDisplay();
 }
 
 void BookView::setEventHandlers(
@@ -99,6 +101,7 @@ void BookView::clearSelectedBook()
     ui->lineEditYear->setText("");
     ui->lineEditIsbn->setText("");
     ui->lineEditPublisher->setText("");
+    ui->pushButtonBorrow->setDisabled(true);
 
     for(unsigned int row = 0; row < categories.size(); row++) {
         ui->listViewCategories->item(row)->setSelected(false);
@@ -154,6 +157,21 @@ void BookView::setBookInfoEditable(bool editable)
         ui->listViewCategories->setEnabled(editable);
         ui->listViewCategories->setStyleSheet("background-color: white; color: black;");
     }
+}
+
+void BookView::setBookBorrowabilityAndAvailabilityDisplay()
+{
+    ui->labelAvailable->setVisible(true);
+    ui->labelAvailability->setVisible(true);
+
+    // borrow button is visible to library members only
+    // this does not guarantee the user can borrow, only that the button
+    // is visible. if the user's not in a good standing (has borrowed too many
+    // books already or has to pay fine), they wont be able to click on it
+    // TODO: disable button (but keep it visible) if they can't borrow. tooltip
+    // should hint towards the reason
+    ui->pushButtonBorrow->setVisible(currentUser && currentUser->getRole() == Role::Member && currentUser->isValidated());
+
 }
 
 void BookView::on_pushButtonSearch_clicked()

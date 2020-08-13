@@ -53,6 +53,7 @@ private:
     void search();
     const User *currentUser{nullptr};
     void setBookInfoEditable(bool editable);
+    void setBookBorrowabilityAndAvailabilityDisplay();
 
     function<void (string)> handleSearch;
     function<void (int)> handleChangeSelectedBook;
