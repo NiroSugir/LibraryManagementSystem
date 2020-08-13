@@ -56,6 +56,8 @@ private slots:
 
     void on_actionList_Books_For_Sale_triggered();
 
+    void on_actionPurchase_Books_triggered();
+
 private:
     Ui::ApplicationWindow *ui;
 //    Ui::MainView *mainView;

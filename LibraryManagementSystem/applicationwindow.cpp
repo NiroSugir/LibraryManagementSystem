@@ -123,3 +123,8 @@ void ApplicationWindow::on_actionList_Books_For_Sale_triggered()
 {
     Router::getInstance()->switchToListBooksForSaleView();
 }
+
+void ApplicationWindow::on_actionPurchase_Books_triggered()
+{
+
+}

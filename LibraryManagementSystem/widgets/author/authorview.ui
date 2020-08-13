@@ -61,6 +61,9 @@
    </item>
    <item>
     <widget class="QGroupBox" name="groupBox">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="title">
       <string>Modify</string>
      </property>
@@ -82,7 +85,7 @@
           <item>
            <widget class="QPushButton" name="buttonReset">
             <property name="text">
-             <string>&amp;Clear</string>
+             <string>&amp;Undo</string>
             </property>
            </widget>
           </item>

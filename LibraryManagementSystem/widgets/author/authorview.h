@@ -44,6 +44,7 @@ private:
     function<void (int)> handleSelectAuthorForEdit;
     function<int (void)> handleCreateNewAuthor;
     function<void (string, string)> handleSaveChanges;
+    bool createMode{false};
 };
 
 #endif // AUTHORVIEW_H

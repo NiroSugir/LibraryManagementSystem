@@ -87,6 +87,7 @@
    <addaction name="actionAuthor"/>
    <addaction name="actionFind_Books"/>
    <addaction name="actionList_Books_For_Sale"/>
+   <addaction name="actionPurchase_Books"/>
   </widget>
   <widget class="QToolBar" name="toolBar">
    <property name="windowTitle">
@@ -220,6 +221,18 @@
    </property>
    <property name="toolTip">
     <string>List Books For Sale</string>
+   </property>
+  </action>
+  <action name="actionPurchase_Books">
+   <property name="icon">
+    <iconset resource="Icons.qrc">
+     <normaloff>:/icons/resources/icons/Purchase.png</normaloff>:/icons/resources/icons/Purchase.png</iconset>
+   </property>
+   <property name="text">
+    <string>Purchase Books</string>
+   </property>
+   <property name="toolTip">
+    <string>Purchase Books</string>
    </property>
   </action>
  </widget>

@@ -31,7 +31,6 @@ void AuthorView::updateAuthorsList(vector<Author> authors)
 {
     ui->tableWidgetAuthors->clearContents();
     ui->tableWidgetAuthors->setRowCount(authors.size());
-    qDebug() << "num authors: " << authors.size();
 
     int row = 0;
     for (auto const &author: authors) {
@@ -47,6 +46,7 @@ void AuthorView::updateAuthorsList(vector<Author> authors)
 
 void AuthorView::selectAuthorForEdit(Author author)
 {
+    ui->groupBox->setEnabled(true);
     ui->lineEditFirstName->setText(author.getFirstName().c_str());
     ui->lineEditLastName->setText(author.getLastName().c_str());
 }
@@ -70,6 +70,16 @@ void AuthorView::setupAuthorsTable()
 void AuthorView::on_buttonReset_clicked()
 {
 
+    if (createMode && ui->tableWidgetAuthors->currentIndex().row() == (ui->tableWidgetAuthors->rowCount() - 1)) {
+        // adding new author, so reset the fields
+        ui->lineEditLastName->clear();
+        ui->lineEditFirstName->clear();
+    } else {
+        // editing author, get the current author data from the db
+        handleSelectAuthorForEdit(ui->tableWidgetAuthors->currentIndex().row());
+    }
+
+    ui->lineEditFirstName->setFocus();
 }
 
 void AuthorView::on_tableWidgetAuthors_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn)
@@ -82,25 +92,39 @@ void AuthorView::on_tableWidgetAuthors_currentCellChanged(int currentRow, int cu
 
 void AuthorView::on_pushButtonCreateAuthor_clicked()
 {
-    //    ui->tableWidgetAuthors->get
-        int authorIndex = handleCreateNewAuthor();
+    // create only one author at a time
+    if (createMode) {
+        return;
+    }
 
-        ui->tableWidgetAuthors->item(authorIndex, 0)->setSelected(true);
-
-        ui->lineEditFirstName->setFocus();
-
+    createMode = true;
+    int authorIndex = handleCreateNewAuthor();
+    ui->tableWidgetAuthors->item(authorIndex, 0)->setSelected(true);
+    ui->tableWidgetAuthors->setCurrentCell(authorIndex, 0);
+    ui->lineEditFirstName->setFocus();
 }
 
 void AuthorView::on_buttonEditAuthor_clicked()
 {
     try {
+        if (ui->lineEditLastName->text().size() == 0 || ui->lineEditFirstName->text().size() == 0) {
+            ui->lineEditFirstName->setFocus();
+            return;
+        }
+
         handleSaveChanges(
             ui->lineEditFirstName->text().toStdString(),
             ui->lineEditLastName->text().toStdString()
         );
 
-        ui->lineEditFirstName->setText("");
-        ui->lineEditLastName->setText("");
+        // not editing, but adding an author
+        if (createMode && ui->tableWidgetAuthors->currentIndex().row() == (ui->tableWidgetAuthors->rowCount() - 1)) {
+            createMode = false;
+        }
+
+        ui->lineEditFirstName->clear();
+        ui->lineEditLastName->clear();
+
     } catch(const char* errormsg) {
         qDebug() << errormsg;
     }
