@@ -99,7 +99,6 @@ void BookView::clearSelectedBook()
     ui->lineEditAuthor->setText("");
     ui->lineEditYear->setText("");
     ui->lineEditIsbn->setText("");
-    ui->lineEditPublisher->setText("");
     ui->pushButtonBorrow->setDisabled(true);
 
     for(unsigned int row = 0; row < categories.size(); row++) {
@@ -148,7 +147,6 @@ void BookView::setBookInfoEditable(bool editable)
     ui->lineEditYear->setReadOnly(!editable);
     ui->lineEditTitle->setReadOnly(!editable);
     ui->lineEditAuthor->setReadOnly(!editable);
-    ui->lineEditPublisher->setReadOnly(!editable);
 
     if (!editable){
         // make it appear enabled, but a quick way to disable selection change for
