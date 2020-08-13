@@ -52,6 +52,8 @@ public:
     bool getValidated() const;
 
     void save();
+    string getId() const;
+    void setValidated(bool value);
 };
 
 #endif // USER_H

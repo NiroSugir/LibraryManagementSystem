@@ -34,5 +34,11 @@ void UserManagementController::bindEventHandlersToView()
         this->view->viewSelectedUser(user);
     };
 
-    this->view->setEventHandlers(handleLoadUsers, handleChangeSelectedUser);
+    function<void (void)> handleApproveUser = [this]() {
+        User user{this->model->approveSelectedUser()};
+        this->view->viewSelectedUser(user);
+    };
+
+
+    this->view->setEventHandlers(handleLoadUsers, handleChangeSelectedUser, handleApproveUser);
 }

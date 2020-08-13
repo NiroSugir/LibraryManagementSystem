@@ -18,10 +18,11 @@ UserManagementView::~UserManagementView()
     delete ui;
 }
 
-void UserManagementView::setEventHandlers(function<void (ValidationStatus)> _handleLoadUsers, function<void (int)> _handleChangeSelectedUser)
+void UserManagementView::setEventHandlers(function<void (ValidationStatus)> _handleLoadUsers, function<void (int)> _handleChangeSelectedUser, function<void (void)> _handleApproveUser)
 {
     handleLoadUsers = _handleLoadUsers;
     handleChangeSelectedUser = _handleChangeSelectedUser;
+    handleApproveUser = _handleApproveUser;
 
     handleLoadUsers(ValidationStatus::Any);
 }
@@ -74,8 +75,8 @@ void UserManagementView::setupSearchResultsTable()
     ui->tableWidgetRegisteredUsers->setHorizontalHeaderLabels(QStringList{
         QString{"Username"},
         QString{"Role"},
-        QString{"Status"}
-                                                              });
+        QString{"Approved"}
+    });
 }
 
 void UserManagementView::unselectCurrentUser()
@@ -112,4 +113,21 @@ void UserManagementView::on_radioButtonValidationAny_clicked()
 void UserManagementView::on_radioButtonValidationUnvalidated_clicked()
 {
     handleLoadUsers(ValidationStatus::Unvalidated);
+}
+
+void UserManagementView::on_pushButtonApprove_clicked()
+{
+    handleApproveUser();
+    // TODO: if error, do not update view
+
+    // don't move the user out of the current view even if the filter
+    // doesn't match the user's new status. it's better keep the user
+    // in the view than to have the screen flash with the user moving out.
+    // also, that user is selected, so they shoudl remain on screen
+//    ui->tableWidgetRegisteredUsers->setItem(row, 2, new QTableWidgetItem{validated});
+
+    QModelIndexList selectedIndexes = ui->tableWidgetRegisteredUsers->selectionModel()->selectedIndexes();
+    // only one row can be selected
+    auto selectedRow = selectedIndexes[0].row();
+    ui->tableWidgetRegisteredUsers->setItem(selectedRow, 2, new QTableWidgetItem{"Recently Validated"});
 }

@@ -23,7 +23,8 @@ public:
 
     void setEventHandlers(
         function<void (ValidationStatus)> _handleLoadUsers,
-        function<void (int)> _handleChangeSelectedUser
+        function<void (int)> _handleChangeSelectedUser,
+        function<void (void)> _handleApproveUser
     );
     void showUsers(vector<User> users);
     void viewSelectedUser(User user);
@@ -34,6 +35,8 @@ private slots:
     void on_radioButtonValidationAny_clicked();
     void on_radioButtonValidationUnvalidated_clicked();
 
+    void on_pushButtonApprove_clicked();
+
 private:
     Ui::UserManagementView *ui;
 
@@ -42,6 +45,7 @@ private:
 
     function<void (ValidationStatus)> handleLoadUsers;
     function<void (int)> handleChangeSelectedUser;
+    function<void (void)> handleApproveUser;
 };
 
 #endif // USERMANAGEMENTVIEW_H

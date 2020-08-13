@@ -4,6 +4,16 @@
 
 // simple/weak hashing alogorithm from:
 // https://codereview.stackexchange.com/questions/178911/c-hashing-passwords-simple-algorithm-using-rand
+string User::getId() const
+{
+    return id;
+}
+
+void User::setValidated(bool value)
+{
+    validated = value;
+}
+
 int User::passwordHash(const string &_password)
 {
     unsigned int hash = 0;

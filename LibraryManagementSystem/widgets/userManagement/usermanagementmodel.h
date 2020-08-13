@@ -17,6 +17,7 @@ public:
     ~UserManagementModel();
     vector<User> loadUsers(ValidationStatus _validationStatus = ValidationStatus::Any);
     User changeSelectedUser(int selectedIndex);
+    User approveSelectedUser();
 
 private:
     ValidationStatus validationStatus;

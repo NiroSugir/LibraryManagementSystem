@@ -70,3 +70,28 @@ User UserManagementModel::changeSelectedUser(int selectedIndex)
 
     return *selectedUser;
 }
+
+User UserManagementModel::approveSelectedUser()
+{
+    DbConnection connection;
+    QSqlDatabase db = connection.getDb();
+
+    db.open();
+    if (db.isOpen()) {
+        QSqlQuery query{QSqlDatabase::database("approve-user")};
+
+        if (query.exec(("update Users set validated = 1 where user_id = " + selectedUser->getId()).c_str())) {
+            // success
+            selectedUser->setValidated(true);
+            db.close();
+            return *selectedUser;
+        } else {
+            // failed
+            // TODO: handle update failure
+            qDebug() << query.lastError().text();
+            db.close();
+        }
+    } else {
+        // todo: throw contact support error
+    }
+}
