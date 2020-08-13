@@ -12,7 +12,7 @@ User LoginModel::login(const string &username, const string &password)
         QSqlQuery query;
 
         // use prepared statements to prevent sql injection attacks
-        const bool successfullyPrepared = query.prepare("SELECT username, first_name, last_name, password, role, validated FROM Users WHERE (username = :username AND password = :password) LIMIT 1");
+        const bool successfullyPrepared = query.prepare("SELECT username, first_name, last_name, password, role, validated, user_id FROM Users WHERE (username = :username AND password = :password) LIMIT 1");
 
         if (successfullyPrepared) {
             query.bindValue(":username", username.c_str());
@@ -22,11 +22,20 @@ User LoginModel::login(const string &username, const string &password)
                 if (query.next()) {
                     // user found
                     User user{
-                        query.value(1).toString().toStdString(),
-                        query.value(2).toString().toStdString(),
+                        //userid
+                        query.value(6).toString().toStdString(),
+                        // usrname
                         query.value(0).toString().toStdString(),
-                        query.value(3).toString().toStdString(),
+                        // first name
+                        query.value(1).toString().toStdString(),
+                        // last name
+                        query.value(2).toString().toStdString(),
+                        // password
+                        // TODO: remove password retrieval. not necessary for app
+                        "",
+                        // role
                         (Role) query.value(4).toUInt(),
+                        // validated
                         query.value(5).toBool()
                     };
 

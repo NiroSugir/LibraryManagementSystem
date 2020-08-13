@@ -11,7 +11,7 @@ protected:
     double price;
 
 public:
-    SellableBook(string _isbn, string _name, string _author, int _year, string _category, User _seller, double _price);
+    SellableBook(string _isbn, string _name, Author _author, int _year, string _category, User _seller, double _price);
 
     double getPrice() const;
     string getSellerId() const;

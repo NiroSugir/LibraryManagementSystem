@@ -7,6 +7,7 @@ AuthorModel::AuthorModel()
 
 vector<Author> AuthorModel::getAllDistinctAuthorsFromDb()
 {
+    DbConnection connection;
     QSqlDatabase db = connection.getDb();
 
     db.open();
@@ -79,6 +80,7 @@ Author AuthorModel::createNewAuthor()
 
 void AuthorModel::saveChanges(string firstName, string lastName)
 {
+    DbConnection connection;
     QSqlDatabase db = connection.getDb();
 
     db.open();

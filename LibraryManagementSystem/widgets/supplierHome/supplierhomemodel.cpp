@@ -36,12 +36,28 @@ void SupplierHomeModel::sellBook(SellableBook book)
         // add book to the list of books
         if (!bookExists) {
             query.clear();
-            const bool prepareAddBook = query.prepare("insert into books (isbn, title, genre, year, author_id) values (:isbn, :title, :gentre, :year, :author_id)");
+            const bool prepareAddBook = query.prepare("insert into books (isbn, title, genre, year, author_id) values (:isbn, :title, :genre, :year, :author_id)");
             if (prepareAddBook) {
                 query.bindValue(":isbn", book.getIsbn().c_str());
                 query.bindValue(":title", book.getName().c_str());
                 query.bindValue(":genre", book.getCategory().c_str());
                 query.bindValue(":year", book.getYear());
+                query.bindValue(":author_id", book.getAuthor().getId().c_str());
+            } else {
+                return rollback(db, query);
+            }
+
+            query.exec();
+            if (query.lastError().isValid()) {
+                return rollback(db, query);
+            }
+
+            query.clear();
+
+            // link book to author in conjunction table
+            const bool prepareLinkBookAuthor = query.prepare("insert into books_authors (book_isbn, author_id) values (:isbn, :author_id)");
+            if (prepareLinkBookAuthor) {
+                query.bindValue(":isbn", book.getIsbn().c_str());
                 query.bindValue(":author_id", book.getAuthor().getId().c_str());
             } else {
                 return rollback(db, query);
@@ -77,9 +93,9 @@ void SupplierHomeModel::sellBook(SellableBook book)
 
 void SupplierHomeModel::rollback(QSqlDatabase &db, QSqlQuery &query)
 {
+    qDebug() << query.lastError().text();
     // TODO: throw error
     query.exec("rollback");
-    qDebug() << query.lastError().text();
     query.clear();
     db.close();
 }

@@ -11,8 +11,6 @@ using std::string;
 class AuthorModel
 {
 private:
-    DbConnection connection;
-
     vector<Author> authors{};
 
     Author *selectedAuthor{nullptr};

@@ -1,6 +1,9 @@
 #include "supplierhomecontroller.h"
 #include "models/sellablebook.h"
 
+#include "widgets/author/authormodel.h"
+#include "widgets/book/bookmodel.h"
+
 SupplierHomeController::SupplierHomeController(const User *_currentUser)
 {
     currentUser = _currentUser;
@@ -21,20 +24,19 @@ void SupplierHomeController::init(ApplicationWindow *_mainWindow)
     model = new SupplierHomeModel{currentUser};
 
     applicationWindow->setMainView(view);
-    applicationWindow->setTitle("Supplier Home");
+    applicationWindow->setTitle("List Books for sale");
 
     // setup callbacks for the view to communicate with the model
     bindEventHandlersToView();
 
-//    view->initialize(currentUser);
+    view->initialize(currentUser, (AuthorModel{}).getAllDistinctAuthorsFromDb(), (BookModel{currentUser}).getCategories());
 }
 
 void SupplierHomeController::bindEventHandlersToView()
 {
     function<void (SellableBook)> handleListBookForSale = [this](SellableBook book) {
         this->model->sellBook(book);
-//        this->view->viewSelectedBook(book);
     };
 
-//    this->view->setEventHandlers(handleSearch, handleChangeSelectedBook, handleRetrieveCategories);
+    this->view->setEventHandlers(handleListBookForSale);
 }
