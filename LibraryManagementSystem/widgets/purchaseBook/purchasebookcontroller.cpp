@@ -41,5 +41,11 @@ void PurchaseBookController::bindEventHandlersToView()
         this->view->clearListing();
     };
 
-    this->view->setEventHandlers(handlePurchaseBook);
+    function<void (int)> handleChangeSelectedBook = [this](int selectedIndex) {
+        SellableBook book{this->model->selectBook(selectedIndex)};
+        this->view->viewSelectedBook(book);
+    };
+
+
+    this->view->setEventHandlers(handlePurchaseBook, handleChangeSelectedBook);
 }

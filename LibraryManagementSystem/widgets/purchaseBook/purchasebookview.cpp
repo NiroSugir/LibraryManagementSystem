@@ -29,8 +29,8 @@ void PurchaseBookView::populateBooksOnSale(vector<SellableBook> _booksForSale)
     unsigned int row = 0;
     for (const SellableBook &book: _booksForSale) {
         // remove the extra zeros from the double for $
-        string dollars = std::to_string(((int) (book.getPrice() * 100) - ((int)(book.getPrice() * 100) % 100)) / 100);
-        string cents = std::to_string((int)(book.getPrice() * 100) % 100);
+        string dollars = to_string(((int) (book.getPrice() * 100) - ((int)(book.getPrice() * 100) % 100)) / 100);
+        string cents = to_string((int)(book.getPrice() * 100) % 100);
 
         QString title{QString::fromStdString(book.getName())};
         QString author{QString::fromStdString(book.getAuthor().getLastName() + ", " + book.getAuthor().getFirstName())};
@@ -39,6 +39,42 @@ void PurchaseBookView::populateBooksOnSale(vector<SellableBook> _booksForSale)
         ui->tableWidgetBooksForSale->setItem(row, 0, new QTableWidgetItem{title});
         ui->tableWidgetBooksForSale->setItem(row, 1, new QTableWidgetItem{author});
         ui->tableWidgetBooksForSale->setItem(row, 2, new QTableWidgetItem{price});
+
+        row++;
+    }
+}
+
+void PurchaseBookView::viewSelectedBook(SellableBook book)
+{
+    ui->lineEditTitle->setText(QString::fromStdString(book.getName()));
+    ui->lineEditYear->setText(QString::fromStdString(to_string(book.getYear())));
+    ui->lineEditIsbn->setText(QString::fromStdString(book.getIsbn()));
+    ui->doubleSpinBoxPrice->setValue(book.getPrice());
+
+    int authorIndex;
+    string authorName = book.getAuthor().getLastName() + ", " + book.getAuthor().getFirstName();
+    for (const Author &thisAuthor : authors) {
+        string thisAuthorName = thisAuthor.getLastName() + ", " + thisAuthor.getFirstName();
+
+        if (thisAuthorName == authorName) {
+            break;
+        }
+
+        authorIndex++;
+    }
+
+    ui->comboBoxAuthors->setCurrentIndex(authorIndex);
+
+
+    const string thisCategory = book.getCategory();
+
+    int row = 0;
+    for(const string &category : categories) {
+        if (category == thisCategory) {
+            ui->listViewCategories->item(row)->setSelected(true);
+        } else {
+            ui->listViewCategories->item(row)->setSelected(false);
+        }
 
         row++;
     }
@@ -54,9 +90,10 @@ void PurchaseBookView::clearListing()
     ui->doubleSpinBoxPrice->setValue(0.00);
 }
 
-void PurchaseBookView::setEventHandlers(function<void (SellableBook)> _handlePurchaseBook)
+void PurchaseBookView::setEventHandlers(function<void (SellableBook)> _handlePurchaseBook, function<void (int)> _handleChangeSelectedBook)
 {
     handlePurchaseBook = _handlePurchaseBook;
+    handleChangeSelectedBook = _handleChangeSelectedBook;
 }
 
 void PurchaseBookView::setupBooksForSaleTable()
@@ -91,5 +128,14 @@ void PurchaseBookView::populateCategories(vector<string> _categories)
 
     for (const string &category: _categories) {
         ui->listViewCategories->addItem(category.c_str());
+    }
+}
+
+void PurchaseBookView::on_tableWidgetBooksForSale_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn)
+{
+    // book changes only if the row changes
+    if (currentRow != previousRow && currentRow > -1) {
+        // handle change book view
+        handleChangeSelectedBook(currentRow);
     }
 }

@@ -14,6 +14,7 @@ public:
     PurchaseBookModel(const User *_currentUser);
     void purchaseBook(SellableBook _book);
     vector<SellableBook> getBooksListedForSale();
+    SellableBook selectBook(int selectedIndex);
 
 private:
     // logged in user (if any)

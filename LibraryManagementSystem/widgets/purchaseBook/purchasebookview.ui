@@ -293,7 +293,7 @@
         </widget>
        </item>
        <item row="2" column="0" colspan="2">
-        <widget class="QPushButton" name="buttonSellBook">
+        <widget class="QPushButton" name="buttonPurchaseBook">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -321,7 +321,7 @@
  </widget>
  <tabstops>
   <tabstop>tableWidgetBooksForSale</tabstop>
-  <tabstop>buttonSellBook</tabstop>
+  <tabstop>buttonPurchaseBook</tabstop>
   <tabstop>lineEditTitle</tabstop>
   <tabstop>comboBoxAuthors</tabstop>
   <tabstop>lineEditYear</tabstop>

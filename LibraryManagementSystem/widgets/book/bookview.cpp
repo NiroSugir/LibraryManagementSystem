@@ -77,7 +77,6 @@ void BookView::viewSelectedBook(const Book &book)
     ui->lineEditAuthor->setText(QString::fromStdString(book.getAuthorName()));
     ui->lineEditYear->setText(QString::fromStdString(to_string(book.getYear())));
     ui->lineEditIsbn->setText(QString::fromStdString(book.getIsbn()));
-//    ui->lineEditPublisher->setText(QString::fromStdString(book.getPublisher()));
 
     const string thisCategory = book.getCategory();
 

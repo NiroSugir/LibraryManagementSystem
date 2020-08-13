@@ -87,3 +87,9 @@ vector<SellableBook> PurchaseBookModel::getBooksListedForSale()
 
     return booksForSale;
 }
+
+SellableBook PurchaseBookModel::selectBook(int selectedIndex)
+{
+    selectedBook = &booksForSale[selectedIndex];
+    return *selectedBook;
+}
