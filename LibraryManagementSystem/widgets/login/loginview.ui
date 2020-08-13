@@ -77,7 +77,7 @@
        <item row="0" column="1" colspan="2">
         <widget class="QLineEdit" name="lineEditUsername">
          <property name="text">
-          <string>supplier</string>
+          <string>librarian</string>
          </property>
         </widget>
        </item>

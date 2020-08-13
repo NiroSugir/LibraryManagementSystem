@@ -74,6 +74,11 @@ void ApplicationWindow::setListBooksForSaleButtonVisibility(bool visible)
     ui->actionList_Books_For_Sale->setVisible(visible);
 }
 
+void ApplicationWindow::setPurchaseBooksButtonVisibility(bool visible)
+{
+    ui->actionPurchase_Books->setVisible(visible);
+}
+
 void ApplicationWindow::on_actionLogin_triggered()
 {
     Router::getInstance()->switchToLoginView();
@@ -126,5 +131,5 @@ void ApplicationWindow::on_actionList_Books_For_Sale_triggered()
 
 void ApplicationWindow::on_actionPurchase_Books_triggered()
 {
-
+    Router::getInstance()->switchToPurchaseBooks();
 }

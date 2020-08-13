@@ -33,8 +33,10 @@ private:
     Ui::LoginView *ui;
 
     void enableLoginButtonIfPossiblyValidCredentials();
+    void login();
 
     function<void (string, string)> handleLogin;
+
 };
 
 #endif // LOGINVIEW_H

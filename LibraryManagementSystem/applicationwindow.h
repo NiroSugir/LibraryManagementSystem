@@ -34,6 +34,7 @@ public:
     void setAuthorRouteButtonVisibility(bool visible);
     void setMemberManagementRouteButtonVisibility(bool visible);
     void setListBooksForSaleButtonVisibility(bool visible);
+    void setPurchaseBooksButtonVisibility(bool visible);
 
 private slots:
     void on_actionLogin_triggered();

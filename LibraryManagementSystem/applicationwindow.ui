@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1200</width>
-    <height>800</height>
+    <width>1518</width>
+    <height>1079</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -40,7 +40,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1200</width>
+     <width>1518</width>
      <height>21</height>
     </rect>
    </property>
@@ -83,11 +83,11 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionManage_Members"/>
-   <addaction name="actionAuthor"/>
-   <addaction name="actionFind_Books"/>
    <addaction name="actionList_Books_For_Sale"/>
+   <addaction name="actionAuthor"/>
+   <addaction name="actionManage_Members"/>
    <addaction name="actionPurchase_Books"/>
+   <addaction name="actionFind_Books"/>
   </widget>
   <widget class="QToolBar" name="toolBar">
    <property name="windowTitle">

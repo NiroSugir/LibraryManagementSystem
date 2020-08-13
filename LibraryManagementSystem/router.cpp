@@ -7,9 +7,7 @@ Router::Router()
 {
     // Go to default route then show application. This prevents screen flashing on
     // slower computers.
-//    switchToBookView();
-    switchToPurchaseBooks();
-
+    switchToBookView();
 
     setRoutesAuthenticated(false);
     enableDisableAccessibleRoutes(false, Role::Guest);
@@ -115,6 +113,7 @@ void Router::enableDisableAccessibleRoutes(bool validated, Role role)
     applicationWindow.setAuthorRouteButtonVisibility(validated && (role == Role::Staff || role == Role::Supplier));
     applicationWindow.setMemberManagementRouteButtonVisibility(validated && role == Role::Staff);
     applicationWindow.setListBooksForSaleButtonVisibility(validated && role == Role::Supplier);
+    applicationWindow.setPurchaseBooksButtonVisibility(validated && role == Role::Staff);
 }
 
 Router *Router::getInstance()

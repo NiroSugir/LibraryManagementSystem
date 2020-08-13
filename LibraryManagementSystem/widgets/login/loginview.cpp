@@ -76,4 +76,3 @@ void LoginView::enableLoginButtonIfPossiblyValidCredentials()
 
     ui->buttonLogin->setDisabled(!(valid));
 }
-
