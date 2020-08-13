@@ -7,6 +7,7 @@
 #include <QModelIndex>
 #include <vector>
 #include "models/book.h"
+#include "models/user.h"
 #include <QMessageBox>
 
 namespace Ui {
@@ -26,7 +27,7 @@ public:
     explicit BookView(QWidget *parent = nullptr);
     ~BookView();
 
-    void initialize();
+    void initialize(const User *_currentUser);
     void setEventHandlers(
         function<void (string)> _handleSearch,
         function<void (int)> _handleChangeSelectedBook,
@@ -50,6 +51,8 @@ private:
     vector<string> categories;
     void setupSearchResultsTable();
     void search();
+    const User *currentUser{nullptr};
+    void setBookInfoEditable(bool editable);
 
     function<void (string)> handleSearch;
     function<void (int)> handleChangeSelectedBook;

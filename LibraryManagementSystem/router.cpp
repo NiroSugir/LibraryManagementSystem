@@ -53,7 +53,7 @@ void Router::loginUser(User _user)
 
     // TODO: create routes for this role
     setRoutesAuthenticated(true);
-    enableDisableAccessibleRoutes(_user.getValidated(), _user.getRole());
+    enableDisableAccessibleRoutes(_user.isValidated(), _user.getRole());
 
     // go to home route for this role
     switchToBookView();
@@ -124,9 +124,18 @@ Router *Router::getInstance()
     return instance;
 }
 
+const User *Router::getLoggedInUser()
+{
+    if (currentSession) {
+        return currentSession->getUser();
+    }
+
+    return nullptr;
+}
+
 void Router::switchToBookView()
 {
-    BookController *bookController = new BookController;
+    BookController *bookController = new BookController{getLoggedInUser()};
     updateViewAfterChangingRoutes(bookController);
 }
 
@@ -174,8 +183,8 @@ void Router::goForward()
 
 void Router::handleProfileClick()
 {
-    if (currentSession ){
-         User u{currentSession->getUser()};
+    if (currentSession){
+         User u{*currentSession->getUser()};
 
          // TODO: route to user's profile
     } else {
@@ -185,12 +194,18 @@ void Router::handleProfileClick()
 
 Router::Session::Session(User _user)
 {
-    loggedInUser = &_user;
+    loggedInUser = new User{_user};
 }
 
-const User &Router::Session::getUser()
+Router::Session::~Session()
 {
-    const User &userCopy = *loggedInUser;
+    if (loggedInUser) {
+        delete loggedInUser;
+        loggedInUser = nullptr;
+    }
+}
 
-    return userCopy;
+const User *Router::Session::getUser()
+{
+    return loggedInUser;
 }

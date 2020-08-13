@@ -8,6 +8,6 @@
         <file>resources/icons/Back.png</file>
         <file>resources/icons/Forward.png</file>
         <file>resources/icons/Author.png</file>
-        <file>resources/icons/Users.png</file>
+        <file>resources/icons/User2.png</file>
     </qresource>
 </RCC>

@@ -26,7 +26,7 @@ User LoginModel::login(const string &username, const string &password)
                         query.value(2).toString().toStdString(),
                         query.value(0).toString().toStdString(),
                         query.value(3).toString().toStdString(),
-                        (Role) query.value(4).toInt(),
+                        (Role) query.value(4).toUInt(),
                         query.value(5).toBool()
                     };
 

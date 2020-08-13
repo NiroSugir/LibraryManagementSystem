@@ -38,7 +38,7 @@ void UserManagementView::showUsers(vector<User> users)
     for (User const &user: users) {
         QString username{QString::fromStdString(user.getUsername())};
         QString role{QString::fromStdString(RoleString[user.getRole()])};
-        QString validated{user.getValidated() ? "Yes": "No"};
+        QString validated{user.isValidated() ? "Yes": "No"};
 
         ui->tableWidgetRegisteredUsers->setItem(row, 0, new QTableWidgetItem{username});
         ui->tableWidgetRegisteredUsers->setItem(row, 1, new QTableWidgetItem{role});
@@ -56,9 +56,9 @@ void UserManagementView::viewSelectedUser(User user)
     ui->labelFirstName->setText(user.getFirstName().c_str());
     ui->labelLastName->setText(user.getLastName().c_str());
     ui->labelUsername->setText(user.getUsername().c_str());
-    ui->labelValidated->setText(user.getValidated() ? "Yes" : "No");
+    ui->labelValidated->setText(user.isValidated() ? "Yes" : "No");
     ui->labelRole->setText(RoleString[user.getRole()].c_str());
-    ui->pushButtonApprove->setEnabled(!user.getValidated());
+    ui->pushButtonApprove->setEnabled(!user.isValidated());
 
 }
 

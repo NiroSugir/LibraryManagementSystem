@@ -193,7 +193,7 @@
   <action name="actionManage_Members">
    <property name="icon">
     <iconset resource="Icons.qrc">
-     <normaloff>:/icons/resources/icons/Users.png</normaloff>:/icons/resources/icons/Users.png</iconset>
+     <normaloff>:/icons/resources/icons/User2.png</normaloff>:/icons/resources/icons/User2.png</iconset>
    </property>
    <property name="text">
     <string>Manage Members</string>

@@ -1,6 +1,7 @@
 #include "bookview.h"
 #include "ui_bookview.h"
 #include <QDebug>
+#include "models/role.h"
 
 BookView::BookView(QWidget *parent) :
     QWidget(parent),
@@ -15,10 +16,15 @@ BookView::~BookView()
     delete ui;
 }
 
-void BookView::initialize()
+void BookView::initialize(const User *_currentUser)
 {
+    currentUser = _currentUser;
+
     setupSearchResultsTable();
     handleRetrieveCategories();
+
+    // setup what user can do with books (edit/borrow)
+    setBookInfoEditable(_currentUser && _currentUser->getRole() == Role::Staff && _currentUser->isValidated());
 }
 
 void BookView::setEventHandlers(
@@ -131,6 +137,22 @@ void BookView::search()
         alert.setDefaultButton(QMessageBox::Ok);
 
         alert.exec();
+    }
+}
+
+void BookView::setBookInfoEditable(bool editable)
+{
+    ui->lineEditIsbn->setReadOnly(!editable);
+    ui->lineEditYear->setReadOnly(!editable);
+    ui->lineEditTitle->setReadOnly(!editable);
+    ui->lineEditAuthor->setReadOnly(!editable);
+    ui->lineEditPublisher->setReadOnly(!editable);
+
+    if (!editable){
+        // make it appear enabled, but a quick way to disable selection change for
+        // list ui elements
+        ui->listViewCategories->setEnabled(editable);
+        ui->listViewCategories->setStyleSheet("background-color: white; color: black;");
     }
 }
 

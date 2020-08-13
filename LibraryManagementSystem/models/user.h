@@ -16,7 +16,7 @@ private:
     string username{""};
     string password{""};
 
-    Role role{Role::Member};
+    Role role{Role::Guest};
     bool validated{false};
 
 public:
@@ -49,7 +49,7 @@ public:
     string getUsername() const;
     string getPassword() const;
     Role getRole() const;
-    bool getValidated() const;
+    bool isValidated() const;
 
     void save();
     string getId() const;

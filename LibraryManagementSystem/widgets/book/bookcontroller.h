@@ -17,10 +17,13 @@ private:
     BookView *view{nullptr};
     BookModel *model{nullptr};
 
+    const User *currentUser{nullptr};
+
 protected:
     void bindEventHandlersToView() override;
 
 public:
+    BookController(const User *_currentUser);
     ~BookController();
     void init(ApplicationWindow *_mainWindow) override;
 };

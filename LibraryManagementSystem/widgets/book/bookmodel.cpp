@@ -2,12 +2,9 @@
 
 #include <QDebug>
 
-BookModel::~BookModel()
+BookModel::BookModel(const User *_currentUser)
 {
-    if (selectedBook) {
-        delete selectedBook;
-        selectedBook = nullptr;
-    }
+    currentUser = _currentUser;
 }
 
 vector<string> BookModel::getCategories()
@@ -37,6 +34,9 @@ vector<string> BookModel::getCategories()
             qDebug() << query.lastError();
         }
 
+    } else {
+        db.close();
+        // TODO: throw contact support error
     }
 }
 

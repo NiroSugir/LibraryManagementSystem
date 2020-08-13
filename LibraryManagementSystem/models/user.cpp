@@ -43,12 +43,12 @@ void User::passwordIsValid(const string &_password)
 
 User::User(string _firstName, string _lastName, string _username, string _password, Role _role, bool _validated) :
     firstName{_firstName}, lastName{_lastName}, username{_username}, password{_password}, role{_role}, validated{_validated}
-{ }
+{
+}
 
 User::User(string _id, string _username, string _firstName, string _lastName, string _password, Role _role, bool _validated):
     id{_id}, username{_username}, firstName{_firstName}, lastName{_lastName}, password{_password}, role{_role}, validated{_validated}
 {
-
 }
 
 string User::getFirstName() const
@@ -71,7 +71,7 @@ string User::getPassword() const
     return password;
 }
 
-bool User::getValidated() const
+bool User::isValidated() const
 {
     return validated;
 }

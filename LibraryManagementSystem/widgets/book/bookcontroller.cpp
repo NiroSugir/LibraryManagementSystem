@@ -1,11 +1,12 @@
 #include "bookcontroller.h"
 #include "models/book.h"
+//#include "router.h"
 
 void BookController::init(ApplicationWindow *_mainWindow)
 {
     applicationWindow = _mainWindow;
     view = new BookView;
-    model = new BookModel;
+    model = new BookModel{currentUser};
 
     applicationWindow->setMainView(view);
     applicationWindow->setTitle("Books");
@@ -13,7 +14,7 @@ void BookController::init(ApplicationWindow *_mainWindow)
     // setup callbacks for the view to communicate with the model
     bindEventHandlersToView();
 
-    view->initialize();
+    view->initialize(currentUser);
 }
 
 BookController::~BookController()
@@ -47,4 +48,9 @@ void BookController::bindEventHandlersToView()
     };
 
     this->view->setEventHandlers(handleSearch, handleChangeSelectedBook, handleRetrieveCategories);
+}
+
+BookController::BookController(const User *_currentUser)
+{
+    currentUser = _currentUser;
 }

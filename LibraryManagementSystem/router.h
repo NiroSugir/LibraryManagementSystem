@@ -23,8 +23,8 @@ private:
 
         public:
             Session(User _user);
-
-            const User &getUser();
+            ~Session();
+            const User *getUser();
     };
 
     // Note: no point deleting a pointer for a singleton variable. it's
@@ -62,6 +62,8 @@ public:
 
     // unassignable
     void operator=(const Router&) = delete;
+
+    const User *getLoggedInUser();
 
     void logout();
 
