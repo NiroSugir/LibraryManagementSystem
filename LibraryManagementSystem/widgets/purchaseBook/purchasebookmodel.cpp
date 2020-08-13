@@ -37,7 +37,7 @@ vector<SellableBook> PurchaseBookModel::getBooksListedForSale()
                            "left join Users "
                            "on Users.user_id = Books_For_Sale.seller_id "
                            "where Books_For_Sale.purchaser_id = 0"};
-        qDebug() << "sql: " << queryString;
+
         query.exec(queryString);
 
         while(query.next()) {
