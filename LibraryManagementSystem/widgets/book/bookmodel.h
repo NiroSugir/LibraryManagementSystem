@@ -12,6 +12,7 @@ class BookModel
 
 public:
     ~BookModel();
+    vector<string> getCategories();
     vector<Book> keywordSearch(string searchString);
     Book getBook(const int &selectedBookIndex);
 
@@ -22,7 +23,7 @@ private:
     //currently selected book (pointer to a book on the list of visible books)
     Book *selectedBook{nullptr};
 
-    DbConnection connection;
+
 };
 
 #endif // BOOKMODEL_H

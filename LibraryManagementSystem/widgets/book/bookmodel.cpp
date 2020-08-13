@@ -10,8 +10,39 @@ BookModel::~BookModel()
     }
 }
 
+vector<string> BookModel::getCategories()
+{
+    DbConnection connection;
+
+    // search the db
+    QSqlDatabase db = connection.getDb();
+
+    vector<string> categories{};
+
+    db.open();
+    if (db.isOpen()) {
+        QSqlQuery query{QSqlDatabase::database("keyword-search")};
+
+        if (query.exec("select name from Categories;")) {
+            while (query.next()) {
+                categories.push_back(query.value(0).toString().toStdString());
+            }
+
+            db.close();
+
+            return categories;
+        } else {
+            db.close();
+            // TODO: throw error
+            qDebug() << query.lastError();
+        }
+
+    }
+}
+
 vector<Book> BookModel::keywordSearch(string searchString)
 {
+    DbConnection connection;
     selectedBook = nullptr;
     visibleBooks.clear();
 
@@ -20,7 +51,7 @@ vector<Book> BookModel::keywordSearch(string searchString)
 
     db.open();
     if (db.isOpen()) {
-       QSqlQuery query;
+       QSqlQuery query{QSqlDatabase::database("keyword-search")};
 
        // use prepared statements to prevent sql injection attacks
        const bool successfullyPrepared = query.prepare("select isbn, title, author, publisher, genre, copies, year from books where ( title LIKE :keyword OR author LIKE :keyword OR isbn LIKE :keyword )");

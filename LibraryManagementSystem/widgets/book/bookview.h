@@ -26,11 +26,13 @@ public:
     explicit BookView(QWidget *parent = nullptr);
     ~BookView();
 
-    void initialize(vector<string> &_categories);
+    void initialize();
     void setEventHandlers(
         function<void (string)> _handleSearch,
-        function<void (int)> _handleChangeSelectedBook
+        function<void (int)> _handleChangeSelectedBook,
+        function<void ()> _handleRetrieveCategories
     );
+    void populateCategories(vector<string> _categories);
     void clearSearchResults();
     void updateSearchResults(const vector<Book> &books);
     void viewSelectedBook(const Book &book);
@@ -51,6 +53,7 @@ private:
 
     function<void (string)> handleSearch;
     function<void (int)> handleChangeSelectedBook;
+    function<void ()> handleRetrieveCategories;
 };
 
 #endif // BOOKVIEW_H

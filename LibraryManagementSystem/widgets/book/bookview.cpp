@@ -15,22 +15,29 @@ BookView::~BookView()
     delete ui;
 }
 
-void BookView::initialize(vector<string> &_categories)
+void BookView::initialize()
 {
     setupSearchResultsTable();
+    handleRetrieveCategories();
+}
+
+void BookView::setEventHandlers(
+        function<void (string)> _handleSearch,
+        function<void (int)> _handleChangeSelectedBook,
+        function<void ()> _handleRetrieveCategories
+) {
+    handleSearch = _handleSearch;
+    handleChangeSelectedBook = _handleChangeSelectedBook;
+    handleRetrieveCategories = _handleRetrieveCategories;
+}
+
+void BookView::populateCategories(vector<string> _categories)
+{
     categories = _categories;
 
     for (const string &category: categories) {
         ui->listViewCategories->addItem(QString::fromStdString(category));
     }
-}
-
-void BookView::setEventHandlers(
-        function<void (string)> _handleSearch,
-        function<void (int)> _handleChangeSelectedBook
-) {
-    handleSearch = _handleSearch;
-    handleChangeSelectedBook = _handleChangeSelectedBook;
 }
 
 void BookView::clearSearchResults()
