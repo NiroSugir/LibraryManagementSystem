@@ -6,7 +6,7 @@
 #include <QStringListModel>
 #include <QModelIndex>
 #include <vector>
-#include "models/book.h"
+#include "models/borrowablebook.h"
 #include "models/user.h"
 #include <QMessageBox>
 
@@ -35,8 +35,8 @@ public:
     );
     void populateCategories(vector<string> _categories);
     void clearSearchResults();
-    void updateSearchResults(const vector<Book> &books);
-    void viewSelectedBook(const Book &book);
+    void updateSearchResults(const vector<BorrowableBook> &books);
+    void viewSelectedBook(const BorrowableBook &book);
     void clearSelectedBook();
 
 private slots:

@@ -21,6 +21,7 @@ SOURCES += \
     main.cpp \
     models/author.cpp \
     models/book.cpp \
+    models/borrowablebook.cpp \
     models/sellablebook.cpp \
     models/user.cpp \
     router.cpp \
@@ -54,6 +55,7 @@ HEADERS += \
     models/RoleString.h \
     models/author.h \
     models/book.h \
+    models/borrowablebook.h \
     models/role.h \
     models/sellablebook.h \
     models/user.h \

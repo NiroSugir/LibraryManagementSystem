@@ -1,5 +1,5 @@
 #include "bookcontroller.h"
-#include "models/book.h"
+#include "models/borrowablebook.h"
 //#include "router.h"
 
 void BookController::init(ApplicationWindow *_mainWindow)
@@ -29,7 +29,7 @@ void BookController::bindEventHandlersToView()
 {
     function<void (string)> handleSearch = [this](string searchString) {
         try {
-            vector<Book> books{this->model->keywordSearch(searchString)};
+            vector<BorrowableBook> books{this->model->keywordSearch(searchString)};
 
             this->view->updateSearchResults(books);
         } catch (const char* errorMsg) {
@@ -38,7 +38,7 @@ void BookController::bindEventHandlersToView()
     };
 
     function<void (int)> handleChangeSelectedBook = [this](int selectedIndex) {
-        Book book{this->model->getBook(selectedIndex)};
+        BorrowableBook book{this->model->getBook(selectedIndex)};
         this->view->viewSelectedBook(book);
     };
 

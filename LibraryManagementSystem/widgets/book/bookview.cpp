@@ -53,7 +53,7 @@ void BookView::clearSearchResults()
 
 }
 
-void BookView::updateSearchResults(const vector<Book> &books)
+void BookView::updateSearchResults(const vector<BorrowableBook> &books)
 {
     ui->tableWidgetSearchResults->clearContents();
     ui->tableWidgetSearchResults->setRowCount(books.size());
@@ -71,7 +71,7 @@ void BookView::updateSearchResults(const vector<Book> &books)
     }
 }
 
-void BookView::viewSelectedBook(const Book &book)
+void BookView::viewSelectedBook(const BorrowableBook &book)
 {
     ui->lineEditTitle->setText(QString::fromStdString(book.getName()));
     ui->lineEditAuthor->setText(QString::fromStdString(book.getAuthorName()));
