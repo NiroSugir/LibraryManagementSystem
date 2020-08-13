@@ -7,7 +7,8 @@ Router::Router()
 {
     // Go to default route then show application. This prevents screen flashing on
     // slower computers.
-    switchToBookView();
+//    switchToBookView();
+    switchToPurchaseBooks();
 
 
     setRoutesAuthenticated(false);
@@ -51,7 +52,8 @@ void Router::loginUser(User _user)
 
     applicationWindow.setProfileNameOnLabel("Greetings " + _user.getFirstName() + "!");
 
-    // TODO: create routes for this role
+    // create routes for this role. everything's that's accessible, is so
+    // through the toolbars (which are reset when user changes)
     setRoutesAuthenticated(true);
     enableDisableAccessibleRoutes(_user.isValidated(), _user.getRole());
 
@@ -161,6 +163,12 @@ void Router::switchToListBooksForSaleView()
 {
     SupplierHomeController *supplierHomeController = new SupplierHomeController{getLoggedInUser()};
     updateViewAfterChangingRoutes(supplierHomeController);
+}
+
+void Router::switchToPurchaseBooks()
+{
+    PurchaseBookController *purchaseHomeController = new PurchaseBookController{getLoggedInUser()};
+    updateViewAfterChangingRoutes(purchaseHomeController);
 }
 
 bool Router::canGoBack()

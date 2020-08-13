@@ -35,6 +35,9 @@ SOURCES += \
     widgets/login/loginmodel.cpp \
     widgets/login/loginview.cpp \
     widgets/main/mainview.cpp \
+    widgets/purchaseBook/purchasebookcontroller.cpp \
+    widgets/purchaseBook/purchasebookmodel.cpp \
+    widgets/purchaseBook/purchasebookview.cpp \
     widgets/signup/signupcontroller.cpp \
     widgets/signup/signupmodel.cpp \
     widgets/signup/signupview.cpp \
@@ -66,6 +69,9 @@ HEADERS += \
     widgets/login/loginmodel.h \
     widgets/login/loginview.h \
     widgets/main/mainview.h \
+    widgets/purchaseBook/purchasebookcontroller.h \
+    widgets/purchaseBook/purchasebookmodel.h \
+    widgets/purchaseBook/purchasebookview.h \
     widgets/signup/signupcontroller.h \
     widgets/signup/signupmodel.h \
     widgets/signup/signupview.h \
@@ -82,6 +88,7 @@ FORMS += \
     widgets/book/bookview.ui \
     widgets/login/loginview.ui \
     widgets/main/mainview.ui \
+    widgets/purchaseBook/purchasebookview.ui \
     widgets/signup/signupview.ui \
     widgets/supplierHome/supplierhomeview.ui \
     widgets/userManagement/usermanagementview.ui

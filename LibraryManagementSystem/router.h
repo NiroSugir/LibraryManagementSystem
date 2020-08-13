@@ -9,6 +9,7 @@
 #include "widgets/author/authorcontroller.h"
 #include "widgets/userManagement/usermanagementcontroller.h"
 #include "widgets/supplierHome/supplierhomecontroller.h"
+#include "widgets/purchaseBook/purchasebookcontroller.h"
 #include <vector>
 #include <QObject>
 #include "models/user.h"
@@ -79,6 +80,8 @@ public:
     void switchToUserManagementView();
 
     void switchToListBooksForSaleView();
+
+    void switchToPurchaseBooks();
 
     bool canGoBack();
 

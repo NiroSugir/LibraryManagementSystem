@@ -104,6 +104,16 @@ vector<SellableBook> SupplierHomeModel::getBooksListedForSaleByThisUser()
     if (db.isOpen()) {
         QSqlQuery query{QSqlDatabase::database("get-listed-books")};
 
+        /*
+            select Books.isbn, books.title, books.genre, Books.year, Books_For_Sale.price, Authors.first_name, Authors.last_name
+            from Books_For_Sale
+            left join Books
+            on Books_For_Sale.isbn = books.isbn
+            left join Authors
+            on Books.author_id = Authors.author_id
+            where Books_For_Sale.seller_id = 3 and Books_For_Sale.purchaser_id = 0;
+         */
+
         query.exec(((string) "select Books.isbn, books.title, books.genre, Books.year, Books_For_Sale.price, Authors.author_id, Authors.first_name, Authors.last_name "
                    "from Books_For_Sale left join Books on Books_For_Sale.isbn = books.isbn left join "
                    "Authors on Books.author_id = Authors.author_id where Books_For_Sale.purchaser_id = 0 and Books_For_Sale.seller_id = " + currentUser->getId()).c_str());

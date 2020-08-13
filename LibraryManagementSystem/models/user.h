@@ -25,6 +25,8 @@ public:
     static void usernameIsValid(const string &_username);
     static void passwordIsValid(const string &_password);
 
+    // DEPRECATED
+    // USE THE OTHER CONSTRUCTOR WITH THE ID
     User(
         string _firstName,
         string _lastName,

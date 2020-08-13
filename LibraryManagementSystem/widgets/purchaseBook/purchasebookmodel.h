@@ -1,5 +1,5 @@
-#ifndef SUPPLIERHOMEMODEL_H
-#define SUPPLIERHOMEMODEL_H
+#ifndef PURCHASEBOOKMODEL_H
+#define PURCHASEBOOKMODEL_H
 
 #include "models/user.h"
 #include <vector>
@@ -8,12 +8,12 @@
 
 using std::vector;
 
-class SupplierHomeModel
+class PurchaseBookModel
 {
 public:
-    SupplierHomeModel(const User *_currentUser);
-    void sellBook(SellableBook _book);
-    vector<SellableBook> getBooksListedForSaleByThisUser();
+    PurchaseBookModel(const User *_currentUser);
+    void purchaseBook(SellableBook _book);
+    vector<SellableBook> getBooksListedForSale();
 
 private:
     // logged in user (if any)
@@ -24,9 +24,6 @@ private:
 
     //currently selected book (pointer to a book on the list of visible books)
     SellableBook *selectedBook{nullptr};
-
-    // helper function to call when running into an error writing to the db
-    void rollback(QSqlDatabase &db, QSqlQuery &query);
 };
 
-#endif // SUPPLIERHOMEMODEL_H
+#endif // PURCHASEBOOKMODEL_H
