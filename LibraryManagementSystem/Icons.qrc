@@ -9,5 +9,6 @@
         <file>resources/icons/Forward.png</file>
         <file>resources/icons/Author.png</file>
         <file>resources/icons/User2.png</file>
+        <file>resources/icons/Purchase.png</file>
     </qresource>
 </RCC>

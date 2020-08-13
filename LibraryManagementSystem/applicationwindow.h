@@ -33,6 +33,7 @@ public:
     void setLogoutButtonStatus(bool enabled);
     void setAuthorRouteButtonVisibility(bool visible);
     void setMemberManagementRouteButtonVisibility(bool visible);
+    void setListBooksForSaleButtonVisibility(bool visible);
 
 private slots:
     void on_actionLogin_triggered();
@@ -52,6 +53,8 @@ private slots:
     void on_actionAuthor_triggered();
 
     void on_actionManage_Members_triggered();
+
+    void on_actionList_Books_For_Sale_triggered();
 
 private:
     Ui::ApplicationWindow *ui;

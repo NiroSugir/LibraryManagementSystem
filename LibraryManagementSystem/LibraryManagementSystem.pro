@@ -21,6 +21,7 @@ SOURCES += \
     main.cpp \
     models/author.cpp \
     models/book.cpp \
+    models/sellablebook.cpp \
     models/user.cpp \
     router.cpp \
     widgets/_helper/controller.cpp \
@@ -37,6 +38,8 @@ SOURCES += \
     widgets/signup/signupcontroller.cpp \
     widgets/signup/signupmodel.cpp \
     widgets/signup/signupview.cpp \
+    widgets/supplierHome/supplierhomecontroller.cpp \
+    widgets/supplierHome/supplierhomemodel.cpp \
     widgets/supplierHome/supplierhomeview.cpp \
     widgets/userManagement/usermanagementcontroller.cpp \
     widgets/userManagement/usermanagementmodel.cpp \
@@ -49,6 +52,7 @@ HEADERS += \
     models/author.h \
     models/book.h \
     models/role.h \
+    models/sellablebook.h \
     models/user.h \
     router.h \
     widgets/_helper/controller.h \
@@ -65,6 +69,8 @@ HEADERS += \
     widgets/signup/signupcontroller.h \
     widgets/signup/signupmodel.h \
     widgets/signup/signupview.h \
+    widgets/supplierHome/supplierhomecontroller.h \
+    widgets/supplierHome/supplierhomemodel.h \
     widgets/supplierHome/supplierhomeview.h \
     widgets/userManagement/usermanagementcontroller.h \
     widgets/userManagement/usermanagementmodel.h \

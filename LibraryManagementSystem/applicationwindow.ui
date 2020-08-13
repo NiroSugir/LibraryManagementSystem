@@ -79,6 +79,7 @@
    <addaction name="actionManage_Members"/>
    <addaction name="actionAuthor"/>
    <addaction name="actionFind_Books"/>
+   <addaction name="actionList_Books_For_Sale"/>
   </widget>
   <widget class="QToolBar" name="toolBar">
    <property name="windowTitle">
@@ -200,6 +201,18 @@
    </property>
    <property name="toolTip">
     <string>Manage Members</string>
+   </property>
+  </action>
+  <action name="actionList_Books_For_Sale">
+   <property name="icon">
+    <iconset resource="Icons.qrc">
+     <normaloff>:/icons/resources/icons/Purchase.png</normaloff>:/icons/resources/icons/Purchase.png</iconset>
+   </property>
+   <property name="text">
+    <string>List Books For Sale</string>
+   </property>
+   <property name="toolTip">
+    <string>List Books For Sale</string>
    </property>
   </action>
  </widget>

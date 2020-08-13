@@ -62,7 +62,7 @@ void BookView::updateSearchResults(const vector<Book> &books)
     int row = 0;
     for (auto const &book: books) {
         QString title{QString::fromStdString(book.getName())};
-        QString author{QString::fromStdString(book.getAuthor())};
+        QString author{QString::fromStdString(book.getAuthorName())};
 
         ui->tableWidgetSearchResults->setItem(row, 0, new QTableWidgetItem{title});
         ui->tableWidgetSearchResults->setItem(row, 1, new QTableWidgetItem{author});
@@ -74,10 +74,10 @@ void BookView::updateSearchResults(const vector<Book> &books)
 void BookView::viewSelectedBook(const Book &book)
 {
     ui->lineEditTitle->setText(QString::fromStdString(book.getName()));
-    ui->lineEditAuthor->setText(QString::fromStdString(book.getAuthor()));
+    ui->lineEditAuthor->setText(QString::fromStdString(book.getAuthorName()));
     ui->lineEditYear->setText(QString::fromStdString(to_string(book.getYear())));
     ui->lineEditIsbn->setText(QString::fromStdString(book.getIsbn()));
-    ui->lineEditPublisher->setText(QString::fromStdString(book.getPublisher()));
+//    ui->lineEditPublisher->setText(QString::fromStdString(book.getPublisher()));
 
     const string thisCategory = book.getCategory();
 

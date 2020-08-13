@@ -112,8 +112,8 @@ void Router::enableDisableAccessibleRoutes(bool validated, Role role)
 {
     applicationWindow.setAuthorRouteButtonVisibility(validated && (role == Role::Staff || role == Role::Supplier));
     applicationWindow.setMemberManagementRouteButtonVisibility(validated && role == Role::Staff);
+    applicationWindow.setListBooksForSaleButtonVisibility(validated && role == Role::Supplier);
 }
-
 
 Router *Router::getInstance()
 {
@@ -155,6 +155,12 @@ void Router::switchToUserManagementView()
 {
     UserManagementController *userManagementController = new UserManagementController;
     updateViewAfterChangingRoutes(userManagementController);
+}
+
+void Router::switchToListBooksForSaleView()
+{
+    SupplierHomeController *supplierHomeController = new SupplierHomeController{getLoggedInUser()};
+    updateViewAfterChangingRoutes(supplierHomeController);
 }
 
 bool Router::canGoBack()

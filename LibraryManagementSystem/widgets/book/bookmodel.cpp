@@ -68,20 +68,19 @@ vector<Book> BookModel::keywordSearch(string searchString)
             } else {
                 while(query.next()) {
                     visibleBooks.push_back(Book{
-                        // title
-                        query.value(1).toString().toStdString(),
-                        // author
-                        query.value(2).toString().toStdString(),
-                        // year
-                        query.value(6).toInt(),
-                        // isbn
-                        query.value(0).toString().toStdString(),
-                        // publisher
-                        query.value(3).toString().toStdString(),
-                        // genre
-                        query.value(4).toString().toStdString(),
-                        // copies
-                        query.value(5).toInt()
+                                               // isbn
+                                               query.value(0).toString().toStdString(),
+                                               // title
+                                               query.value(1).toString().toStdString(),
+                                               // author
+                                               // TODO: replace with real author
+//                                               query.value(2).toString().toStdString(),
+                                               Author{"fake id", "fake first name", "fake last name"},
+                                               // year
+                                                query.value(6).toInt(),
+                                                // genre
+                                                query.value(4).toString().toStdString(),
+
                     });
                 }
             }

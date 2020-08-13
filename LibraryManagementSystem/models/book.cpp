@@ -1,8 +1,9 @@
 #include "book.h"
 
-int Book::getCopies() const
+Book::Book(string _isbn, string _name, Author _author, int _year, string _category):
+    isbn{_isbn}, name{_name}, author{_author}, year{_year}, category{_category}
 {
-    return copies;
+
 }
 
 string Book::getName() const
@@ -10,9 +11,9 @@ string Book::getName() const
     return name;
 }
 
-string Book::getAuthor() const
+string Book::getAuthorName() const
 {
-    return author;
+    return author.getFirstName() + " " + author.getLastName();
 }
 
 int Book::getYear() const
@@ -20,21 +21,17 @@ int Book::getYear() const
     return year;
 }
 
+Author Book::getAuthor() const
+{
+    return author;
+}
+
 string Book::getIsbn() const
 {
     return isbn;
-}
-
-string Book::getPublisher() const
-{
-    return publisher;
 }
 
 string Book::getCategory() const
 {
     return category;
 }
-
-Book::Book(string _name, string _author, int _year, string _isbn, string _publisher, string _category, int _copies):
-    name{_name}, author{_author}, year{_year}, isbn{_isbn}, publisher{_publisher}, category{_category}, copies{_copies}
-{ }

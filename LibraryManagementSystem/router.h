@@ -8,6 +8,7 @@
 #include "widgets/login/logincontroller.h"
 #include "widgets/author/authorcontroller.h"
 #include "widgets/userManagement/usermanagementcontroller.h"
+#include "widgets/supplierHome/supplierhomecontroller.h"
 #include <vector>
 #include <QObject>
 #include "models/user.h"
@@ -76,6 +77,8 @@ public:
     void switchToLoginView();
 
     void switchToUserManagementView();
+
+    void switchToListBooksForSaleView();
 
     bool canGoBack();
 

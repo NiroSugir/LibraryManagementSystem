@@ -77,7 +77,7 @@
        <item row="0" column="1" colspan="2">
         <widget class="QLineEdit" name="lineEditUsername">
          <property name="text">
-          <string>niro</string>
+          <string>supplier</string>
          </property>
         </widget>
        </item>
@@ -94,7 +94,7 @@
           <string/>
          </property>
          <property name="text">
-          <string>123456789</string>
+          <string>password</string>
          </property>
          <property name="echoMode">
           <enum>QLineEdit::Password</enum>

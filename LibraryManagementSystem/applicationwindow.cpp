@@ -69,6 +69,11 @@ void ApplicationWindow::setMemberManagementRouteButtonVisibility(bool visible)
     ui->actionManage_Members->setVisible(visible);
 }
 
+void ApplicationWindow::setListBooksForSaleButtonVisibility(bool visible)
+{
+    ui->actionList_Books_For_Sale->setVisible(visible);
+}
+
 void ApplicationWindow::on_actionLogin_triggered()
 {
     Router::getInstance()->switchToLoginView();
@@ -112,4 +117,9 @@ void ApplicationWindow::on_actionAuthor_triggered()
 void ApplicationWindow::on_actionManage_Members_triggered()
 {
     Router::getInstance()->switchToUserManagementView();
+}
+
+void ApplicationWindow::on_actionList_Books_For_Sale_triggered()
+{
+    Router::getInstance()->switchToListBooksForSaleView();
 }

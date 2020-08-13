@@ -2,30 +2,30 @@
 #define BOOK_H
 
 #include <iostream>
+#include "models/author.h"
 
 using std::string;
 
 class Book
 {
-private:
-    string name;
-    string author;
-    int year;
+protected:
     string isbn;
-    string publisher;
+    string name;
+    Author author;
+    int year;
     string category;
-    int copies;
 
 public:
-    Book(string _name, string _author, int _year, string _isbn, string _publisher, string _category, int copies);
+    Book(string _isbn, string _name, Author _author, int _year, string _category);
 
-    string getName() const;
-    string getAuthor() const;
-    int getYear() const;
-    string getIsbn() const;
-    string getPublisher() const;
-    string getCategory() const;
-    int getCopies() const;
+    virtual string getIsbn() const;
+    virtual string getName() const;
+    virtual int getYear() const;
+    virtual string getCategory() const;
+    virtual Author getAuthor() const;
+
+    // TODO: remove this and use getAuthor().getnames...
+    virtual string getAuthorName() const;
 };
 
 #endif // BOOK_H
