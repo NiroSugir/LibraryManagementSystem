@@ -65,7 +65,7 @@ void Router::logout()
 
     applicationWindow.setProfileNameOnLabel("You are browsing as a Guest. Sign up for free!");
 
-    switchToBookView();
+    switchToLoginView();
 }
 
 void Router::switchToAuthorView()
