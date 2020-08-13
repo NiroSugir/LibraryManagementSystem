@@ -78,6 +78,7 @@
    </attribute>
    <addaction name="actionFind_Books"/>
    <addaction name="actionAuthor"/>
+   <addaction name="actionManage_Members"/>
   </widget>
   <widget class="QToolBar" name="toolBar">
    <property name="windowTitle">
@@ -187,6 +188,18 @@
    </property>
    <property name="text">
     <string>Author</string>
+   </property>
+  </action>
+  <action name="actionManage_Members">
+   <property name="icon">
+    <iconset resource="Icons.qrc">
+     <normaloff>:/icons/resources/icons/Users.png</normaloff>:/icons/resources/icons/Users.png</iconset>
+   </property>
+   <property name="text">
+    <string>Manage Members</string>
+   </property>
+   <property name="toolTip">
+    <string>Manage Members</string>
    </property>
   </action>
  </widget>

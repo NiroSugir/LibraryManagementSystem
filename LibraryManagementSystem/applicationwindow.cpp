@@ -64,6 +64,11 @@ void ApplicationWindow::setAuthorRouteButtonVisibility(bool visible)
     ui->actionAuthor->setVisible(visible);
 }
 
+void ApplicationWindow::setMemberManagementRouteButtonVisibility(bool visible)
+{
+    ui->actionManage_Members->setVisible(visible);
+}
+
 void ApplicationWindow::on_actionLogin_triggered()
 {
     Router::getInstance()->switchToLoginView();
@@ -102,4 +107,9 @@ void ApplicationWindow::on_actionLabelUsername_triggered()
 void ApplicationWindow::on_actionAuthor_triggered()
 {
     Router::getInstance()->switchToAuthorView();
+}
+
+void ApplicationWindow::on_actionManage_Members_triggered()
+{
+    Router::getInstance()->switchToUserManagementView();
 }

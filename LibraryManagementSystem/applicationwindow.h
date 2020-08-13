@@ -32,6 +32,7 @@ public:
     void setLoginButtonStatus(bool enabled);
     void setLogoutButtonStatus(bool enabled);
     void setAuthorRouteButtonVisibility(bool visible);
+    void setMemberManagementRouteButtonVisibility(bool visible);
 
 private slots:
     void on_actionLogin_triggered();
@@ -49,6 +50,8 @@ private slots:
     void on_actionLabelUsername_triggered();
 
     void on_actionAuthor_triggered();
+
+    void on_actionManage_Members_triggered();
 
 private:
     Ui::ApplicationWindow *ui;
