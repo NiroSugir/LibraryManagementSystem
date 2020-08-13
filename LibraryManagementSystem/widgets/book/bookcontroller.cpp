@@ -7,14 +7,12 @@ void BookController::init(ApplicationWindow *_mainWindow)
     view = new BookView;
     model = new BookModel;
 
-
     applicationWindow->setMainView(view);
     applicationWindow->setTitle("Books");
 
     // setup callbacks for the view to communicate with the model
     bindEventHandlersToView();
 
-//    vector<string> categories = vector<string>{"Biography", "Science Fiction", "Mystery", "Fantasy", "Horror", "History"};
     view->initialize();
 }
 
@@ -28,7 +26,6 @@ BookController::~BookController()
 
 void BookController::bindEventHandlersToView()
 {
-
     function<void (string)> handleSearch = [this](string searchString) {
         try {
             vector<Book> books{this->model->keywordSearch(searchString)};
@@ -48,7 +45,6 @@ void BookController::bindEventHandlersToView()
         vector<string> categories{this->model->getCategories()};
         this->view->populateCategories(categories);
     };
-
 
     this->view->setEventHandlers(handleSearch, handleChangeSelectedBook, handleRetrieveCategories);
 }
