@@ -35,11 +35,13 @@ void SupplierHomeView::populateBooksOnSaleBySupplier(vector<SellableBook> _books
 
     unsigned int row = 0;
     for (const SellableBook &book: _booksForSale) {
+        // remove the extra zeros from the double for $
+        string dollars = std::to_string(((int) (book.getPrice() * 100) - ((int)(book.getPrice() * 100) % 100)) / 100);
+        string cents = std::to_string((int)(book.getPrice() * 100) % 100);
+
         QString title{QString::fromStdString(book.getName())};
         QString author{QString::fromStdString(book.getAuthor().getLastName() + ", " + book.getAuthor().getFirstName())};
-        QString price{
-            ("$" + std::to_string(book.getPrice())).c_str()
-        };
+        QString price{("$" + dollars + "." + cents).c_str()};
 
         ui->tableWidgetBooksForSale->setItem(row, 0, new QTableWidgetItem{title});
         ui->tableWidgetBooksForSale->setItem(row, 1, new QTableWidgetItem{author});
