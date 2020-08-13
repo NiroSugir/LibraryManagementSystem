@@ -11,7 +11,7 @@ Router::Router()
     switchToUserManagementView();
 
     setRoutesAuthenticated(false);
-    enableDisableAccessibleRoutes(Role::Guest);
+    enableDisableAccessibleRoutes(false, Role::Guest);
 
     applicationWindow.setProfileNameOnLabel("You are browsing as a Guest. Sign up for free!");
 
@@ -40,7 +40,7 @@ void Router::clearSession()
     historyIndex = -1;
 
     setRoutesAuthenticated(false);
-    enableDisableAccessibleRoutes(Role::Guest);
+    enableDisableAccessibleRoutes(false, Role::Guest);
 }
 
 void Router::loginUser(User _user)
@@ -53,7 +53,7 @@ void Router::loginUser(User _user)
 
     // TODO: create routes for this role
     setRoutesAuthenticated(true);
-    enableDisableAccessibleRoutes(_user.getRole());
+    enableDisableAccessibleRoutes(_user.getValidated(), _user.getRole());
 
     // go to home route for this role
     switchToBookView();
@@ -108,9 +108,9 @@ void Router::setRoutesAuthenticated(bool isAuthenticated)
     applicationWindow.setLogoutButtonStatus(isAuthenticated);
 }
 
-void Router::enableDisableAccessibleRoutes(Role role)
+void Router::enableDisableAccessibleRoutes(bool validated, Role role)
 {
-    applicationWindow.setAuthorRouteButtonVisibility(role == Role::Staff || role == Role::Supplier);
+    applicationWindow.setAuthorRouteButtonVisibility(validated && (role == Role::Staff || role == Role::Supplier));
 }
 
 

@@ -124,7 +124,6 @@ void UserManagementView::on_pushButtonApprove_clicked()
     // doesn't match the user's new status. it's better keep the user
     // in the view than to have the screen flash with the user moving out.
     // also, that user is selected, so they shoudl remain on screen
-//    ui->tableWidgetRegisteredUsers->setItem(row, 2, new QTableWidgetItem{validated});
 
     QModelIndexList selectedIndexes = ui->tableWidgetRegisteredUsers->selectionModel()->selectedIndexes();
     // only one row can be selected
