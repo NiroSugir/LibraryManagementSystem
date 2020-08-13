@@ -22,6 +22,7 @@ public:
 
     void initialize(const User *_currentUser, vector<Author> _authors, vector<string> _categories);
     void populateBooksOnSaleBySupplier(vector<SellableBook> _booksForSale);
+    void clearListing();
 
     void setEventHandlers(
         function<void (SellableBook)> _handleListBookForSale

@@ -38,6 +38,7 @@ void SupplierHomeController::bindEventHandlersToView()
     function<void (SellableBook)> handleListBookForSale = [this](SellableBook book) {
         this->model->sellBook(book);
         this->view->populateBooksOnSaleBySupplier(this->model->getBooksListedForSaleByThisUser());
+        this->view->clearListing();
     };
 
     this->view->setEventHandlers(handleListBookForSale);

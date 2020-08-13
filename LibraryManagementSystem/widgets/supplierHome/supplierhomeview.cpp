@@ -51,6 +51,18 @@ void SupplierHomeView::populateBooksOnSaleBySupplier(vector<SellableBook> _books
     }
 }
 
+void SupplierHomeView::clearListing()
+{
+    ui->lineEditIsbn->clear();
+    ui->lineEditTitle->clear();
+    ui->comboBoxAuthors->clear();
+    ui->lineEditYear->clear();
+    ui->listViewCategories->clear();
+    ui->doubleSpinBoxPrice->setValue(15.00);
+
+    ui->lineEditTitle->setFocus();
+}
+
 void SupplierHomeView::setEventHandlers(function<void (SellableBook)> _handleListBookForSale)
 {
     handleListBookForSale = _handleListBookForSale;
