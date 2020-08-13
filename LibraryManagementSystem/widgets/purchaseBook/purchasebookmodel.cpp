@@ -2,14 +2,63 @@
 
 #include <QDebug>
 
-PurchaseBookModel::PurchaseBookModel(const User *_currentUser)
-{
-
-}
+PurchaseBookModel::PurchaseBookModel(const User *_currentUser): currentUser{_currentUser}
+{ }
 
 void PurchaseBookModel::purchaseBook(SellableBook _book)
 {
+    DbConnection connection;
 
+    // search the db
+    QSqlDatabase db = connection.getDb();
+
+    db.open();
+    if (db.isOpen()) {
+        QSqlQuery query{QSqlDatabase::database("purchase-book")};
+
+        // start transaction
+        query.exec("begin transaction;");
+
+        if (query.lastError().isValid()) {
+            qDebug() << query.lastError().text();
+            // todo: throw contact support error
+        }
+
+        // set the purchased by id to this staff user
+        query.prepare("update books_for_sale set purchaser_id = :staff_id where sale_id = :sale_id");
+        query.bindValue(":staff_id", currentUser->getId().c_str());
+        query.bindValue(":sale_id", _book.getSaleId().c_str());
+        query.exec();
+
+        if (query.lastError().isValid()) {
+            qDebug() << query.lastError().text();
+            // todo: throw contact support error
+        }
+
+        query.clear();
+
+        // add entry to library books table
+        query.prepare("insert into librarybooks (purchase_id) values (:sale_id)");
+        query.bindValue(":sale_id", _book.getSaleId().c_str());
+        query.exec();
+
+        if (query.lastError().isValid()) {
+            qDebug() << query.lastError().text();
+            // todo: throw contact support error
+        }
+
+        // end transaction
+        query.exec("commit");
+
+        if (query.lastError().isValid()) {
+            qDebug() << query.lastError().text();
+            // todo: throw contact support error
+        }
+
+        db.close();
+    } else {
+        // TODO: throw contact support error
+    }
 }
 
 vector<SellableBook> PurchaseBookModel::getBooksListedForSale()
@@ -28,7 +77,8 @@ vector<SellableBook> PurchaseBookModel::getBooksListedForSale()
         const char *queryString{"select Books.isbn, books.title, books.genre, Books.year, "
                            "Books_For_Sale.price, "
                            "Authors.author_id, Authors.first_name, Authors.last_name, "
-                           "Users.user_id, Users.username, Users.first_name, Users.last_name, Users.role, Users.validated "
+                           "Users.user_id, Users.username, Users.first_name, Users.last_name, Users.role, Users.validated, "
+                           "Books_For_Sale.sale_id "
                            "from Books_For_Sale "
                            "left join Books "
                                "on Books_For_Sale.isbn = books.isbn "
@@ -39,6 +89,10 @@ vector<SellableBook> PurchaseBookModel::getBooksListedForSale()
                            "where Books_For_Sale.purchaser_id = 0"};
 
         query.exec(queryString);
+        if (query.lastError().isValid()) {
+            qDebug() << query.lastError().text();
+            // todo: throw contact support error
+        }
 
         while(query.next()) {
             Author author {
@@ -65,6 +119,8 @@ vector<SellableBook> PurchaseBookModel::getBooksListedForSale()
             };
 
             booksForSale.push_back(SellableBook{
+                // sale id
+                query.value(14).toString().toStdString(),
                 // isbn
                 query.value(0).toString().toStdString(),
                 // title

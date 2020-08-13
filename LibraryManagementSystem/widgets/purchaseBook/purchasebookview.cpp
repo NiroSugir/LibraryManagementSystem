@@ -1,6 +1,8 @@
 #include "purchasebookview.h"
 #include "ui_purchasebookview.h"
 
+#include <QDebug>
+
 PurchaseBookView::PurchaseBookView(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::PurchaseBookView)
@@ -12,6 +14,11 @@ PurchaseBookView::PurchaseBookView(QWidget *parent) :
 PurchaseBookView::~PurchaseBookView()
 {
     delete ui;
+
+    if (currentBook) {
+        delete currentBook;
+        currentBook = nullptr;
+    }
 }
 
 void PurchaseBookView::initialize(const User *_currentUser, vector<Author> _authors, vector<string> _categories)
@@ -46,6 +53,8 @@ void PurchaseBookView::populateBooksOnSale(vector<SellableBook> _booksForSale)
 
 void PurchaseBookView::viewSelectedBook(SellableBook book)
 {
+    currentBook = new SellableBook{book};
+
     ui->lineEditTitle->setText(QString::fromStdString(book.getName()));
     ui->lineEditYear->setText(QString::fromStdString(to_string(book.getYear())));
     ui->lineEditIsbn->setText(QString::fromStdString(book.getIsbn()));
@@ -65,7 +74,6 @@ void PurchaseBookView::viewSelectedBook(SellableBook book)
 
     ui->comboBoxAuthors->setCurrentIndex(authorIndex);
 
-
     const string thisCategory = book.getCategory();
 
     int row = 0;
@@ -78,6 +86,8 @@ void PurchaseBookView::viewSelectedBook(SellableBook book)
 
         row++;
     }
+
+    ui->buttonPurchaseBook->setEnabled(true);
 }
 
 void PurchaseBookView::clearListing()
@@ -88,6 +98,9 @@ void PurchaseBookView::clearListing()
     ui->lineEditYear->clear();
     ui->listViewCategories->clear();
     ui->doubleSpinBoxPrice->setValue(0.00);
+    ui->buttonPurchaseBook->setEnabled(false);
+
+    currentBook = nullptr;
 }
 
 void PurchaseBookView::setEventHandlers(function<void (SellableBook)> _handlePurchaseBook, function<void (int)> _handleChangeSelectedBook)
@@ -138,4 +151,15 @@ void PurchaseBookView::on_tableWidgetBooksForSale_currentCellChanged(int current
         // handle change book view
         handleChangeSelectedBook(currentRow);
     }
+}
+
+void PurchaseBookView::on_buttonPurchaseBook_clicked()
+{
+    if (!currentBook) {
+        qDebug() << "This path should not exist. Attempting to purchase an unselected book";
+        return;
+    }
+
+    handlePurchaseBook(*currentBook);
+    currentBook = nullptr;
 }

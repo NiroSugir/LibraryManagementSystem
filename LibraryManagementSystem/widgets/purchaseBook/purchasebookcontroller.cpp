@@ -37,15 +37,14 @@ void PurchaseBookController::bindEventHandlersToView()
 {
     function<void (SellableBook)> handlePurchaseBook = [this](SellableBook book) {
         this->model->purchaseBook(book);
-        this->view->populateBooksOnSale(this->model->getBooksListedForSale());
         this->view->clearListing();
+        this->view->populateBooksOnSale(this->model->getBooksListedForSale());
     };
 
     function<void (int)> handleChangeSelectedBook = [this](int selectedIndex) {
         SellableBook book{this->model->selectBook(selectedIndex)};
         this->view->viewSelectedBook(book);
     };
-
 
     this->view->setEventHandlers(handlePurchaseBook, handleChangeSelectedBook);
 }

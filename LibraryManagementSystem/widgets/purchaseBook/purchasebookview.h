@@ -33,11 +33,13 @@ public:
 
 private slots:
     void on_tableWidgetBooksForSale_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn);
+    void on_buttonPurchaseBook_clicked();
 
 private:
     Ui::PurchaseBookView *ui;
 
     const User *currentUser{nullptr};
+    SellableBook *currentBook{nullptr};
     vector<Author> authors{};
     vector<string> categories{};
 

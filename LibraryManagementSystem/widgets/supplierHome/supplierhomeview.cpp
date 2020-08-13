@@ -71,6 +71,7 @@ void SupplierHomeView::setEventHandlers(function<void (SellableBook)> _handleLis
 void SupplierHomeView::on_buttonSellBook_clicked()
 {
     SellableBook book {
+        "", // <- sale id (set by the db)
         ui->lineEditIsbn->text().toStdString().c_str(),
         ui->lineEditTitle->text().toStdString().c_str(),
         {authors[ui->comboBoxAuthors->currentIndex()]},

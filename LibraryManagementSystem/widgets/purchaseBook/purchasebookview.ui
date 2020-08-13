@@ -294,6 +294,9 @@
        </item>
        <item row="2" column="0" colspan="2">
         <widget class="QPushButton" name="buttonPurchaseBook">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="minimumSize">
           <size>
            <width>0</width>
