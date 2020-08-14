@@ -1,0 +1,45 @@
+Future
+
+	switch from mvc to mv v & move model to backend
+	validation on client side is prone to abuse
+	client app should not connect directly to db server, but to a backend server that sits in front of a db with db inaccessible
+
+	pre-commit & pre-merge hooks
+		auto format
+		check if it builds
+		linting
+		unit test
+		integration test
+		end-to-end test
+		
+	responsive design for extreme sizes (larger monitors, small cellphones)
+
+	i18n translation & localization
+		use built in functionality from qt
+
+	flash messages after signing up that it they are registered but not yet approved for full access.
+		router methods & controller constructor should have an optional flash message parameter
+		
+	write error messages to a log file
+
+	remember password
+		set a token when logging in on private pc and use that token that is stored in the db to login
+
+	
+Highlights
+	enable login button by revalidating every keystroke
+	nested session class inside router
+	friend class logincontroller restricts use of router's login method 
+	singleton router
+	mvc pattern
+	
+	
+	
+	
+	
+	
+	
+	
+sqlite prepared statements
+	https://stackoverflow.com/questions/8780232/qsqlquery-prepare-fails-with-parameter-count-mismatch
+	http://katecpp.github.io/sqlite-with-qt/

@@ -47,7 +47,13 @@ void BookController::bindEventHandlersToView()
         this->view->populateCategories(categories);
     };
 
-    this->view->setEventHandlers(handleSearch, handleChangeSelectedBook, handleRetrieveCategories);
+    function<void ()> handleBorrowBook = [this]() {
+        BorrowableBook book{this->model->borrowBook()};
+        this->view->viewSelectedBook(book);
+    };
+
+
+    this->view->setEventHandlers(handleSearch, handleChangeSelectedBook, handleRetrieveCategories, handleBorrowBook);
 }
 
 BookController::BookController(const User *_currentUser)

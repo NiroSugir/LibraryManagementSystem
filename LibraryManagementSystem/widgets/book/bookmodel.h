@@ -17,6 +17,8 @@ public:
     vector<string> getCategories();
     vector<BorrowableBook> keywordSearch(string searchString);
     BorrowableBook getBook(const int &selectedBookIndex);
+    BorrowableBook borrowBook();
+
 
 private:
     // logged in user (if any)

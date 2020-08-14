@@ -79,7 +79,7 @@ vector<BorrowableBook> BookModel::keywordSearch(string searchString)
         */
 
        // use prepared statements to prevent sql injection attacks
-       string q = "        select "
+       string q = "select "
                "Books.isbn, books.title, books.genre, Books.year, "
                "LibraryBooks.library_book_id, LibraryBooks.borrowed_by, LibraryBooks.borrowed_on, "
                "Authors.author_id, Authors.first_name, Authors.last_name "
@@ -102,7 +102,6 @@ vector<BorrowableBook> BookModel::keywordSearch(string searchString)
                ")";
 
 
-//       const bool successfullyPrepared = query.prepare("select isbn, title, author, publisher, genre, copies, year from books where ( title LIKE :keyword OR author LIKE :keyword OR isbn LIKE :keyword )");
        const bool successfullyPrepared = query.prepare(q.c_str());
 
        if (successfullyPrepared) {
@@ -154,4 +153,48 @@ BorrowableBook BookModel::getBook(const int &selectedBookIndex)
 {
     selectedBook = &visibleBooks[selectedBookIndex];
     return *selectedBook;
+}
+
+BorrowableBook BookModel::borrowBook()
+{
+    DbConnection connection;
+
+    // search the db
+    QSqlDatabase db = connection.getDb();
+
+    db.open();
+    if (db.isOpen()) {
+       QSqlQuery query{QSqlDatabase::database("borrow-book")};
+
+       query.prepare("update LibraryBooks set borrowed_by = :borrower_id where library_book_id = :book_id");
+       if (query.lastError().isValid()) {
+           qDebug() << query.lastError().text();
+       }
+
+       qDebug() << "selectedBook->getBookId().c_str(): " << selectedBook->getBookId().c_str();
+       query.bindValue(":book_id", selectedBook->getBookId().c_str());
+       qDebug() << "currentUser->getId().c_str()" << currentUser->getId().c_str();
+       query.bindValue(":borrower_id", currentUser->getId().c_str());
+       query.exec();
+
+
+       if (query.lastError().isValid()) {
+           qDebug() << query.lastError().text();
+       }
+        db.close();
+
+       int selectedBookIndex{0};
+       for (const BorrowableBook &book: visibleBooks) {
+           if (book.getBookId() == selectedBook->getBookId()) {
+               break;
+           }
+
+           selectedBookIndex++;
+       }
+
+       return getBook(selectedBookIndex);
+    } else {
+        // todo:
+    }
+
 }

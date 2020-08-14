@@ -32,11 +32,13 @@ void BookView::initialize(const User *_currentUser)
 void BookView::setEventHandlers(
         function<void (string)> _handleSearch,
         function<void (int)> _handleChangeSelectedBook,
-        function<void ()> _handleRetrieveCategories
+        function<void ()> _handleRetrieveCategories,
+        function<void ()> _handleBorrowBook
 ) {
     handleSearch = _handleSearch;
     handleChangeSelectedBook = _handleChangeSelectedBook;
     handleRetrieveCategories = _handleRetrieveCategories;
+    handleBorrowBook = _handleBorrowBook;
 }
 
 void BookView::populateCategories(vector<string> _categories)
@@ -91,6 +93,7 @@ void BookView::viewSelectedBook(const BorrowableBook &book)
         row++;
     }
 
+    setBookAvailabilityForBorrowing(book);
 }
 
 void BookView::clearSelectedBook()
@@ -171,6 +174,16 @@ void BookView::setBookBorrowabilityAndAvailabilityDisplay()
 
 }
 
+void BookView::setBookAvailabilityForBorrowing(const BorrowableBook &book)
+{
+    qDebug() << "borrowed by: " << book.getBorrowedBy().c_str();
+    ui->pushButtonBorrow->setVisible(
+                currentUser && currentUser->getRole() == Role::Member && currentUser->isValidated()
+                                     );
+    ui->pushButtonBorrow->setEnabled(book.getBorrowedBy() == "");
+
+}
+
 void BookView::on_pushButtonSearch_clicked()
 {
     search();
@@ -188,4 +201,9 @@ void BookView::on_tableWidgetSearchResults_currentCellChanged(int currentRow, in
 void BookView::on_lineEditSearch_returnPressed()
 {
     search();
+}
+
+void BookView::on_pushButtonBorrow_clicked()
+{
+    handleBorrowBook();
 }

@@ -31,7 +31,8 @@ public:
     void setEventHandlers(
         function<void (string)> _handleSearch,
         function<void (int)> _handleChangeSelectedBook,
-        function<void ()> _handleRetrieveCategories
+        function<void ()> _handleRetrieveCategories,
+        function<void ()> _handleBorrowBook
     );
     void populateCategories(vector<string> _categories);
     void clearSearchResults();
@@ -42,8 +43,8 @@ public:
 private slots:
     void on_pushButtonSearch_clicked();
     void on_tableWidgetSearchResults_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn);
-
     void on_lineEditSearch_returnPressed();
+    void on_pushButtonBorrow_clicked();
 
 private:
     Ui::BookView *ui;
@@ -54,10 +55,12 @@ private:
     const User *currentUser{nullptr};
     void setBookInfoEditable(bool editable);
     void setBookBorrowabilityAndAvailabilityDisplay();
+    void setBookAvailabilityForBorrowing(const BorrowableBook &book);
 
     function<void (string)> handleSearch;
     function<void (int)> handleChangeSelectedBook;
     function<void ()> handleRetrieveCategories;
+    function<void ()> handleBorrowBook;
 };
 
 #endif // BOOKVIEW_H

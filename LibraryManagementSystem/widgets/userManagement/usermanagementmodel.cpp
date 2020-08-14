@@ -66,7 +66,7 @@ vector<User> UserManagementModel::loadUsers(ValidationStatus _validationStatus)
 
 User UserManagementModel::changeSelectedUser(int selectedIndex)
 {
-    selectedUser = &users[selectedIndex];
+    selectedUser = new User{users[selectedIndex]};
 
     return *selectedUser;
 }
