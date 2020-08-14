@@ -59,15 +59,26 @@ void BookView::updateSearchResults(const vector<BorrowableBook> &books)
 {
     ui->tableWidgetSearchResults->clearContents();
     ui->tableWidgetSearchResults->setRowCount(books.size());
-    qDebug() << "num books: " << books.size();
 
     int row = 0;
     for (auto const &book: books) {
         QString title{QString::fromStdString(book.getName())};
         QString author{QString::fromStdString(book.getAuthorName())};
 
-        ui->tableWidgetSearchResults->setItem(row, 0, new QTableWidgetItem{title});
-        ui->tableWidgetSearchResults->setItem(row, 1, new QTableWidgetItem{author});
+        auto itemTitle = new QTableWidgetItem{title};
+        auto itemAuthor = new QTableWidgetItem{author};
+        auto itemStatus = new QTableWidgetItem{book.getBorrowedBy() == "" ? "Available" : "Unavailable"};
+
+        // colour code the rows based on book availability
+        auto rowColour = book.getBorrowedBy() == "" ? QColor(80, 220, 100, 30) : QColor(250, 128, 114, 60);
+        itemStatus->setBackgroundColor(rowColour);
+        itemAuthor->setBackgroundColor(rowColour);
+        itemTitle->setBackgroundColor(rowColour);
+
+        ui->tableWidgetSearchResults->setItem(row, 0, itemTitle);
+        ui->tableWidgetSearchResults->setItem(row, 1, itemAuthor);
+        ui->tableWidgetSearchResults->setItem(row, 2, itemStatus);
+
 
         row++;
     }
@@ -117,11 +128,12 @@ void BookView::setupSearchResultsTable()
 
     ui->tableWidgetSearchResults->setSelectionBehavior(QAbstractItemView::SelectRows);
 
-    ui->tableWidgetSearchResults->setColumnCount(2);
+    ui->tableWidgetSearchResults->setColumnCount(3);
     ui->tableWidgetSearchResults->setRowCount(0);
     ui->tableWidgetSearchResults->setHorizontalHeaderLabels(QStringList{
         QString{"Title"},
-        QString{"Author"}
+        QString{"Author"},
+        QString{"Status"}
     });
 }
 
@@ -176,12 +188,8 @@ void BookView::setBookBorrowabilityAndAvailabilityDisplay()
 
 void BookView::setBookAvailabilityForBorrowing(const BorrowableBook &book)
 {
-    qDebug() << "borrowed by: " << book.getBorrowedBy().c_str();
-    ui->pushButtonBorrow->setVisible(
-                currentUser && currentUser->getRole() == Role::Member && currentUser->isValidated()
-                                     );
+    ui->pushButtonBorrow->setVisible(currentUser && currentUser->getRole() == Role::Member && currentUser->isValidated());
     ui->pushButtonBorrow->setEnabled(book.getBorrowedBy() == "");
-
 }
 
 void BookView::on_pushButtonSearch_clicked()
