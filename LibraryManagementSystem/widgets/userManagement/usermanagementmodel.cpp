@@ -1,6 +1,7 @@
 #include "usermanagementmodel.h"
 
 #include <QDebug>
+#include "widgets/_helper/erroralert.h"
 
 UserManagementModel::~UserManagementModel()
 {
@@ -34,6 +35,7 @@ vector<User> UserManagementModel::loadUsers(ValidationStatus _validationStatus)
         query.exec(q.c_str());
 
         if (query.lastError().isValid()) {
+            ErrorAlert{};
             qDebug() << query.lastError();
             db.close();
             return users;
@@ -87,11 +89,11 @@ User UserManagementModel::approveSelectedUser()
             return *selectedUser;
         } else {
             // failed
-            // TODO: handle update failure
+            ErrorAlert{};
             qDebug() << query.lastError().text();
             db.close();
         }
     } else {
-        // todo: throw contact support error
+        ErrorAlert{};
     }
 }

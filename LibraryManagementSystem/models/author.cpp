@@ -13,8 +13,6 @@ string Author::getFirstName() const
 void Author::setFirstName(const string &value)
 {
     firstName = value;
-
-    // TODO: update directly to db
 }
 
 string Author::getLastName() const
@@ -25,8 +23,6 @@ string Author::getLastName() const
 void Author::setLastName(const string &value)
 {
     lastName = value;
-
-    // TODO: update directly to db
 }
 
 Author::Author(string _id, string _firstName, string _lastName):id{_id}, firstName{_firstName}, lastName{_lastName}

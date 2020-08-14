@@ -1,6 +1,7 @@
 #include "supplierhomemodel.h"
 
 #include <QDebug>
+#include "widgets/_helper/erroralert.h"
 
 SupplierHomeModel::SupplierHomeModel(const User *_currentUser)
 {
@@ -86,7 +87,7 @@ void SupplierHomeModel::sellBook(SellableBook book)
 
         query.exec("commit");
     } else {
-        // TODO: throw call support error
+        ErrorAlert{};
     }
 
 }
@@ -145,7 +146,7 @@ vector<SellableBook> SupplierHomeModel::getBooksListedForSaleByThisUser()
             });
         }
     } else {
-        // TODO: throw contact support error
+        ErrorAlert{};
     }
 
     return booksForSale;
@@ -154,7 +155,7 @@ vector<SellableBook> SupplierHomeModel::getBooksListedForSaleByThisUser()
 void SupplierHomeModel::rollback(QSqlDatabase &db, QSqlQuery &query)
 {
     qDebug() << query.lastError().text();
-    // TODO: throw error
+    ErrorAlert{};
     query.exec("rollback");
     query.clear();
     db.close();

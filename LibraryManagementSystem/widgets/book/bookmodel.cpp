@@ -1,6 +1,7 @@
 #include "bookmodel.h"
 
 #include <QDebug>
+#include "widgets/_helper/erroralert.h"
 
 BookModel::BookModel(const User *_currentUser)
 {
@@ -30,13 +31,13 @@ vector<string> BookModel::getCategories()
             return categories;
         } else {
             db.close();
-            // TODO: throw error
+            ErrorAlert{};
             qDebug() << query.lastError();
         }
 
     } else {
         db.close();
-        // TODO: throw contact support error
+        ErrorAlert{};
     }
 }
 
@@ -111,6 +112,7 @@ vector<BorrowableBook> BookModel::keywordSearch(string searchString)
             query.exec();
 
             if (query.lastError().isValid()) {
+                ErrorAlert{};
                 qDebug() << query.lastError();
                 return visibleBooks;
             } else {
@@ -141,6 +143,7 @@ vector<BorrowableBook> BookModel::keywordSearch(string searchString)
                 }
             }
        } else {
+           ErrorAlert{};
            qDebug() << "fail preparing statement";
            qDebug() << query.lastError();
        }
@@ -171,9 +174,7 @@ BorrowableBook BookModel::borrowBook()
            qDebug() << query.lastError().text();
        }
 
-       qDebug() << "selectedBook->getBookId().c_str(): " << selectedBook->getBookId().c_str();
        query.bindValue(":book_id", selectedBook->getBookId().c_str());
-       qDebug() << "currentUser->getId().c_str()" << currentUser->getId().c_str();
        query.bindValue(":borrower_id", currentUser->getId().c_str());
        query.exec();
 
@@ -194,7 +195,7 @@ BorrowableBook BookModel::borrowBook()
 
        return getBook(selectedBookIndex);
     } else {
-        // todo:
+        ErrorAlert{};
     }
 
 }

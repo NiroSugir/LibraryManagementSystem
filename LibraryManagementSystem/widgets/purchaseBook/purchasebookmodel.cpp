@@ -1,6 +1,7 @@
 #include "purchasebookmodel.h"
 
 #include <QDebug>
+#include "widgets/_helper/erroralert.h"
 
 PurchaseBookModel::PurchaseBookModel(const User *_currentUser): currentUser{_currentUser}
 { }
@@ -21,7 +22,7 @@ void PurchaseBookModel::purchaseBook(SellableBook _book)
 
         if (query.lastError().isValid()) {
             qDebug() << query.lastError().text();
-            // todo: throw contact support error
+            ErrorAlert{};
         }
 
         // set the purchased by id to this staff user
@@ -32,7 +33,7 @@ void PurchaseBookModel::purchaseBook(SellableBook _book)
 
         if (query.lastError().isValid()) {
             qDebug() << query.lastError().text();
-            // todo: throw contact support error
+            ErrorAlert{};
         }
 
         query.clear();
@@ -44,7 +45,7 @@ void PurchaseBookModel::purchaseBook(SellableBook _book)
 
         if (query.lastError().isValid()) {
             qDebug() << query.lastError().text();
-            // todo: throw contact support error
+            ErrorAlert{};
         }
 
         // end transaction
@@ -57,7 +58,7 @@ void PurchaseBookModel::purchaseBook(SellableBook _book)
 
         db.close();
     } else {
-        // TODO: throw contact support error
+        ErrorAlert{};
     }
 }
 
@@ -91,7 +92,7 @@ vector<SellableBook> PurchaseBookModel::getBooksListedForSale()
         query.exec(queryString);
         if (query.lastError().isValid()) {
             qDebug() << query.lastError().text();
-            // todo: throw contact support error
+            ErrorAlert{};
         }
 
         while(query.next()) {
@@ -138,7 +139,7 @@ vector<SellableBook> PurchaseBookModel::getBooksListedForSale()
             });
         }
     } else {
-        // TODO: throw contact support error
+        ErrorAlert{};
     }
 
     return booksForSale;

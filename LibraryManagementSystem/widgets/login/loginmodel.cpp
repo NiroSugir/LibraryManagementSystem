@@ -50,21 +50,16 @@ User LoginModel::login(const string &username, const string &password)
                 }
             } else {
                 db.close();
-
-                // TODO: log: "failed to query database using username[] & password []"
                 throw "Please try again later";
             }
 
         } else {
             db.close();
-
-            // TODO: log: "failed to prepare statement"
             throw "Intenal DB Error! Please change what you entered and try again.";
         }
 
         db.close();
     } else {
-        // TODO: log: "failed to open db"
         throw "Internal DB Error! Could not access database. Please wait a while and try again. If problem persists, reinstall the app or call at 1-800-SHOULD-HAVE-PAID-FOR-SUPPORT ext. HAHA";
     }
 }

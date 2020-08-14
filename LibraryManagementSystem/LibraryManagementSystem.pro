@@ -26,6 +26,7 @@ SOURCES += \
     models/user.cpp \
     router.cpp \
     widgets/_helper/controller.cpp \
+    widgets/_helper/erroralert.cpp \
     widgets/author/authorcontroller.cpp \
     widgets/author/authormodel.cpp \
     widgets/author/authorview.cpp \
@@ -61,6 +62,7 @@ HEADERS += \
     models/user.h \
     router.h \
     widgets/_helper/controller.h \
+    widgets/_helper/erroralert.h \
     widgets/author/authorcontroller.h \
     widgets/author/authormodel.h \
     widgets/author/authorview.h \
